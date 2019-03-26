@@ -12,27 +12,44 @@ public class Bud : MonoBehaviour {
     Material glowBud;
     Transform creeper;
     Animator creeperAnim;
+    Renderer creeperRenderer;
+    float growIndex = 0;
+    bool startShow = false;
+    public float showSpeed = 1.0f;
+    public Color creeperColor;
 
     private void Awake()
     {
         leaves = GetComponentsInChildren<TagLeave>();        
         needRayNum = leaves.Length;
         nowRayNum = 0;
-        blackBud = Resources.Load<Material>(MainContainer.materialFolder+"blackBud");
-        glowBud = Resources.Load<Material>(MainContainer.materialFolder + "glowBud");
+        blackBud = Resources.Load<Material>(MainContainer.materialFolder+ "myLampNor");
+        glowBud = Resources.Load<Material>(MainContainer.materialFolder + "myLampEmi");
         for (int i = 0; i < needRayNum; i++)
         {
             leaves[i].gameObject.GetComponent<MeshRenderer>().material = blackBud;
         }
         creeper = transform.Find("creeper");
         creeper.gameObject.AddComponent<HighlightableObject>();
-        creeper.gameObject.SetActive(false);        
+        creeperRenderer = creeper.GetComponent<Renderer>();
+        creeperRenderer.material = Resources.Load<Material>(MainContainer.materialFolder + "myDissolve");
+        creeperRenderer.material.SetFloat("_dissolveAmount", growIndex);
+        creeper.gameObject.SetActive(false);
+
     }	
 
 	void Update () {
-        if (hasGrowrn) return;        
         LightAndDarkLeaves();        
-        GrowCreeper();            
+        GrowCreeper();
+        if (startShow)
+        {
+            growIndex = Mathf.Lerp(growIndex, 1, Time.deltaTime * showSpeed);
+            creeperRenderer.material.SetFloat("_dissolveAmount", growIndex);
+        }
+        if (creeperRenderer.material.GetFloat("_dissolveAmount") > 0.99f)
+        {
+            startShow = false;
+        }
     }
     void LightAndDarkLeaves()
     {
@@ -48,19 +65,20 @@ public class Bud : MonoBehaviour {
     }
     void GrowCreeper()
     {
-        if (nowRayNum >= needRayNum)
+        if (nowRayNum >= needRayNum && ! hasGrowrn)
         {
             AudioManager._instance.PlayEffect("creeper");
             creeper.gameObject.SetActive(true);
-            hasGrowrn = true;
+            startShow = true;
             StartCoroutine(HighlightCreeper());
-        }
+            hasGrowrn = true;           
+        }       
     }
 
     IEnumerator HighlightCreeper()
     {
-        HighlightableObject obj = creeper.gameObject.GetComponent<HighlightableObject>();
-        obj.ConstantOn(Color.green);
+        HighlightableObject obj = creeper.gameObject.GetComponent<HighlightableObject>();        
+        obj.ConstantOn(creeperColor);
         yield return new WaitForSeconds(5);
         obj.ConstantOff();
     }

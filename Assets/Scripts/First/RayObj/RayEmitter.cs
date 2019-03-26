@@ -21,9 +21,11 @@ public class RayEmitter : MonoBehaviour {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
         lineRenderer.positionCount = 2;
-        lineRenderer.startWidth = lineRenderer.endWidth = 0.035f;
+        lineRenderer.startWidth = lineRenderer.endWidth = 0.2f;
+        lineRenderer.material = Resources.Load<Material>("Materials/TexAnim");
         layerMask = LayerMask.GetMask("tower", "reflectObj", "refractObj", "bud");
         lastHit = null;
+        gameObject.AddComponent<TextureAnim>();
     }
 	
 

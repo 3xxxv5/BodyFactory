@@ -22,7 +22,7 @@ public class Fairy : MonoBehaviour {
     protected Vector3[] yArray = new Vector3[4];
     protected Vector3[] xArray = new Vector3[5];
     protected Vector3[] zArray = new Vector3[5];
-    protected List<GameObject> pointsObjects;
+    public  List<GameObject> pointsObjects;
     protected float moveSpeed = 5f;
     protected bool canMove = false;
     protected Vector3 targetPos;
@@ -72,8 +72,7 @@ public class Fairy : MonoBehaviour {
         else
         {
             tipBoard.gameObject.SetActive(false);     
-        }
-        tipBoard.transform.forward = Camera.main.transform.forward;       
+        }       
     }
 
     protected virtual void FollowTarget()
@@ -102,20 +101,21 @@ public class Fairy : MonoBehaviour {
         axisArray[0] = ori + uniform * yMax; axisArray[1] = ori + uniform * yMin;
         axisArray[2] = ori + uniform * (yMax - 1); axisArray[3] = ori + uniform * (yMin + 1);
         if (axisArray.Length > 4) axisArray[4] = ori + uniform * (yMin + 2);
-        GameObject go = new GameObject();
+        GameObject go;
         for (int i = 0; i < axisArray.Length; i++)
         {
             if (!showArray[i])
             {
                 go = Instantiate(movePoint, axisArray[i], Quaternion.identity);
-                if (axisArray[i] == ori)   Destroy(go);
+                if (axisArray[i] == ori)   Destroy(go);//删掉重复的点
                 else   pointsObjects.Add(go);//在该坐标点生成一个
                 showArray[i] = true;
             }
         }
         if (!oriShow)
         {
-            pointsObjects.Add(Instantiate(movePoint, ori, Quaternion.identity));
+            GameObject go2 = Instantiate(movePoint, ori, Quaternion.identity);
+            pointsObjects.Add(go2);
             oriShow = true;
         }
     }

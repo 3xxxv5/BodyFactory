@@ -6,8 +6,8 @@ using System.Collections;
 public class FirstPersonAIO : MonoBehaviour {
 
     #region Script Header and Cosmetics
-    [Header("            Aedan Graves' First Person All-in-One v1.6a")]
-    [Space(30)]
+    //[Header("            Aedan Graves' First Person All-in-One v1.6a")]
+    //[Space(30)]
     #endregion
 
     #region Variables
@@ -47,16 +47,24 @@ public class FirstPersonAIO : MonoBehaviour {
     #region Movement Settings
     [Header("Movement Settings")]
     [Space(8)]
-        
-    [Tooltip ("Determines whether the player can move.")] public bool playerCanMove = true;
-    [Tooltip("If true; Left shift = Sprint. If false; Left Shift = Walk.")] [SerializeField] private bool walkByDefault = true;
-    [Tooltip("Determines how fast Player walks.")] [Range(0.1f, 100)] public float walkSpeed = 4f;
-    [Tooltip("Determines how fast Player Sprints.")] [Range(0.1f, 100)] public float sprintSpeed = 8f;
-    [Tooltip("Determines how fast Player Strafes.")] [Range(0.1f, 100)] public float strafeSpeed = 4f;
-    [Tooltip("Determines how high Player Jumps.")] [Range(0.1f, 1000)] public float jumpPower = 5f;
-    [Tooltip("Determines whether to use Stamina or not.")] [SerializeField] private bool useStamina = true;
-    [Tooltip("Determines how quickly the players stamina runs out")] [SerializeField] [Range(0.1f, 9)] private float staminaDepletionMultiplier = 2f;
-    [Tooltip("Determines how much stamina the player has")] [SerializeField] [Range(0, 100)] private float Stamina = 50;
+    [Tooltip ("Determines whether the player can move.")]//Tooltip是注释哦
+    [HideInInspector]  public bool playerCanMove = false;
+    [Tooltip("If true; Left shift = Sprint. If false; Left Shift = Walk.")]
+    [SerializeField] private bool walkByDefault = true;
+    [Tooltip("Determines how fast Player walks.")]
+    [HideInInspector] [Range(0.1f, 100)] public float walkSpeed = 4f;
+    [Tooltip("Determines how fast Player Sprints.")]
+    [HideInInspector] [Range(0.1f, 100)] public float sprintSpeed = 8f;
+    [Tooltip("Determines how fast Player Strafes.")]
+    [HideInInspector] [Range(0.1f, 100)] public float strafeSpeed = 4f;
+    [Tooltip("Determines how high Player Jumps.")]
+    [HideInInspector] [Range(0.1f, 1000)] public float jumpPower = 5f;
+    [Tooltip("Determines whether to use Stamina or not.")]
+    [SerializeField] private bool useStamina = true;
+    [Tooltip("Determines how quickly the players stamina runs out")]
+    [SerializeField] [Range(0.1f, 9)] private float staminaDepletionMultiplier = 2f;
+    [Tooltip("Determines how much stamina the player has")]
+    [SerializeField] [Range(0, 100)] private float Stamina = 50;
     [HideInInspector] public float speed;
     private float backgroundStamina;
     [System.Serializable]
@@ -180,7 +188,6 @@ public class FirstPersonAIO : MonoBehaviour {
     bool previousGrounded;
     AudioSource audioSource;
 
-    // [Space(15)]
     #endregion
 
     #region BETA Settings
@@ -208,17 +215,23 @@ public class BETA_SETTINGS{
     #endregion
 
     #region Shoot Settings
-    AudioClip gunClip;
+    [Header("Shoot Settings")]
+    [Space(8)]
+
     AudioClip wallClip;
     AudioClip monsterClip;
     AudioClip flyClip;
     Vector3 p1;
-    GameObject fire;
-    GameObject monsterChips;
     LayerMask monsterMask;
     LayerMask wallMask ;
-    public float radius = 5.0F;
-    public float power = 1000;
+    public static bool canTransfer = false;
+    Vector3 targetPos;
+    public float waitTransferTime = 0.5f;
+    public float transferSpeed=5;
+    public float maxDistanceToWall = 2;
+    public Transform imageEffectCube;
+    private GameObject targetEffect;
+    GameObject effectGo;
     #endregion
 
     #endregion
@@ -250,9 +263,7 @@ public class BETA_SETTINGS{
 #endregion
 
     }
-
-
-
+    
     private void Start()
     {
         #region Look Settings - Start
@@ -288,40 +299,20 @@ public class BETA_SETTINGS{
         audioSource = GetComponent<AudioSource>();
         #endregion
 
-        #region Shoot Settings - Start
-        gunClip = Resources.Load<AudioClip>("Sound/Effect/gun");
+        #region Shoot Settings - Start        
         wallClip= Resources.Load<AudioClip>("Sound/Effect/oops");
         monsterClip = Resources.Load<AudioClip>("Sound/Effect/refract");
         flyClip = Resources.Load<AudioClip>("Sound/Effect/fly");
-        fire = Resources.Load<GameObject>("Prefabs/fire");
-        monsterChips= Resources.Load<GameObject>("Prefabs/monsterChips");
+        targetEffect = Resources.Load<GameObject>("Prefabs/targetCicleEffect");
+        imageEffectCube = transform.Find("HeadJoint/Player Camera/ImageEffectCube");
+        imageEffectCube.gameObject.SetActive(false);
         #endregion
         #region BETA_SETTINGS - Start
         fOVKick.fovStart = playerCamera.GetComponent<Camera>().fieldOfView;
         #endregion
     }
 
-    void AfterShoot(RaycastHit wallHit,RaycastHit monsterHit)
-    {          
-        audioSource.PlayOneShot(gunClip, Volume / 10);//音效
-        Destroy(Instantiate(fire, monsterHit.point, Quaternion.identity), 5);//特效
-        StartCoroutine(shootTransfer(wallHit.point));//转移主角
-        GameObject chips = Instantiate(monsterChips, monsterHit.transform.position, Quaternion.identity);//生成碎块
-        Destroy(monsterHit.collider.gameObject);//删掉monster
-        //爆炸
-        Vector3 explosionPos = chips.transform.position;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);//对爆炸点半径内的collider造成影响
-        foreach (Collider hit in colliders)
-        {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb != null)
-                rb.GetComponent<Rigidbody>().AddExplosionForce(power, explosionPos, radius, 3.0F);
-            if (hit.tag == "fragment")
-            {
-                Destroy(hit.gameObject, 0.5f);
-            } 
-        }
-    }
+
 
     private void Update()
     {
@@ -357,9 +348,7 @@ public class BETA_SETTINGS{
 
         #endregion
 
-        #region Shoot Settings - Update
-
-        
+        #region Shoot Settings - Update        
         //发射一条从屏幕中点到摄像机方向的射线
         p1 = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 2));
         Ray monsterRay = new Ray(p1,Camera.main.transform.forward);
@@ -367,43 +356,13 @@ public class BETA_SETTINGS{
         monsterMask = 1 << LayerMask.NameToLayer("monster");//只开启monster
         wallMask = 1 << LayerMask.NameToLayer("monster") | 1 << LayerMask.NameToLayer("wall");//开启monster和wall
         if (Input.GetMouseButtonUp(0))
-        {            
-            //射线检测--monster
-            RaycastHit hit;
-            if (Physics.Raycast(monsterRay, out hit, 3000, monsterMask))
-            {
-                print("raycast:"+hit.collider.gameObject.name);
-            }                
-
-            //射线检测--数组
-            RaycastHit[] monsterHits = Physics.RaycastAll(monsterRay, 3000, wallMask);
-            if (monsterHits.Length > 1)
-            {//成功打中
-                if (monsterHits[0].collider.gameObject.layer == 19 && monsterHits[1].collider.gameObject.layer == 18)
-                {
-                    AfterShoot(monsterHits[0], monsterHits[1]);
-                }
-                else if(monsterHits[0].collider.gameObject.layer == 18 && monsterHits[1].collider.gameObject.layer == 19)
-                {
-                    AfterShoot(monsterHits[1], monsterHits[0]);
-                    //Destroy(Instantiate(fire, monsterHits[0].point, Quaternion.identity), 2);
-                    //StartCoroutine(shootTransfer(monsterHits[1].point));
-                }
-            }else if (monsterHits.Length == 1)
-            {
-                if (monsterHits[0].collider.gameObject.layer == LayerMask.NameToLayer("monster"))
-                {//只打中了障碍物
-                    //音效
-                    audioSource.PlayOneShot(monsterClip, Volume / 10);
-                }
-                else if (monsterHits[0].collider.gameObject.layer == LayerMask.NameToLayer("wall"))
-                {//只打中了墙
-                    //音效
-                    audioSource.PlayOneShot(wallClip, Volume / 10);
-                }
-            }
-        }  
-    
+        {
+            Shoot(monsterRay);
+        }
+        if (canTransfer)
+        {
+            Transfer();//因为是持续运动，所以需要在Update里执行
+        }
 
         #endregion
 
@@ -419,14 +378,67 @@ public class BETA_SETTINGS{
 
         #endregion
     }
+
+    void Shoot(Ray monsterRay)
+    {
+        //射线检测--数组
+        RaycastHit[] monsterHits = Physics.RaycastAll(monsterRay, 3000, wallMask);
+        if (monsterHits.Length > 1)
+        {//打中1个以上的物体：墙和障碍物
+            if (monsterHits[0].collider.gameObject.layer == 19 && monsterHits[1].collider.gameObject.layer == 18)
+            {
+                AfterShoot(monsterHits[0]);
+            }
+            else if (monsterHits[0].collider.gameObject.layer == 18 && monsterHits[1].collider.gameObject.layer == 19)
+            {
+                AfterShoot(monsterHits[1]);
+            }
+        }
+        else if (monsterHits.Length == 1)
+        {
+            if (monsterHits[0].collider.gameObject.layer == LayerMask.NameToLayer("monster"))
+            {//只打中了障碍物
+             //音效
+                audioSource.PlayOneShot(monsterClip, Volume / 10);
+            }
+            else if (monsterHits[0].collider.gameObject.layer == LayerMask.NameToLayer("wall"))
+            {//只打中了墙
+             //音效
+                audioSource.PlayOneShot(flyClip, Volume / 10);
+                AfterShoot(monsterHits[0]);
+            }
+        }
+    }
+
+    void AfterShoot(RaycastHit wallHit)
+    {
+        effectGo = Instantiate(targetEffect, wallHit.point+Camera.main.transform.forward *(-2f), Quaternion.identity);
+        effectGo.transform.forward = wallHit.collider.transform.right;
+        StartCoroutine(shootTransfer(wallHit.point));//转移主角
+    }
+
     private IEnumerator shootTransfer(Vector3 pos)
     {
-        //音效
+        //飞行音效
         audioSource.PlayOneShot(flyClip, Volume / 10);
-        yield return new WaitForSeconds(0.5f);
-        //飞  如何先快后慢
-        transform.position = Vector3.Lerp(transform.position,pos, Time.deltaTime * 50);
+        yield return new WaitForSeconds(waitTransferTime);
+        canTransfer = true;
+        targetPos = pos;
+        imageEffectCube.gameObject.SetActive(true);
     }
+    void Transfer()
+    {
+        //飞  如何先快后慢
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * transferSpeed);
+        if (Vector3.Distance(transform.position, targetPos) < maxDistanceToWall)
+        {
+            canTransfer = false;
+            Destroy(effectGo);
+            imageEffectCube.gameObject.SetActive(false);
+        }
+    }
+
+
     private void FixedUpdate()
     {
         #region Look Settings - FixedUpdate
@@ -677,6 +689,7 @@ public class BETA_SETTINGS{
 
     }
 
+    #region  other
     public void UpdateAndApplyExternalCrouchModifies(){
         walkSpeed = _crouchModifiers.walkSpeed_External;
         sprintSpeed = _crouchModifiers.sprintSpeed_External;
@@ -708,6 +721,7 @@ public class BETA_SETTINGS{
     }
 
     public void UpdateOriginalRotation(Vector3 rot) { originalRotation = rot;}
+    #endregion
 }
 
 

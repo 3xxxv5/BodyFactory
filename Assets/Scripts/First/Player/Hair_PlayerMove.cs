@@ -14,8 +14,8 @@ public class Hair_PlayerMove : MonoBehaviour
     FreeCamera freeCamera;
     public  bool canMove = true;
     public bool canClimb = false;
+    public bool isClimbing = false;
     public bool isGrounded = true;
-    [HideInInspector]
     public bool animPaused = false;
     
 
@@ -24,6 +24,7 @@ public class Hair_PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         freeCamera = Camera.main.GetComponent<FreeCamera>();
+        
     }
 
 
@@ -73,23 +74,24 @@ public class Hair_PlayerMove : MonoBehaviour
 
     void ClimbManager()
     {
-        if (canClimb)
-        {
-            if (Input.GetKeyUp(KeyCode.E))
+            if (canClimb && Input.GetKeyUp(KeyCode.E))//在爬行区域内，且按下爬行建
             {
-                anim.SetBool("Climb",true);                
+                anim.SetBool("Climb", true);
+                isClimbing = true;
             }
-            if (anim.GetBool("Climb"))
+            else
+            {
+                MoveManager();
+                anim.SetBool("Climb", false);
+            }
+            if (isClimbing)//爬行中，设置向上的速度
             {
                 rb.velocity = Vector3.up * climbSpeed;
             }
-        }
-        else
-        {
-            MoveManager();
-            anim.SetBool("Climb",false);
-        }
-        
+            else
+            {                
+                anim.SetBool("Climb", false);
+            }                      
     }
 
     private void OnCollisionEnter(Collision col)

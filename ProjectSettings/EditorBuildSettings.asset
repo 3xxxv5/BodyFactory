@@ -5,9 +5,48 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Init.unity
-    guid: fa950672a002efd47b7bd6f820bf1854
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_2ddemo.unity
+    guid: 0ef9b490e5d6bad4ea1935d07d1c2ea9
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_combat.unity
+    guid: 49c44520099ebe541a86e958bb498f24
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_emojis.unity
+    guid: b0de468b5dc93da4d8ee716d4782d2ba
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_explosions.unity
+    guid: f91c322868183cc4a96eb6242e73deac
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_explosions2.unity
+    guid: 23b30f55479243746a484e7a7ba74b29
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_fireworks.unity
+    guid: 32ddbd81248ad9c43a2fc3edfba6e326
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_magic.unity
+    guid: 1e1bb871721d63e4f92474359db37b3d
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_maindemo.unity
+    guid: 8bd1bda334a6f2440817b9493f9d7703
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_missiles.unity
+    guid: b1d44d13576492049bc14b200e0d90cc
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_portals.unity
+    guid: dc955c3e9f407e245a0d2d03086ef10c
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_powerups.unity
+    guid: 2c56ab0803e494e4d83581cfca9f47f2
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_sparkles.unity
+    guid: b88a7726175acbc42a72541f3777eab3
+  - enabled: 1
+    path: Assets/OtherArtResources/Epic Toon FX/Demo/Scenes/etfx_swordcombat.unity
+    guid: e53e0f8c5f9e7eb40ae3f709aabd435f
   - enabled: 1
     path: Assets/Scenes/1_official.unity
     guid: 99c9720ab356a0642a771bea13969a05

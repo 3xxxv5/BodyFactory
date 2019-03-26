@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: seaWeed
+  m_Controller: {fileID: 9100000, guid: a582ad6fec7b4dd449640ba5053d4f9d, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d469a0c515328e7419bb3a7b826bc5f0, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 53e172ce413ecb3409c8aa511a5f0a09, type: 3}

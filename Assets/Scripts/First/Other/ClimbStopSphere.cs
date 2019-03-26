@@ -19,7 +19,7 @@ public class ClimbStopSphere : MonoBehaviour {
     {
         if (col.gameObject.tag.Equals("Player"))
         {
-            playerMove.canClimb = false;
+            playerMove.isClimbing = false;//已经爬上去，设置状态为不在爬行
             cubeBoard.GetComponent<Collider>().isTrigger = false;
         }
     }

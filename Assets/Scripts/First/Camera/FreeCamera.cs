@@ -84,7 +84,7 @@ public class FreeCamera : MonoBehaviour {
     void AvoidViewBlock()
     {
         Vector3 ori = Target.position+Vector3.up*0.2f;
-        Vector3 ori2 = Target.position - Vector3.up * 0.2f;
+        Vector3 ori2 = Target.position - Vector3.up * 0.1f;
         Vector3 dir = (transform.position-Target.position).normalized;
 
         Debug.DrawRay(ori,dir);

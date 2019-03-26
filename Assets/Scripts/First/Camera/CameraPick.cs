@@ -16,6 +16,10 @@ public class CameraPick : MonoBehaviour
     GameObject exitPickText;
     DOTweenAnimation tween;
     public  Transform canvas;
+    public Color enterColor;
+    public Color pickColor;
+    public Color pickNotNowColor;
+
     enum PlayerState
     {
         Frozen,
@@ -207,13 +211,13 @@ public class CameraPick : MonoBehaviour
         switch (color)
         {
             case FairyColor.EnterColor:
-                transform.GetComponent<HighlightableObject>().ConstantOn(Color.blue);
+                transform.GetComponent<HighlightableObject>().ConstantOn(enterColor);
                 break;
             case FairyColor.PickColor:
-                transform.GetComponent<HighlightableObject>().ConstantOn(Color.yellow);
+                transform.GetComponent<HighlightableObject>().ConstantOn(pickColor);
                 break;
             case FairyColor.PickNotNowColor:
-                transform.GetComponent<HighlightableObject>().ConstantOn(Color.red);
+                transform.GetComponent<HighlightableObject>().ConstantOn(pickNotNowColor);
                 break;
             case FairyColor.NormalColor:
                 transform.GetComponent<HighlightableObject>().ConstantOff();

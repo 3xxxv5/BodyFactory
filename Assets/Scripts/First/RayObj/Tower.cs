@@ -26,7 +26,6 @@ public class Tower : MonoBehaviour {
         //主角点亮
         if (tipBoard.gameObject.activeSelf)
         {
-            tipBoard.transform.forward = Camera.main.transform.forward;
             if (Input.GetKeyUp(KeyCode.E))
             {
                 AudioManager._instance.PlayEffect("tower");
@@ -56,6 +55,7 @@ public class Tower : MonoBehaviour {
             if (!rayEmitter.lineRenderer.enabled)
             {
                 tipBoard.gameObject.SetActive(true);
+
             }
         }
     }

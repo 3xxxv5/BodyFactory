@@ -13,7 +13,10 @@ public class FbxExporter : MonoBehaviour {
     public GameObject[] meshObjs;
     // Use this for initialization
     void Start () {
-        FBXExporter.ExportFBX("", fbxname, meshObjs, true);
+        if (meshObjs.Length > 0)
+        {
+            FBXExporter.ExportFBX("", fbxname, meshObjs, true);
+        }       
     }
 	
 	// Update is called once per frame

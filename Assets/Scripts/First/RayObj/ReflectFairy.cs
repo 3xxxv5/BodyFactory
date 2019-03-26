@@ -124,7 +124,8 @@ public class ReflectFairy : Fairy
         {
             foreach (var i in pointsObjects)
             {
-                Destroy(i);
+                Destroy(i.gameObject);
+                
             }
             pointsObjects.Clear();
             InitPointsArray();
