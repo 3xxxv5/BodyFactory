@@ -1,0 +1,339 @@
+fileFormatVersion: 2
+guid: 5cc64de7fcab1cc4ab5a71f29d8679e0
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: rock02
+    100004: rock02 (6)
+    100006: rock02 (7)
+    100008: rock02.001
+    100010: rock02.002
+    100012: rock02.003
+    100014: rock02.004
+    100016: rock02.005
+    100018: rock02.006
+    100020: rock03
+    100022: rock03 (1)
+    100024: rock04 (1)
+    100026: rock04 (10)
+    100028: rock04 (11)
+    100030: rock04 (12)
+    100032: rock04 (13)
+    100034: rock04 (14)
+    100036: rock04 (15)
+    100038: rock04 (16)
+    100040: rock04 (17)
+    100042: rock04 (18)
+    100044: rock04 (19)
+    100046: rock04 (2)
+    100048: rock04 (20)
+    100050: rock04 (20).001
+    100052: rock04 (21)
+    100054: rock04 (22)
+    100056: rock04 (23)
+    100058: rock04 (24)
+    100060: rock04 (25)
+    100062: rock04 (26)
+    100064: rock04 (3)
+    100066: rock04 (4)
+    100068: rock04 (5)
+    100070: rock04 (6)
+    100072: rock04 (7)
+    100074: rock04 (8)
+    100076: rock04 (9)
+    100078: rock05
+    100080: rock05 (1)
+    100082: rock05 (2)
+    100084: rock05 (2).001
+    100086: rock05 (3)
+    100088: rock05 (4)
+    100090: rock05 (5)
+    100092: rock05 (6)
+    100094: rock06
+    100096: rock06 (2)
+    100098: rock06 (3)
+    400000: //RootNode
+    400002: rock02
+    400004: rock02 (6)
+    400006: rock02 (7)
+    400008: rock02.001
+    400010: rock02.002
+    400012: rock02.003
+    400014: rock02.004
+    400016: rock02.005
+    400018: rock02.006
+    400020: rock03
+    400022: rock03 (1)
+    400024: rock04 (1)
+    400026: rock04 (10)
+    400028: rock04 (11)
+    400030: rock04 (12)
+    400032: rock04 (13)
+    400034: rock04 (14)
+    400036: rock04 (15)
+    400038: rock04 (16)
+    400040: rock04 (17)
+    400042: rock04 (18)
+    400044: rock04 (19)
+    400046: rock04 (2)
+    400048: rock04 (20)
+    400050: rock04 (20).001
+    400052: rock04 (21)
+    400054: rock04 (22)
+    400056: rock04 (23)
+    400058: rock04 (24)
+    400060: rock04 (25)
+    400062: rock04 (26)
+    400064: rock04 (3)
+    400066: rock04 (4)
+    400068: rock04 (5)
+    400070: rock04 (6)
+    400072: rock04 (7)
+    400074: rock04 (8)
+    400076: rock04 (9)
+    400078: rock05
+    400080: rock05 (1)
+    400082: rock05 (2)
+    400084: rock05 (2).001
+    400086: rock05 (3)
+    400088: rock05 (4)
+    400090: rock05 (5)
+    400092: rock05 (6)
+    400094: rock06
+    400096: rock06 (2)
+    400098: rock06 (3)
+    2100000: No Name
+    2300000: rock02
+    2300002: rock02 (6)
+    2300004: rock02 (7)
+    2300006: rock02.001
+    2300008: rock02.002
+    2300010: rock02.003
+    2300012: rock02.004
+    2300014: rock02.005
+    2300016: rock02.006
+    2300018: rock03
+    2300020: rock03 (1)
+    2300022: rock04 (1)
+    2300024: rock04 (10)
+    2300026: rock04 (11)
+    2300028: rock04 (12)
+    2300030: rock04 (13)
+    2300032: rock04 (14)
+    2300034: rock04 (15)
+    2300036: rock04 (16)
+    2300038: rock04 (17)
+    2300040: rock04 (18)
+    2300042: rock04 (19)
+    2300044: rock04 (2)
+    2300046: rock04 (20)
+    2300048: rock04 (20).001
+    2300050: rock04 (21)
+    2300052: rock04 (22)
+    2300054: rock04 (23)
+    2300056: rock04 (24)
+    2300058: rock04 (25)
+    2300060: rock04 (26)
+    2300062: rock04 (3)
+    2300064: rock04 (4)
+    2300066: rock04 (5)
+    2300068: rock04 (6)
+    2300070: rock04 (7)
+    2300072: rock04 (8)
+    2300074: rock04 (9)
+    2300076: rock05
+    2300078: rock05 (1)
+    2300080: rock05 (2)
+    2300082: rock05 (2).001
+    2300084: rock05 (3)
+    2300086: rock05 (4)
+    2300088: rock05 (5)
+    2300090: rock05 (6)
+    2300092: rock06
+    2300094: rock06 (2)
+    2300096: rock06 (3)
+    3300000: rock02
+    3300002: rock02 (6)
+    3300004: rock02 (7)
+    3300006: rock02.001
+    3300008: rock02.002
+    3300010: rock02.003
+    3300012: rock02.004
+    3300014: rock02.005
+    3300016: rock02.006
+    3300018: rock03
+    3300020: rock03 (1)
+    3300022: rock04 (1)
+    3300024: rock04 (10)
+    3300026: rock04 (11)
+    3300028: rock04 (12)
+    3300030: rock04 (13)
+    3300032: rock04 (14)
+    3300034: rock04 (15)
+    3300036: rock04 (16)
+    3300038: rock04 (17)
+    3300040: rock04 (18)
+    3300042: rock04 (19)
+    3300044: rock04 (2)
+    3300046: rock04 (20)
+    3300048: rock04 (20).001
+    3300050: rock04 (21)
+    3300052: rock04 (22)
+    3300054: rock04 (23)
+    3300056: rock04 (24)
+    3300058: rock04 (25)
+    3300060: rock04 (26)
+    3300062: rock04 (3)
+    3300064: rock04 (4)
+    3300066: rock04 (5)
+    3300068: rock04 (6)
+    3300070: rock04 (7)
+    3300072: rock04 (8)
+    3300074: rock04 (9)
+    3300076: rock05
+    3300078: rock05 (1)
+    3300080: rock05 (2)
+    3300082: rock05 (2).001
+    3300084: rock05 (3)
+    3300086: rock05 (4)
+    3300088: rock05 (5)
+    3300090: rock05 (6)
+    3300092: rock06
+    3300094: rock06 (2)
+    3300096: rock06 (3)
+    4300000: rock04 (20).001
+    4300002: rock04 (26)
+    4300004: rock04 (25)
+    4300006: rock04 (24)
+    4300008: rock04 (23)
+    4300010: rock04 (22)
+    4300012: rock04 (21)
+    4300014: rock04 (20)
+    4300016: rock04 (19)
+    4300018: rock04 (18)
+    4300020: rock04 (17)
+    4300022: rock04 (16)
+    4300024: rock04 (15)
+    4300026: rock04 (14)
+    4300028: rock04 (13)
+    4300030: rock04 (12)
+    4300032: rock04 (11)
+    4300034: rock04 (10)
+    4300036: rock04 (9)
+    4300038: rock04 (8)
+    4300040: rock04 (7)
+    4300042: rock04 (6)
+    4300044: rock04 (5)
+    4300046: rock04 (4)
+    4300048: rock04 (3)
+    4300050: rock04 (2)
+    4300052: rock05 (2).001
+    4300054: rock05 (6)
+    4300056: rock05 (5)
+    4300058: rock05 (4)
+    4300060: rock02 (7)
+    4300062: rock06 (3)
+    4300064: rock05 (3)
+    4300066: rock03 (1)
+    4300068: rock02.006
+    4300070: rock05 (2)
+    4300072: rock02 (6)
+    4300074: rock05 (1)
+    4300076: rock04 (1)
+    4300078: rock06 (2)
+    4300080: rock02.005
+    4300082: rock02.004
+    4300084: rock02.003
+    4300086: rock02.002
+    4300088: rock02.001
+    4300090: rock06
+    4300092: rock02
+    4300094: rock03
+    4300096: rock05
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
