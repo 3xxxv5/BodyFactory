@@ -18,7 +18,7 @@ public class FirstPersonAIO : MonoBehaviour {
     [Header("Mouse Rotation Settings")]
     [Space(8)]
     [Tooltip("Determines whether the player can move camera or not.")]
-    public bool enableCameraMovement;
+    public static bool enableCameraMovement=true;
     [Tooltip("For Relative Motion Mode, Leave Default.")]
     public Vector2 rotationRange = new Vector2(170, Mathf.Infinity);
     [Tooltip("Determines how sensitive the mouse is.")] [Range(0.01f, 100)]
@@ -28,14 +28,14 @@ public class FirstPersonAIO : MonoBehaviour {
     [Tooltip("Recommened, Non Relative Motion Mode has been depreciated.")]
     public bool relativeMotionMode = true;
     [Tooltip("For Debuging or if You don't plan on having a pause menu or quit button.")]
-    public bool lockAndHideMouse = false;
+    public  bool lockAndHideMouse = true;
     [Tooltip("Camera that you wish to rotate.")]
     public Transform playerCamera;
 
 
     [SerializeField] [Tooltip("Automatically Create Crosshair")] private bool autoCrosshair;
     public Sprite Crosshair;
-
+    public static GameObject qui;
     private Vector3 targetAngles;
     private Vector3 followAngles;
     private Vector3 followVelocity;
@@ -270,7 +270,7 @@ public class BETA_SETTINGS{
 
         if(autoCrosshair)
         {
-            GameObject qui = new GameObject("AutoCrosshair");
+            qui = new GameObject("AutoCrosshair");
             qui.AddComponent<RectTransform>();
             qui.AddComponent<Canvas>();
             qui.AddComponent<CanvasScaler>();
@@ -349,20 +349,23 @@ public class BETA_SETTINGS{
         #endregion
 
         #region Shoot Settings - Update        
-        //发射一条从屏幕中点到摄像机方向的射线
-        p1 = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 2));
-        Ray monsterRay = new Ray(p1,Camera.main.transform.forward);
-        Debug.DrawRay(p1, Camera.main.transform.forward, Color.green);
-        monsterMask = 1 << LayerMask.NameToLayer("monster");//只开启monster
-        wallMask = 1 << LayerMask.NameToLayer("monster") | 1 << LayerMask.NameToLayer("wall");//开启monster和wall
-        if (Input.GetMouseButtonUp(0))
+        if (enableCameraMovement)
         {
-            Shoot(monsterRay);
-        }
-        if (canTransfer)
-        {
-            Transfer();//因为是持续运动，所以需要在Update里执行
-        }
+            //发射一条从屏幕中点到摄像机方向的射线
+            p1 = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 2));
+            Ray monsterRay = new Ray(p1, Camera.main.transform.forward);
+            Debug.DrawRay(p1, Camera.main.transform.forward, Color.green);
+            monsterMask = 1 << LayerMask.NameToLayer("monster");//只开启monster
+            wallMask = 1 << LayerMask.NameToLayer("monster") | 1 << LayerMask.NameToLayer("wall");//开启monster和wall
+            if (Input.GetMouseButtonUp(0))
+            {
+                Shoot(monsterRay);
+            }
+            if (canTransfer)
+            {
+                Transfer();//因为是持续运动，所以需要在Update里执行
+            }
+        }     
 
         #endregion
 
@@ -438,7 +441,12 @@ public class BETA_SETTINGS{
         }
     }
 
-
+    public static void GameOver()
+    {
+        enableCameraMovement = false;
+        qui.SetActive(false);
+        Cursor.lockState = CursorLockMode.None; Cursor.visible = true;
+    }
     private void FixedUpdate()
     {
         #region Look Settings - FixedUpdate

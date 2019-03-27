@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//[System.Serializable]
-public class SmallWave
+[System.Serializable]
+public class MyQueue
 {
-    //public GameObject foodPrefab;
+    public GameObject foodPrefab;
     public int count = 0;
     public float rate;
 }
-//[System.Serializable]
+[System.Serializable]
 public class BigWave
 {
-    public List<SmallWave> smallWaves;
-    public  BigWave()//List初始化
-    {
-        smallWaves = new List<SmallWave>(1);
-        smallWaves[0].count = 0;
-        smallWaves[0].rate = 1;
-    }
+    public MyQueue[] myQueues;
 }

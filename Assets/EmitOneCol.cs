@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class EmitOneCol : MonoBehaviour
 {
-    Collision lastCol=null;
 
-    private void OnCollisionEnter(Collision col)
-    {    
-        if (col != lastCol)//保证此函数只执行一次
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
-            if (col.gameObject.layer == LayerMask.NameToLayer("monster"))
-            {
-                GameManager2.level1Hp -= 1;    //碰到障碍物，生命值就减1
-                lastCol = col;
-            }
+            GameManager2.level1Hp -= 1;
+        }
+    }
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("monster"))
+        {
+            Destroy(col.gameObject);
         }
     }
 }

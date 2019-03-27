@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 765929881923303011}
   - component: {fileID: 442328061}
   - component: {fileID: 519214904527285786}
-  m_Layer: 0
+  - component: {fileID: 1338588699159213030}
+  m_Layer: 18
   m_Name: m_macaron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 442328060}
   m_LocalRotation: {x: -0.8946734, y: 0, z: 0, w: 0.446721}
   m_LocalPosition: {x: 15.175348, y: 97.7, z: 7.3058305}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2.6419141, y: 2.6419141, z: 2.6419141}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -92,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.08, y: 1.68, z: 1.08}
-  m_Center: {x: 0.000051659845, y: -0.00049527, z: -0.005272484}
+  m_Size: {x: 2.3304565, y: 1.68, z: 1.517224}
+  m_Center: {x: -0.021455482, y: -0.0004952575, z: 0.08369757}
 --- !u!114 &519214904527285786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,3 +109,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropSpeed: 4
   chips: {fileID: 3743932680920338005, guid: bc810d359e108b347b69e6fd1c9d3f62, type: 3}
+--- !u!54 &1338588699159213030
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442328060}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

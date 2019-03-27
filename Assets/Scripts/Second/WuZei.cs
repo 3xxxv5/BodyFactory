@@ -28,7 +28,10 @@ public class WuZei : MonoBehaviour
 
     void Update()
     {
-        
+        if (!FirstPersonAIO.enableCameraMovement)
+        {
+            GetComponent<Animator>().enabled = false;
+        }
     }
     private void OnCollisionEnter(Collision col)
     {

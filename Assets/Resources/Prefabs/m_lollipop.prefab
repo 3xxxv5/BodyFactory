@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 768348886828372368}
   - component: {fileID: 1135547107572218465}
   - component: {fileID: 7880734164944343797}
+  - component: {fileID: 8604275794260734622}
   m_Layer: 18
   m_Name: m_lollipop
   m_TagString: Untagged
@@ -27,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8725251877376752072}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0, y: 0, z: -3.87}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 1.2368699, y: 1.2368699, z: 1.2368699}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &1562275735183355204
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -91,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6ca71603ac169449823be44657c490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropSpeed: 3
+  dropSpeed: 13.92
   chips: {fileID: 5646324559210769391, guid: 2fff016f7ef60ee42befc6c83d9e2c51, type: 3}
 --- !u!135 &7880734164944343797
 SphereCollider:
@@ -106,3 +107,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3.03
   m_Center: {x: -0.00000011920929, y: 0, z: 0}
+--- !u!54 &8604275794260734622
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725251877376752072}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
