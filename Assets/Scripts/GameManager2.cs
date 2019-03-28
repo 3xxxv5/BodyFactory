@@ -52,14 +52,15 @@ public class GameManager2 : MonoBehaviour
     }
     // Start is called before the first frame update
     void Start()
-    {       
+    {
+        blackPanel.color = Color.black;
+        blackPanel.DOFade(0f,1f);
         Utility.DisableCanvas(overCanvas);
         Level1_Init();
     }
     void Level1_Init()
     {
         level1Hp = level1HpBase;
-        blackPanel.color = Color.clear;
         Utility.DisableCamera(level1Camera.transform);
         //主角位置
 

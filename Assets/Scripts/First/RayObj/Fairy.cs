@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class Fairy : MonoBehaviour {
 
-    Transform tipBoard;
-    Transform rotateTip;
+    protected Transform tipBoard;
+    protected Transform rotateTip;
+    Button rotateButton;
     public  GameObject movePoint;
     public bool rayHited = false;
     public bool isPicked = false;//已经被选中过，但可能不是当前正在处理的
@@ -39,13 +40,15 @@ public class Fairy : MonoBehaviour {
     {
         tipBoard = transform.Find("tipBoard");
         rotateTip = tipBoard.Find("RotateTip");
+        rotateButton = rotateTip.GetComponent<Button>();
+        rotateButton.onClick.AddListener(RotateFairy);
         tipBoard.gameObject.SetActive(false);    
         rotateTip.gameObject.SetActive(false);
         anim = transform.GetComponentInChildren<Animator>();
         movePoint = Resources.Load<GameObject>("Prefabs/movePoint");
         pointsObjects = new List<GameObject>();
     }
-
+    protected 
     void Update () {
         //显示提示板
         ShowTipBoard();
@@ -54,14 +57,12 @@ public class Fairy : MonoBehaviour {
         //渲染射线
         RenderRay();
         //选中并移动
-        MoveFairy();        
-        //选中并旋转
-        RotateFairy();
+        MoveFairy();       
     }
 
    protected void ShowTipBoard()
     {
-        if (isPicked)
+        if (truePicked)
         {
             tipBoard.gameObject.SetActive(true);
             if (rayHited)       
@@ -129,7 +130,10 @@ public class Fairy : MonoBehaviour {
     {
 
     }
+    protected virtual void OverTurnFairy()
+    {
 
+    }
     protected virtual void RenderRay()
     {
         if (hitRay > 0)
@@ -144,4 +148,6 @@ public class Fairy : MonoBehaviour {
         }
         anim.SetInteger("FairyState", (int)fairyState);
     }
+
+    
 }

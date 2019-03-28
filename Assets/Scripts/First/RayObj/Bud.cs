@@ -70,7 +70,7 @@ public class Bud : MonoBehaviour {
             AudioManager._instance.PlayEffect("creeper");
             creeper.gameObject.SetActive(true);
             startShow = true;
-            StartCoroutine(HighlightCreeper());
+            //StartCoroutine(HighlightCreeper());
             hasGrowrn = true;           
         }       
     }

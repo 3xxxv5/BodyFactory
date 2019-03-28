@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ReflectFairy : Fairy
 {
     protected Hair_PlayerMove playerMove;
     ReflectRayEmitter reflectRay;
     const int dirNum = 8;
     Vector3 disToTarget;
-
+    Button overTurnButton;
 
     void Awake () {
         base.Init();
         playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<Hair_PlayerMove>();
+        overTurnButton = rotateTip.Find("OverTurn").GetComponent<Button>();
+        overTurnButton.onClick.AddListener(OverTurnFairy);
         InitReflectRay();
     }
  
@@ -42,15 +44,18 @@ public class ReflectFairy : Fairy
 
     protected override void RotateFairy()
     {
-        if (Input.GetKeyUp(KeyCode.R) && truePicked)
+        if (truePicked)
         {
             int index = Random.Range(1,6);
             AudioManager._instance.PlayEffect("r"+index.ToString());
             //在8个顶点上进行旋转，改变dir
             reflectRay.index++;
             reflectRay.index %= 8;
-        }
-        if (Input.GetKeyUp(KeyCode.X) && truePicked)
+        }        
+    }
+    protected override void OverTurnFairy()
+    {
+        if (truePicked)
         {
             AudioManager._instance.PlayEffect("X");
             for (int i = 0; i < 8; i++)

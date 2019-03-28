@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3743932680920338006}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: m_macaronChips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,6 +164,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 13e8e52cc76859b40adc5f0a6b3b104d, type: 3}
       propertyPath: m_Name
       value: Macaron_Debris03_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 13e8e52cc76859b40adc5f0a6b3b104d, type: 3}
+      propertyPath: m_Layer
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 13e8e52cc76859b40adc5f0a6b3b104d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -254,6 +258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Macaron_Debris02_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4f498a54762dc2d4dba665163cd37932, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4f498a54762dc2d4dba665163cd37932, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.135
@@ -343,6 +351,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Macaron_Debris01_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 91195eecf48e2aa4fa7cb648130c3a47, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 91195eecf48e2aa4fa7cb648130c3a47, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -431,6 +443,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: a2883b56584e9314c8ad7898f6c493f5, type: 3}
       propertyPath: m_Name
       value: Macaron_Debris04_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a2883b56584e9314c8ad7898f6c493f5, type: 3}
+      propertyPath: m_Layer
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a2883b56584e9314c8ad7898f6c493f5, type: 3}
       propertyPath: m_LocalPosition.x

@@ -18,7 +18,7 @@ public class Tower : MonoBehaviour {
         tipBoard.gameObject.SetActive(false);
         rayEmitter = GetComponentInChildren<RayEmitter>();
         rayEmitter.startPoint = transform.position;
-        anim = GetComponentInChildren<Animator>();
+        anim =transform.Find("flowerTower").GetComponentInChildren<Animator>();
     }
 	
 

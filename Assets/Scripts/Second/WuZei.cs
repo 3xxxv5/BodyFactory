@@ -50,7 +50,7 @@ public class WuZei : MonoBehaviour
         Destroy(colTrans.gameObject);//删掉monster
         //爆炸
         Vector3 explosionPos = chips.transform.position;
-        Destroy(chips,3);
+        Destroy(chips,10);
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);//对爆炸点半径内的collider造成影响
         foreach (Collider hit in colliders)
         {

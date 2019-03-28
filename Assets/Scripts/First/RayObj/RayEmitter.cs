@@ -54,7 +54,9 @@ public class RayEmitter : MonoBehaviour {
         transform.parent.GetComponent<Collider>().enabled = false;
         bool isHit = Physics.Raycast(ray, out hitInfo, 1000,layerMask);
         transform.parent.GetComponent<Collider>().enabled = true;
-        if (isHit)
+
+        if (isHit && hitInfo.collider.gameObject.GetComponent<Fairy>() != null 
+            && hitInfo.collider.gameObject.GetComponent<Fairy>().isPicked)//射中了且在选择模式
         {
             //射中了某个物体
             endY = hitInfo.transform.position.y;
@@ -65,6 +67,7 @@ public class RayEmitter : MonoBehaviour {
             endY = 1000f;
             EmptyLastHit();
         }
+
         //画出射线
         lineRenderer.SetPosition(0, startPoint);
         lineRenderer.SetPosition(1, new Vector3(startPoint.x, endY, startPoint.z));       
@@ -159,7 +162,7 @@ public class RayEmitter : MonoBehaviour {
             case "bud":
                 Bud bud = trans.GetComponent<Bud>();
                 if (bud != null)
-                {                   
+                {
                     if (isHited)
                     {
                         if (!hasAddBud)
@@ -168,7 +171,7 @@ public class RayEmitter : MonoBehaviour {
                             bud.nowRayNum++;
                             hasAddBud = true;
                             hasReduceBud = false;
-                        }                        
+                        }
                     }
                     else
                     {
@@ -177,7 +180,7 @@ public class RayEmitter : MonoBehaviour {
                             bud.nowRayNum--;
                             hasReduceBud = true;
                             hasAddBud = false;
-                        }                        
+                        }
                     }                                                  
                 }                    
                 break;

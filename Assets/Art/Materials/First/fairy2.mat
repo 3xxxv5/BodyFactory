@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: fairy2
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION
@@ -73,5 +74,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.3234247, g: 0.8679245, b: 0.4365952, a: 0.59607846}
-    - _EmissionColor: {r: 0.5137255, g: 0.7490196, b: 0.5372549, a: 1}
+    - _Color: {r: 1, g: 0.9155675, b: 0.2971698, a: 0.39215687}
+    - _EmissionColor: {r: 0.9012759, g: 2.8267288, b: 0, a: 1}

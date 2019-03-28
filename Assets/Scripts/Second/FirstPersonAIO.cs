@@ -419,7 +419,10 @@ public class BETA_SETTINGS{
     }
 
     void AfterShoot(RaycastHit wallHit)
-    {        
+    {
+        audioSource.PlayOneShot(flyClip, Volume / 10);
+        effectGo = Instantiate(targetEffect, wallHit.point + Camera.main.transform.forward * (-2f), Quaternion.identity);
+        effectGo.transform.forward = wallHit.collider.transform.right;
         StartCoroutine(shootTransfer(wallHit));//转移主角
     }
 
@@ -427,9 +430,7 @@ public class BETA_SETTINGS{
     {
         //飞行音效        
         yield return new WaitForSeconds(waitTransferTime);
-        audioSource.PlayOneShot(flyClip, Volume / 10);
-        effectGo = Instantiate(targetEffect, wallHit.point + Camera.main.transform.forward * (-2f), Quaternion.identity);
-        effectGo.transform.forward = wallHit.collider.transform.right;
+       
         canTransfer = true;
         targetPos = wallHit.point;
         imageEffectCube.gameObject.SetActive(true);

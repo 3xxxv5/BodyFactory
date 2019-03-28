@@ -39,13 +39,13 @@ Material:
     - _Cutoff: 0.5
     - _Gloss: 0.437
     - _Metallic: 0
-    - _dissolveAmount: 0.708
+    - _dissolveAmount: 1
     - _edgeWidth: 0.05
     - _node_1974: 0
     - _node_8055: 0
     - _node_8582: 1
     m_Colors:
     - _Color: {r: 0.3726415, g: 1, b: 0.43466175, a: 1}
-    - _baseColor: {r: 0.1262905, g: 0.6226415, b: 0.13207895, a: 1}
-    - _edgeColor: {r: 0.23602703, g: 0.9811321, b: 0.25344515, a: 1}
+    - _baseColor: {r: 0.1745283, g: 1, b: 0.18752785, a: 1}
+    - _edgeColor: {r: 0.47058824, g: 1.9607843, b: 0.50980395, a: 1}
     - _node_8146: {r: 1, g: 1, b: 1, a: 1}

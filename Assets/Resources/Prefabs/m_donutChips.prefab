@@ -38,7 +38,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1624237397959498882}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: m_donutChips
   m_TagString: fragment
   m_Icon: {fileID: 0}
@@ -161,6 +161,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Donut_Debris_04_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 7f99e246c0b06254594799a496359316, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7f99e246c0b06254594799a496359316, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 7f99e246c0b06254594799a496359316, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 7f99e246c0b06254594799a496359316, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 7f99e246c0b06254594799a496359316, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.541
@@ -266,6 +282,22 @@ PrefabInstance:
     - target: {fileID: 100002, guid: ae341a44c93612f4aa61a2bff07b1129, type: 3}
       propertyPath: m_Name
       value: Donut_Debris_03_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: ae341a44c93612f4aa61a2bff07b1129, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ae341a44c93612f4aa61a2bff07b1129, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: ae341a44c93612f4aa61a2bff07b1129, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: ae341a44c93612f4aa61a2bff07b1129, type: 3}
+      propertyPath: m_Layer
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ae341a44c93612f4aa61a2bff07b1129, type: 3}
       propertyPath: m_LocalPosition.x
@@ -373,6 +405,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Donut_Debris_02_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: f1cc7ebfecb01b64fb8dc8f49ca36625, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cc7ebfecb01b64fb8dc8f49ca36625, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: f1cc7ebfecb01b64fb8dc8f49ca36625, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: f1cc7ebfecb01b64fb8dc8f49ca36625, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f1cc7ebfecb01b64fb8dc8f49ca36625, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.559
@@ -478,6 +526,22 @@ PrefabInstance:
     - target: {fileID: 100002, guid: fdd66ff231f80e84a98f692ae38a522e, type: 3}
       propertyPath: m_Name
       value: Donut_Debris_01_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: fdd66ff231f80e84a98f692ae38a522e, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fdd66ff231f80e84a98f692ae38a522e, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: fdd66ff231f80e84a98f692ae38a522e, type: 3}
+      propertyPath: m_Layer
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: fdd66ff231f80e84a98f692ae38a522e, type: 3}
+      propertyPath: m_Layer
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: fdd66ff231f80e84a98f692ae38a522e, type: 3}
       propertyPath: m_LocalPosition.x

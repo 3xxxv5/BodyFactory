@@ -78,8 +78,7 @@ public class EmitManager : MonoBehaviour {
                 {
                     if (i == 1)
                     {
-                        //全部发射完后进行检测
-                        GameManager2._instance.CheckWin(level);
+                        
                     }
                     SpawnOne(levelWave[v].myQueues[j].foodPrefab);//直接生成第一个。生成第3个后还要等10s吗？是的
                     yield return new WaitForSeconds(levelWave[v].myQueues[j].rate);//等10s           
@@ -91,7 +90,8 @@ public class EmitManager : MonoBehaviour {
                 yield return new WaitForSeconds(waveRate);//每一波之间要等的时间
             }            
         }
-        
+        //全部发射完后进行检测
+        GameManager2._instance.CheckWin(level);
     }
 
   
@@ -100,6 +100,6 @@ public class EmitManager : MonoBehaviour {
         if (!FirstPersonAIO._instance.enableCameraMovement) return;
         int random_x = Random.Range(-randomRange, randomRange);
         int random_z = Random.Range(-randomRange, randomRange);
-        Instantiate(prefab, transform.position + new Vector3(random_x, 0, random_z), transform.rotation);
+        Instantiate(prefab, transform.position + new Vector3(random_x, 0, random_z), prefab.transform.rotation);
     }
 }

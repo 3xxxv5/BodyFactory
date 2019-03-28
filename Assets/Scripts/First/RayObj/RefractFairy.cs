@@ -45,7 +45,7 @@ public class RefractFairy : Fairy
     }
     protected override void RotateFairy()
     {
-        if (truePicked && Input.GetKeyUp(KeyCode.R))
+        if (truePicked)
         {
             for (int i = 0; i < 2; i++)
             {
