@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 90a0ecd4363b0a547a4c174b9a95dd5d
-timeCreated: 1499495303
-licenseType: Store
+guid: 707473f3344c9ac4ab5a3a95b76b729d
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - _TargetFogVolume: {instanceID: 0}

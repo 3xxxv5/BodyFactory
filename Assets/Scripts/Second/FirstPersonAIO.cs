@@ -5,6 +5,8 @@ using System.Collections;
 [AddComponentMenu("First Person AIO")]
 public class FirstPersonAIO : MonoBehaviour {
 
+    public static FirstPersonAIO _instance { get; private set; }
+
     #region Script Header and Cosmetics
     //[Header("            Aedan Graves' First Person All-in-One v1.6a")]
     //[Space(30)]
@@ -18,7 +20,7 @@ public class FirstPersonAIO : MonoBehaviour {
     [Header("Mouse Rotation Settings")]
     [Space(8)]
     [Tooltip("Determines whether the player can move camera or not.")]
-    public static bool enableCameraMovement=true;
+    public bool enableCameraMovement=true;
     [Tooltip("For Relative Motion Mode, Leave Default.")]
     public Vector2 rotationRange = new Vector2(170, Mathf.Infinity);
     [Tooltip("Determines how sensitive the mouse is.")] [Range(0.01f, 100)]
@@ -216,7 +218,7 @@ public class BETA_SETTINGS{
 
     #region Shoot Settings
     [Header("Shoot Settings")]
-    [Space(8)]
+    [Space(8)]  
 
     AudioClip wallClip;
     AudioClip monsterClip;
@@ -238,6 +240,8 @@ public class BETA_SETTINGS{
 
     private void Awake()
     {
+        _instance = this;
+
         #region Look Settings - Awake
         originalRotation = transform.localRotation.eulerAngles;
 
@@ -267,8 +271,9 @@ public class BETA_SETTINGS{
     private void Start()
     {
         #region Look Settings - Start
-
-        if(autoCrosshair)
+        enableCameraMovement = true;
+        autoCrosshair = true;
+        if (autoCrosshair)
         {
             qui = new GameObject("AutoCrosshair");
             qui.AddComponent<RectTransform>();
@@ -284,7 +289,8 @@ public class BETA_SETTINGS{
             quic.transform.SetParent(qui.transform);
             quic.transform.position = Vector3.zero;
         }
-        if(lockAndHideMouse) { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
+        lockAndHideMouse = true;
+        if (lockAndHideMouse) { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
         #endregion
 
         #region Movement Settings - Start
@@ -351,6 +357,7 @@ public class BETA_SETTINGS{
         #region Shoot Settings - Update        
         if (enableCameraMovement)
         {
+            if (Camera.main == null) return;
             //发射一条从屏幕中点到摄像机方向的射线
             p1 = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 2));
             Ray monsterRay = new Ray(p1, Camera.main.transform.forward);
@@ -405,28 +412,26 @@ public class BETA_SETTINGS{
                 audioSource.PlayOneShot(monsterClip, Volume / 10);
             }
             else if (monsterHits[0].collider.gameObject.layer == LayerMask.NameToLayer("wall"))
-            {//只打中了墙
-             //音效
-                audioSource.PlayOneShot(flyClip, Volume / 10);
+            {//只打中了墙               
                 AfterShoot(monsterHits[0]);
             }
         }
     }
 
     void AfterShoot(RaycastHit wallHit)
-    {
-        effectGo = Instantiate(targetEffect, wallHit.point+Camera.main.transform.forward *(-2f), Quaternion.identity);
-        effectGo.transform.forward = wallHit.collider.transform.right;
-        StartCoroutine(shootTransfer(wallHit.point));//转移主角
+    {        
+        StartCoroutine(shootTransfer(wallHit));//转移主角
     }
 
-    private IEnumerator shootTransfer(Vector3 pos)
+    private IEnumerator shootTransfer(RaycastHit wallHit)
     {
-        //飞行音效
-        audioSource.PlayOneShot(flyClip, Volume / 10);
+        //飞行音效        
         yield return new WaitForSeconds(waitTransferTime);
+        audioSource.PlayOneShot(flyClip, Volume / 10);
+        effectGo = Instantiate(targetEffect, wallHit.point + Camera.main.transform.forward * (-2f), Quaternion.identity);
+        effectGo.transform.forward = wallHit.collider.transform.right;
         canTransfer = true;
-        targetPos = pos;
+        targetPos = wallHit.point;
         imageEffectCube.gameObject.SetActive(true);
     }
     void Transfer()
@@ -441,7 +446,7 @@ public class BETA_SETTINGS{
         }
     }
 
-    public static void GameOver()
+    public void GameOver()
     {
         enableCameraMovement = false;
         qui.SetActive(false);

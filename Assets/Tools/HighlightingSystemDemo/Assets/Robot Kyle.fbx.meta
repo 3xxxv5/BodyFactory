@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 320b1c2af77554f99a1658df4a6d3d5c
+guid: e45b341f26b1f8b4c851d9a5a3df52a4
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -108,7 +108,12 @@ ModelImporter:
     4300000: Robot2
     11100000: //RootNode
     13700000: Robot2
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Robot
+    second: {fileID: 2100000, guid: d90b99dae06e30f47b3015cf147ecc56, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -142,6 +147,7 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -166,6 +172,9 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 4
     normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -180,7 +189,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0

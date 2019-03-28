@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 3b72bf67d4b8dea4ca604f04602a7128
-timeCreated: 1438011374
-licenseType: Store
+guid: 946815db4c3c538449966533ee57e0b9
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
   - velocityShader: {fileID: 4800000, guid: 0d7f09e63dd99504ca6e04212a21ec72, type: 3}

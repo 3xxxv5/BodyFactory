@@ -90,12 +90,12 @@ public class RefractFairy : Fairy
         else
         {
             //移动
-            if (Input.GetKeyUp(KeyCode.W)) InputResponse(playerMove.transform.up);
-            if (Input.GetKeyUp(KeyCode.S)) InputResponse(playerMove.transform.up * (-1));
-            if (Input.GetKeyUp(KeyCode.A)) InputResponse(playerMove.transform.right * (-1));
-            if (Input.GetKeyUp(KeyCode.D)) InputResponse(playerMove.transform.right);
-            if (Input.GetKeyUp(KeyCode.Q)) InputResponse(playerMove.transform.forward * (-1));
-            if (Input.GetKeyUp(KeyCode.E)) InputResponse(playerMove.transform.forward);
+            if (Input.GetKeyUp(KeyCode.W)) InputResponse(Vector3.up);
+            if (Input.GetKeyUp(KeyCode.S)) InputResponse(Vector3.up * (-1));
+            if (Input.GetKeyUp(KeyCode.A)) InputResponse(Vector3.right * (-1));
+            if (Input.GetKeyUp(KeyCode.D)) InputResponse(Vector3.right);
+            if (Input.GetKeyUp(KeyCode.Q)) InputResponse(Vector3.forward * (-1));
+            if (Input.GetKeyUp(KeyCode.E)) InputResponse(Vector3.forward);
             //控制角色在坐标点上
             float y = Mathf.Clamp(Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(playerPos.y - 1), Mathf.RoundToInt(playerPos.y + 2));
             float x = Mathf.Clamp(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(playerPos.x - 2), Mathf.RoundToInt(playerPos.x + 2));

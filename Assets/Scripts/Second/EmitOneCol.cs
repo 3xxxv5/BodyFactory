@@ -9,7 +9,7 @@ public class EmitOneCol : MonoBehaviour
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
-            GameManager2.level1Hp -= 1;
+            GameManager2._instance.level1Hp -= 1;
         }
     }
     private void OnTriggerExit(Collider col)

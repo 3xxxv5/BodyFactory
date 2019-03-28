@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: f62bcd7fb35867b4ea974f4dc731aac7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _mainTex:
+        m_Texture: {fileID: 2800000, guid: a01d24876a1472b408ba8e5f0bf3a23f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _texture:
         m_Texture: {fileID: 2800000, guid: dc459e47586770b49b1aa54a5bd66f68, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -35,10 +39,13 @@ Material:
     - _Cutoff: 0.5
     - _Gloss: 0.437
     - _Metallic: 0
-    - _dissolveAmount: 1
+    - _dissolveAmount: 0.708
+    - _edgeWidth: 0.05
     - _node_1974: 0
     - _node_8055: 0
     - _node_8582: 1
     m_Colors:
     - _Color: {r: 0.3726415, g: 1, b: 0.43466175, a: 1}
+    - _baseColor: {r: 0.1262905, g: 0.6226415, b: 0.13207895, a: 1}
+    - _edgeColor: {r: 0.23602703, g: 0.9811321, b: 0.25344515, a: 1}
     - _node_8146: {r: 1, g: 1, b: 1, a: 1}

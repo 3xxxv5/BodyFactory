@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class EmitManager : MonoBehaviour {
     public  float timer = 4;
     float time = 0;
@@ -10,13 +9,16 @@ public class EmitManager : MonoBehaviour {
     int randomMonster = 0;
     public float queueRate = 0;
     public float waveRate = 5;
-    public   BigWave[] FirstLevelWave;
+    public BigWave[] FirstLevelWave;
+    public BigWave[] SecondLevelWave;
+    public BigWave[] ThirdLevelWave;
     GameObject donut;
     GameObject lollipop;
     GameObject macaron;
-	void Start () {
+
+    void Start () {
         InitTest();
-        StartCoroutine(SpawnWave());
+        StartCoroutine(SpawnWave(FirstLevelWave,1));
     }
     void InitTest()
     {
@@ -66,26 +68,36 @@ public class EmitManager : MonoBehaviour {
     void Update () {
         
     }
-   IEnumerator SpawnWave()
+   public  IEnumerator SpawnWave(BigWave[] levelWave,int level)
     {
-        for(int v = 0; v < FirstLevelWave.Length;v++)
+        for(int v = 0; v < levelWave.Length;v++)
         {
-            for (int j = 0; j < FirstLevelWave[v].myQueues.Length; j++)//第一波里的3个小队
+            for (int j = 0; j < levelWave[v].myQueues.Length; j++)//第一波里的3个小队
             {
-                for (int i = 0; i < FirstLevelWave[v].myQueues[j].count; i++)//小队里怪物的个数
+                for (int i = 0; i < levelWave[v].myQueues[j].count; i++)//小队里怪物的个数
                 {
-                    SpawnOne(FirstLevelWave[v].myQueues[j].foodPrefab);//直接生成第一个。生成第3个后还要等10s吗？是的
-                    yield return new WaitForSeconds(FirstLevelWave[v].myQueues[j].rate);//等10s           
+                    if (i == 1)
+                    {
+                        //全部发射完后进行检测
+                        GameManager2._instance.CheckWin(level);
+                    }
+                    SpawnOne(levelWave[v].myQueues[j].foodPrefab);//直接生成第一个。生成第3个后还要等10s吗？是的
+                    yield return new WaitForSeconds(levelWave[v].myQueues[j].rate);//等10s           
                 }
                 yield return new WaitForSeconds(queueRate);//每一小队之间要等的时间。没有额外等的时间了   
             }
-            yield return new WaitForSeconds(waveRate);//每一小队之间要等的时间。没有额外等的时间了   
-        }        
+            if (v != levelWave.Length - 1)
+            {
+                yield return new WaitForSeconds(waveRate);//每一波之间要等的时间
+            }            
+        }
+        
     }
 
+  
     void SpawnOne(GameObject prefab)
     {
-        if (!FirstPersonAIO.enableCameraMovement) return;
+        if (!FirstPersonAIO._instance.enableCameraMovement) return;
         int random_x = Random.Range(-randomRange, randomRange);
         int random_z = Random.Range(-randomRange, randomRange);
         Instantiate(prefab, transform.position + new Vector3(random_x, 0, random_z), transform.rotation);

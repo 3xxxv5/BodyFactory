@@ -28,7 +28,7 @@ public class WuZei : MonoBehaviour
 
     void Update()
     {
-        if (!FirstPersonAIO.enableCameraMovement)
+        if (!FirstPersonAIO._instance.enableCameraMovement)
         {
             GetComponent<Animator>().enabled = false;
         }
