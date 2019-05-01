@@ -7,6 +7,7 @@ using UnityEngine;
 public class Monster : MonoBehaviour {
     public  float dropSpeed=2f;
     public GameObject chips;
+    float trueSpeed;
 	// Use this for initialization
 	void Start () {
         if (chips == null)
@@ -16,6 +17,8 @@ public class Monster : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //transform或者velocity
-        transform.position = Vector3.Lerp(transform.position,transform.position+new Vector3(0,-1,0),Time.deltaTime*dropSpeed);
+        trueSpeed= dropSpeed + GameManager2._instance.buffDropSpeed;
+        Mathf.Clamp(trueSpeed,0.5f,10);
+        transform.position = Vector3.Lerp(transform.position,transform.position+new Vector3(0,-1,0),Time.deltaTime*trueSpeed);
 	}
 }

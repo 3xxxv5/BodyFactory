@@ -16,6 +16,8 @@ TagManager:
   - ground
   - climbSphere
   - fragment
+  - wuzei
+  - chocolateFrog
   layers:
   - Default
   - TransparentFX
@@ -40,10 +42,10 @@ TagManager:
   - ImageEffect
   - DontAvoid
   - chips
-  - 
-  - 
-  - 
-  - 
+  - centerBall
+  - qteTrigger
+  - battery
+  - bullet
   - 
   - 
   - 

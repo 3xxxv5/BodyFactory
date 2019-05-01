@@ -4,9 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 public class Utility : MonoBehaviour
 {
-    public static void DisableCanvas(CanvasGroup canvas)
+    public static void DisableCanvas(CanvasGroup canvas,float time)
     {
-        canvas.alpha = 0;
+        canvas.DOFade(0, time);
         canvas.interactable = false;
         canvas.gameObject.SetActive(false);
     }
