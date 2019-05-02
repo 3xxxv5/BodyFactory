@@ -5,15 +5,13 @@ using UnityEngine;
 public class WuZei : MonoBehaviour
 {
     public static WuZei _instance { get; private set; }
-    //声音
-    AudioSource audioSource;
+
     //爆炸
     Monster monster;
     GameObject dizzySpark;
     public float radius = 5.0F;
     public float power = 1000;
-    public Transform sparkTrans;
-    public float boomDistance = 0.5f;
+    public Transform sparkTrans;//眩晕特效的位置
     //qte
     public float timeScale = 0.2f;
     public float qteTime = 3f;
@@ -25,8 +23,7 @@ public class WuZei : MonoBehaviour
     bool checkQteTrigger = true;
     void Awake()
     {
-        _instance = this;      
-        audioSource = GetComponent<AudioSource>();        
+        _instance = this;            
         dizzySpark = Resources.Load<GameObject>("Prefabs/dizzySpark");
         if (sparkTrans == null) print("sparkTrans为空，设置在乌贼头上");
         qteCanvas.gameObject.SetActive(false);
@@ -68,17 +65,26 @@ public class WuZei : MonoBehaviour
     }
     private void OnCollisionEnter(Collision col)//碰到了monster的碰撞盒
     {
+        if (checkQte) return;
         if (GameManager2._instance.canChange2Battery&& col.gameObject.layer == LayerMask.NameToLayer("battery"))
         {
-            print("射中了炮台");
             GameManager2._instance.Change2BatteryView();
         }
-        if (checkQte) return;
         if (col.gameObject.layer==LayerMask.NameToLayer("monster"))
         {
-            Boom(col.transform);
+            Boom(col.transform,col.gameObject.tag);
         }
-
+        if (col.gameObject.tag.Equals("sea"))
+        {
+            print("撞到海了");
+            StartCoroutine(GameManager2._instance.SeaDead(1f,1f,1f));
+        }
+        if (col.gameObject.tag.Equals("electric"))
+        {
+            print("被电击了");
+            GameManager2._instance.SpawnSpecialEffects("lightning", transform.position + transform.forward * 3, 5f);
+            StartCoroutine(GameManager2._instance.SeaDead(3f, 1f, 1f));
+        }
     }
 
     public  IEnumerator Qte(float qteTime)
@@ -98,37 +104,49 @@ public class WuZei : MonoBehaviour
         FirstPersonAIO._instance.hasQte = false;
     }
 
-    void Boom(Transform colTrans)
+    void Boom(Transform colTrans,string tag)
     {
         if (!FirstPersonAIO._instance.canTransfer) return;
         if (colTrans == null) return;
-        SpawnEffects(colTrans);
+        SpawnEffects(colTrans,tag);
         SpawnChips(colTrans);
     }
-    void SpawnEffects(Transform colTrans)
+    void SpawnEffects(Transform colTrans,string tag)
     {
-        audioSource.PlayOneShot(GameManager2._instance.gunClip, GameManager2._instance.Volume / 10);//音效
-        Destroy(Instantiate(GameManager2._instance.fire, colTrans.position+transform.forward* boomDistance, Quaternion.identity), 5);//爆炸粒子特效
+        AudioManager._instance.PlayEffect("gun");
+        if (tag.Equals("chocolateFrog"))
+        {
+            StartCoroutine(GameManager2._instance.ChangeAllDropSpeed());//巧克力蛙buff       
+            GameManager2._instance.SpawnSpecialEffects("frogHeart", colTrans.position + transform.forward * GameManager2._instance.boomDistance, 3f);
+        }
+        else
+        {
+            GameManager2._instance.SpawnSpecialEffects("fire", colTrans.position + transform.forward * GameManager2._instance.boomDistance, 3f);
+        }    
         //眩晕特效
         GameObject spark = Instantiate(dizzySpark, sparkTrans.position, dizzySpark.transform.rotation);
         spark.transform.SetParent(transform); Destroy(spark, 3f);
     }
     void SpawnChips(Transform colTrans)
     {
-        //删掉食物本体
-        Destroy(colTrans.gameObject);
-        //生成食物碎块        
-        monster =colTrans.gameObject.GetComponent<Monster>();
-        GameObject chips = Instantiate(monster.chips, colTrans.position + transform.forward * boomDistance, Quaternion.identity);
-        Destroy(chips, 3);
-        //向碎块添加爆炸力
-        Vector3 explosionPos = chips.transform.position;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);//对爆炸点半径内的collider造成影响
-        foreach (Collider hit in colliders)
+        Monster monster = colTrans.GetComponent<Monster>();
+        monster.ReduceLife(1);
+        if (monster.life <1)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb != null)  rb.GetComponent<Rigidbody>().AddExplosionForce(power, explosionPos, radius, 3.0F);
-            if (hit.tag == "fragment")  Destroy(hit.gameObject, 0.5f);
+            //生成食物碎块       
+            GameObject chips = Instantiate(monster.chips, colTrans.position + transform.forward * GameManager2._instance.boomDistance, Quaternion.identity);
+            Destroy(chips, 3);
+            Destroy(colTrans.gameObject);
+            //向碎块添加爆炸力
+            Vector3 explosionPos = chips.transform.position;
+            Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);//对爆炸点半径内的collider造成影响
+            foreach (Collider hit in colliders)
+            {
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+                if (rb != null) rb.GetComponent<Rigidbody>().AddExplosionForce(power, explosionPos, radius, 3.0F);
+                if (hit.tag == "fragment") Destroy(hit.gameObject, 0.5f);
+            }
         }
+
     }
 }

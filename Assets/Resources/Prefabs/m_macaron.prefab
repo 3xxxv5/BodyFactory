@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropSpeed: 4
   chips: {fileID: 3743932680920338005, guid: bc810d359e108b347b69e6fd1c9d3f62, type: 3}
+  lifeBase: 3
 --- !u!54 &1338588699159213030
 Rigidbody:
   m_ObjectHideFlags: 0

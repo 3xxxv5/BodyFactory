@@ -189,7 +189,7 @@ public class HighlightingEffect : MonoBehaviour
 	{
 		if (shaderCameraGO != null)
 		{
-			DestroyImmediate(shaderCameraGO);
+			Destroy(shaderCameraGO);
 		}
 		
 		if (_blurShader)

@@ -52,6 +52,10 @@ public class GameManager2 : MonoBehaviour
     public CanvasGroup overCanvas;
     public CanvasGroup playCanvas;
     public CanvasGroup crossCanvas;
+    public Image blackPanel;
+    bool hasOver = false;
+    public float toBlackTime = 1f;
+    public float toClearTime = 1f;
     //切换炮台
     public Transform wuzei;
     public Transform paotong;
@@ -61,19 +65,21 @@ public class GameManager2 : MonoBehaviour
     private Slider lifeSlider;
     [HideInInspector]
     public  Animator lifeAnim;
-    public Image blackPanel;
-    bool hasOver = false;
-    public float toBlackTime = 1f;
-    public float toClearTime = 1f;
-    [HideInInspector] public  bool canChange2Battery = true;
-    [HideInInspector] public  GameObject fire;
-    //音效
-    [HideInInspector]public  AudioClip gunClip;
-    public  float Volume = 5f;
+    //sea
+    public Transform reviveTrans;
+
+     public  bool canChange2Battery = true;
+    public float boomDistance = 0.5f;
+
     //掉落物buff
     [HideInInspector] public float buffDropSpeed=0;
     float lowSpeedTime = 5f;
-
+    //TestPanel
+    public  CanvasGroup testCanvas;
+    [HideInInspector]public Text chargeTimeText;
+    [HideInInspector] public Text shotCountText;
+    [HideInInspector] public Text reduceBuffText;
+    
     #endregion
 
     private void Awake()
@@ -83,6 +89,13 @@ public class GameManager2 : MonoBehaviour
 
     void Start()
     {
+        // 测试 Panel 
+        chargeTimeText = testCanvas.transform.Find("ChargeTimeText").GetComponent<Text>();
+        shotCountText = testCanvas.transform.Find("shotCountText").GetComponent<Text>();
+        reduceBuffText = testCanvas.transform.Find("reduceBuffText").GetComponent<Text>();
+        chargeTimeText.gameObject.SetActive(false);
+        shotCountText.gameObject.SetActive(false);
+        reduceBuffText.gameObject.SetActive(false);
         //进度条 Panel
         waveSlider = playCanvas.transform.Find("WaveSlider").GetComponent<Slider>();
         lifeSlider = playCanvas.transform.Find("LifeSlider").GetComponent<Slider>();
@@ -94,14 +107,13 @@ public class GameManager2 : MonoBehaviour
         batteryCross.gameObject.SetActive(false);
         Utility.DisableCanvas(crossCanvas, 0f);
         Utility.EnableCanvas(crossCanvas, 1f);
-        //特效
-        fire = Resources.Load<GameObject>("Prefabs/fire");
-        //音效
-        gunClip = Resources.Load<AudioClip>("Sound/Effect/gun");
         //Level
         Level1_Init();
     }
-
+    public void SpawnSpecialEffects(string name,Vector3 pos,float stayTime)
+    {
+        Destroy(Instantiate(Resources.Load<GameObject>("Prefabs/"+name),pos,Quaternion.identity),stayTime);
+    }
 
     void Update()
     {
@@ -124,6 +136,7 @@ public class GameManager2 : MonoBehaviour
         wuzei.gameObject.SetActive(false);
         paotong.gameObject.SetActive(true);
         canChange2Battery = false;
+        shotCountText.gameObject.SetActive(true);
     }
     public void Change2PlayerView()
     {
@@ -131,6 +144,8 @@ public class GameManager2 : MonoBehaviour
         batteryCross.gameObject.SetActive(false);
         wuzei.gameObject.SetActive(true);
         paotong.gameObject.SetActive(false);
+        shotCountText.gameObject.SetActive(false);
+        chargeTimeText.gameObject.SetActive(false);
     }
     #endregion
 
@@ -203,6 +218,23 @@ public class GameManager2 : MonoBehaviour
             hasOver = true;
         }
     }
+    
+    public  IEnumerator SeaDead(float toBlack,float toClear,float waitTime)
+    {//并不是直接死，需要重新来过。而是短暂黑屏，首先玩家行动肯定受到了限制，然后其他物体先停止降落
+        AudioManager._instance.PlayEffect("oops");
+        FirstPersonAIO._instance.enableCameraMovement = false;
+        blackPanel.GetComponent<Animator>().enabled = false;
+        blackPanel.DOFade(1f,toBlack);
+        yield return new WaitForSeconds(toBlack+waitTime);
+        FirstPersonAIO._instance.transform.position = reviveTrans.position;//世界坐标
+        FirstPersonAIO._instance.transform.rotation = reviveTrans.rotation;
+        FirstPersonAIO._instance.transform.localScale = reviveTrans.localScale;
+        blackPanel.DOFade(0f,toClear);
+        yield return new WaitForSeconds(toClear);
+        blackPanel.GetComponent<Animator>().enabled = true;
+        FirstPersonAIO._instance.enableCameraMovement = true;
+    }
+
     public void CheckLevel1Win()
     {
         if (level1Hp >= 0)
@@ -268,8 +300,11 @@ public class GameManager2 : MonoBehaviour
     #region 掉落物buff-settings
     public IEnumerator ChangeAllDropSpeed()
     {
-        buffDropSpeed -= 2.5f; 
+        buffDropSpeed -= 1f;
+        reduceBuffText.text = "Now is All Reduce Speed Buff !!!";
+        reduceBuffText.gameObject.SetActive(true);    
         yield return new WaitForSeconds(lowSpeedTime);
+        reduceBuffText.gameObject.SetActive(false);
         buffDropSpeed = 0;
     }
     #endregion

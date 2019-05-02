@@ -206,7 +206,7 @@ public class FirstPersonAIO : MonoBehaviour {
     public float transferSpeed=5;
     public float qteTransferSpeed = 1;
     float moveSpeed;
-    public float maxDistanceToWall = 2;
+    private  float maxDistanceToWall = 0.1f;
     public Transform imageEffectCube;
     private GameObject targetEffect;
     GameObject effectGo;
@@ -409,11 +409,12 @@ public class FirstPersonAIO : MonoBehaviour {
         transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * moveSpeed);
         if (Vector3.Distance(transform.position, targetPos) < maxDistanceToWall)
         {
-            canTransfer = false;index = 0;           
+            index = 0;           
             imageEffectCube.gameObject.SetActive(false);
             ShootCleanUp();
             ChangeFpsCamera();//切换到第一人称相机
             enableCameraMovement = true;
+            canTransfer = false;
         }
     }
     void ShootCleanUp()
@@ -432,7 +433,7 @@ public class FirstPersonAIO : MonoBehaviour {
         {
             switch (monsterHits[0].collider.gameObject.layer)
             {
-                case 18: audioSource.PlayOneShot(monsterClip, Volume / 10); GameManager2._instance.canChange2Battery = true; break;//hit monster
+                case 18: AudioManager._instance.PlayEffect("gun"); GameManager2._instance.canChange2Battery = true; break;//hit monster
                 case 19: ShootTransfer(monsterHits[0]); GameManager2._instance.canChange2Battery = true; break;
                 case 25: hitBattery = true; ShootTransfer(monsterHits[0]); break;//射中也是一样移动过去
             }
@@ -444,9 +445,10 @@ public class FirstPersonAIO : MonoBehaviour {
             {
                 switch (monsterHits[i].collider.gameObject.layer)
                 {
+                    case 25: hitBattery = true; endIndex = i; break;
                     case 19: hitWall = true; endIndex = i; break;                   
                     case 18: hitMonster = true; break;
-                    case 23: hitCenterBall = true; break;
+                    case 23: hitCenterBall = true; break;                  
                 }
             }
             if (hitWall && hitMonster)
@@ -455,26 +457,29 @@ public class FirstPersonAIO : MonoBehaviour {
                 {
                     hasQte = true;//只是告诉乌贼，可以检测qte了
                     StartCoroutine(WuZei._instance.Qte(WuZei._instance.qteTime));
-                }
-                ShootTransfer(monsterHits[endIndex]);//不管有没有射中，tranfer总是要进行的。player只管移动。移动中发生的事情由乌贼的控制
+                }               
             }
+            if(hitWall||hitBattery)  ShootTransfer(monsterHits[endIndex]);//不管有没有射中，tranfer总是要进行的。player只管移动。移动中发生的事情由乌贼的控制
         }
     }
 
     void ShootTransfer(RaycastHit wallHit)
     {
-        audioSource.PlayOneShot(flyClip, Volume / 10);//音效
-        effectGo = Instantiate(targetEffect, wallHit.point + Camera.main.transform.forward * (-2f), Quaternion.identity);        //落地特效
-        Destroy(effectGo, 0.5f);
-        if (hitBattery)
+        AudioManager._instance.PlayEffect("fly");
+        if (!wallHit.collider.gameObject.tag.Equals("electric"))
         {
-            effectGo.transform.forward = Vector3.up;//设置特效朝向
-            
-        }
-        else
-        {
-            effectGo.transform.forward = wallHit.collider.transform.right;//设置特效朝向
-        }
+            effectGo = Instantiate(targetEffect, wallHit.point + Camera.main.transform.forward * (-2f), Quaternion.identity);        //落地特效
+            Destroy(effectGo, 0.5f);
+            if (hitBattery)
+            {
+                effectGo.transform.forward = Vector3.up;//设置特效朝向            
+            }
+            else
+            {
+                effectGo.transform.forward = wallHit.collider.transform.right;//设置特效朝向
+            }
+        }       
+
         canTransfer = true;        //开启移动开关
         targetPos = wallHit.point;//设置落地地点
         imageEffectCube.gameObject.SetActive(true);//设置屏幕特效
@@ -502,7 +507,6 @@ public class FirstPersonAIO : MonoBehaviour {
     {
         gameOver = true;
         enableCameraMovement = false;
-        qui.SetActive(false);
         Cursor.lockState = CursorLockMode.None; Cursor.visible = true;
     }
     private void FixedUpdate()
@@ -756,7 +760,10 @@ public class FirstPersonAIO : MonoBehaviour {
         #endregion
 
     }
-
+    public void DropToBottom()
+    {
+        enableCameraMovement = false;
+    }
     #region  other
     public void UpdateAndApplyExternalCrouchModifies(){
         walkSpeed = _crouchModifiers.walkSpeed_External;

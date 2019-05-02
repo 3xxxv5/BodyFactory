@@ -28,8 +28,13 @@ public class BatteryAIO : MonoBehaviour
     //Shoot Settings
     [Header("Shoot Settings")]
     [Space(8)]
-    float timer = 0.3f;
-    float tictock = 0;
+    float perTimer = 0.3f;
+    float perTicktock = 0;
+    public int shotAmount = 5;//弹夹有5个空位
+    int shotCount = 0;
+    public float chargeTime = 5f;//装弹时间
+    float chargeTicktock = 0;
+    bool startCharge = false;
     LayerMask monsterMask;
     LayerMask wallMask;
     Vector3 targetPos;
@@ -57,6 +62,11 @@ public class BatteryAIO : MonoBehaviour
         bullet = Resources.Load<GameObject>("Prefabs/bullet");
     }
 
+    private void OnEnable()
+    {
+        perTicktock = 0;
+        chargeTicktock = 0;
+    }
     private void Update()
     {
 
@@ -95,15 +105,36 @@ public class BatteryAIO : MonoBehaviour
         #region Shoot Settings - Update        
         if (!gameOver)
         {
-            //方向就是摄像机正前方呗       Camera.main.transform.forward            
-            tictock += Time.deltaTime;//计时器限制，2s后才能发射下一次
-            if (tictock > timer)
+            GameManager2._instance.shotCountText.text ="shotAmount:"+ ((shotAmount - shotCount)).ToString();
+            //方向就是摄像机正前方呗       Camera.main.transform.forward      
+            if (!startCharge)
             {
-                if (Input.GetMouseButtonUp(0))
+                GameManager2._instance.chargeTimeText.gameObject.SetActive(false);
+                perTicktock += Time.deltaTime;//计时器限制，每次单独发射时间间隔
+                if (perTicktock > perTimer)
                 {
-                    Shoot();
-                    tictock = 0;
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        Shoot();
+                        shotCount++;
+                        perTicktock = 0;
+                    }
+                }           
+            }
+            else
+            {
+                GameManager2._instance.chargeTimeText.text = "chargeTime:" + ((chargeTime - chargeTicktock)).ToString("f2");
+                chargeTicktock += Time.deltaTime;
+                if (chargeTicktock > chargeTime)
+                {
+                    startCharge = false; shotCount = 0;
+                    chargeTicktock = 0;
                 }
+            }
+            if (shotCount >= shotAmount)//打完5发了
+            {
+                startCharge = true;//开始计时
+                GameManager2._instance.chargeTimeText.gameObject.SetActive(true);
             }
         }
         #endregion

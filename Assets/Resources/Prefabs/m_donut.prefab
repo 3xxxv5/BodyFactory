@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropSpeed: 2.15
   chips: {fileID: 1629271418919193744, guid: 22f42f9e614702b428caa252dfef6e32, type: 3}
+  lifeBase: 2
 --- !u!65 &1260447000
 BoxCollider:
   m_ObjectHideFlags: 0
