@@ -7,22 +7,32 @@ using UnityEngine;
 /// </summary>
 public class Tower : MonoBehaviour {
 
-    Transform tipBoard;
-    RayEmitter rayEmitter;
+    protected Transform tipBoard;
+    [HideInInspector] public  RayEmitter rayEmitter;
     [HideInInspector]
     public bool beHited = false;
     public bool hasPlayEffect = false;
-    Animator anim;
-    void Start () {
+    [HideInInspector] public  Animator anim;
+    void Awake () {
+        Init();
+    }
+	
+    public virtual void Init()
+    {
         tipBoard = transform.Find("tipBoard");
         tipBoard.gameObject.SetActive(false);
         rayEmitter = GetComponentInChildren<RayEmitter>();
         rayEmitter.startPoint = transform.position;
-        anim =transform.Find("flowerTower").GetComponentInChildren<Animator>();
+        anim = transform.Find("flowerTower").GetComponentInChildren<Animator>();
     }
-	
-
 	void Update () {
+
+        PlayerLight();
+        OtherLight();
+    }
+
+    public virtual void PlayerLight()
+    {
         //主角点亮
         if (tipBoard.gameObject.activeSelf)
         {
@@ -31,9 +41,12 @@ public class Tower : MonoBehaviour {
                 AudioManager._instance.PlayEffect("tower");
                 tipBoard.gameObject.SetActive(false);
                 rayEmitter.lineRenderer.enabled = true;
-                anim.SetTrigger("lightTower");
+                anim.SetBool("lightTower",true);
             }
         }
+    }
+    public virtual void OtherLight()
+    {
         //别的光线点亮
         if (beHited)
         {
@@ -43,10 +56,9 @@ public class Tower : MonoBehaviour {
                 hasPlayEffect = true;
             }
             rayEmitter.lineRenderer.enabled = true;
-            anim.SetTrigger("lightTower");
-        }            
+            anim.SetBool("lightTower", true);
+        }
     }
-
    
     private void OnTriggerEnter(Collider col)
     {

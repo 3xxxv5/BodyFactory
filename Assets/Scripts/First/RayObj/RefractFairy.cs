@@ -36,7 +36,7 @@ public class RefractFairy : Fairy
     
     protected override void FollowTarget()
     {
-        base.FollowTarget();
+        if (!canFollow) return;
         if (!isPicked)
         {
             transform.position = Vector3.Lerp(transform.position, playerMove.gameObject.transform.position + transform.right*0.5f+Vector3.up*0.5f, Time.deltaTime);

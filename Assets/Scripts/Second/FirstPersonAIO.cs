@@ -189,7 +189,8 @@ public class FirstPersonAIO : MonoBehaviour {
 
     #region Shoot Settings
     [Header("Shoot Settings")]
-    [Space(8)]  
+    [Space(8)]
+    [HideInInspector] public bool canShoot = true;
     //input time constriant
     public float timer=2f;
     float tictock = 0;
@@ -320,10 +321,8 @@ public class FirstPersonAIO : MonoBehaviour {
 
         if(enableCameraMovement)
         {
-            float mouseXInput;
-            float mouseYInput;
-            if(relativeMotionMode)
-            {
+            float mouseXInput;            float mouseYInput;
+            if(relativeMotionMode) {
                 mouseXInput = Input.GetAxis("Mouse Y");
                 mouseYInput = Input.GetAxis("Mouse X");
                 if(targetAngles.y > 180) { targetAngles.y -= 360; followAngles.y -= 360; } else if(targetAngles.y < -180) { targetAngles.y += 360; followAngles.y += 360; }
@@ -332,8 +331,7 @@ public class FirstPersonAIO : MonoBehaviour {
                 targetAngles.x += mouseXInput * mouseSensitivity;
                 targetAngles.y = Mathf.Clamp(targetAngles.y, -0.5f * rotationRange.y, 0.5f * rotationRange.y);
                 targetAngles.x = Mathf.Clamp(targetAngles.x, -0.5f * rotationRange.x, 0.5f * rotationRange.x);
-            } else
-            {
+            } else {
 
                 mouseXInput = Input.mousePosition.y;
                 mouseYInput = Input.mousePosition.x;
@@ -348,7 +346,7 @@ public class FirstPersonAIO : MonoBehaviour {
         #endregion
 
         #region Shoot Settings - Update        
-        if (!gameOver)
+        if (!gameOver&&canShoot)
         {
             if (Camera.main == null) return;
             //发射一条从屏幕中点到摄像机方向的射线
@@ -371,7 +369,7 @@ public class FirstPersonAIO : MonoBehaviour {
             if (canTransfer)
             {
                 Transfer();//因为是持续运动，所以需要在Update里执行
-                if(hasQte) CameraTransfer();//第三人称的相机运动
+                /*if(hasQte) */CameraTransfer();//第三人称的相机运动
             }
         }     
 

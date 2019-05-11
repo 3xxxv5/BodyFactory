@@ -9,7 +9,7 @@ public class ReflectFairy : Fairy
     const int dirNum = 8;
     Vector3 disToTarget;
     Button overTurnButton;
-
+    
     void Awake () {
         base.Init();
         playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<Hair_PlayerMove>();
@@ -34,7 +34,7 @@ public class ReflectFairy : Fairy
 
     protected override void FollowTarget()
     {
-        base.FollowTarget();
+        if (!canFollow) return;
         if (!isPicked)
         {
             transform.position = Vector3.Lerp(transform.position,playerMove.gameObject.transform.position+transform.right*(-0.5f)+Vector3.up * 0.5f, Time.deltaTime);

@@ -43,34 +43,23 @@ public class FreeCamera : MonoBehaviour {
         ControlCamera();
     }
 
-    void ControlCamera()
-    {
-        //锁定相机中心
-        transform.LookAt(LookAt.transform.position);
-
-        //鼠标右键旋转
+    void ControlCamera()   {
+        transform.LookAt(LookAt.transform.position);        //锁定相机中心
         if (Input.GetMouseButton(1) || Input.GetMouseButton(0))
-        {
+        {     //鼠标右键旋转   
             mX += Input.GetAxis("Mouse X") * SpeedX * 0.02F;
             mY -= Input.GetAxis("Mouse Y") * SpeedY * 0.02F;
             mY = ClampAngle(mY, MinLimitY, MaxLimitY);
             //将玩家转到和相机对应的位置上
-            if (Input.GetMouseButton(1))
-            {
+            if (Input.GetMouseButton(1)) {
                 Target.eulerAngles = new Vector3(0, mX, 0);
             }
         }
-
-        //鼠标滚轮缩放  
-        distance += Input.GetAxis("Mouse ScrollWheel") * ZoomSpeed;
-        distance = Mathf.Clamp(distance, MinDistance, MaxDistance);
-
-        //计算相机位置和角度  
-        Quaternion mRotation = Quaternion.Euler(mY, mX, 0);
+        distance += Input.GetAxis("Mouse ScrollWheel") * ZoomSpeed;        //鼠标滚轮缩放  
+        distance = Mathf.Clamp(distance, MinDistance, MaxDistance);       
+        Quaternion mRotation = Quaternion.Euler(mY, mX, 0); //计算相机位置和角度  
         Vector3 mPosition = mRotation * new Vector3(cameraPos.x, cameraPos.y, -distance) + Target.position;
-
-        //设置相机的角度和位置      
-        transform.rotation = mRotation;
+        transform.rotation = mRotation;        //设置相机的角度和位置      
         transform.position = mPosition;
     }
 
@@ -136,11 +125,15 @@ public class FreeCamera : MonoBehaviour {
 
     void InActivateGo(Transform trans)
     {
-        trans.GetComponent<Renderer>().enabled=false;//好像是因为禁用了之后就打不到了
+        Renderer[] renderers= trans.GetComponentsInChildren<Renderer>();
+        foreach (var i in renderers) i.enabled = false;//好像是因为禁用了之后就打不到了
+                                                       /* trans.GetComponent<Renderer>().enabled=false;*/
     }
     void ActivateGo(Transform trans)
     {
-        trans.GetComponent<Renderer>().enabled = true;
+        Renderer[] renderers = trans.GetComponentsInChildren<Renderer>();
+        foreach (var i in renderers) i.enabled = true;//好像是因为禁用了之后就打不到了
+        //trans.GetComponent<Renderer>().enabled = true;
     }
 
     void SetMaterialAlpha(GameObject go,float alpha)

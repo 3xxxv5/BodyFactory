@@ -51,6 +51,8 @@ MonoBehaviour:
   chips: {fileID: 1629271418919193744, guid: 22f42f9e614702b428caa252dfef6e32, type: 3}
   lifeBase: 1
   life: 0
+  radius: 5
+  power: 1000
 --- !u!54 &3235071507215107195
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ TagManager:
   - chocolateFrog
   - sea
   - electric
-  - blood
+  - dragon
   layers:
   - Default
   - TransparentFX
@@ -50,7 +50,7 @@ TagManager:
   - battery
   - bullet
   - bigBullet
-  - 
+  - wuzei
   - 
   - 
   - 

@@ -15,7 +15,7 @@ public class Fairy : MonoBehaviour {
     public int cellSize = 1;
     public int hitRay = 0;
     Animator anim;
-    protected bool canFollow = false;
+    public  bool canFollow = false;
     protected bool[] yShow = new bool[4] { false, false, false, false };
     protected bool[] xShow = new bool[5] { false, false, false, false, false };
     protected bool[] zShow = new bool[5] { false, false, false, false, false };
@@ -47,6 +47,7 @@ public class Fairy : MonoBehaviour {
         anim = transform.GetComponentInChildren<Animator>();
         movePoint = Resources.Load<GameObject>("Prefabs/movePoint");
         pointsObjects = new List<GameObject>();
+        canFollow = false;
     }
     protected 
     void Update () {
