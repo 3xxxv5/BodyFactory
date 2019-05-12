@@ -21,6 +21,9 @@ TagManager:
   - sea
   - electric
   - dragon
+  - level1Sea
+  - level2Sea
+  - Sea
   layers:
   - Default
   - TransparentFX
@@ -51,7 +54,7 @@ TagManager:
   - bullet
   - bigBullet
   - wuzei
-  - 
+  - video
   - 
   - 
   m_SortingLayers:

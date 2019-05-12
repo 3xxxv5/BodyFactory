@@ -24,25 +24,29 @@ public class BatteryAIO : MonoBehaviour
     //Shoot Settings
     [Header("Shoot Settings")]
     [Space(8)]
-    [HideInInspector] public bool canShoot = true;
-    public int shotMaxAmount = 3;
-    [HideInInspector]public  int shotCount;
+    [HideInInspector] public bool canShoot = true; 
 
     LayerMask monsterMask;
     LayerMask wallMask;
     Vector3 targetPos;
     [HideInInspector] public bool gameOver = false;
     GameObject bullet;
+   
 
     //Shell Settings
     [Header("Shell Settings")]
     [Space(8)]
-    public float produceTimer = 5;
+    public int shotMaxAmount = 3;
+    public int shotIndex=0;
+
     Transform puffer;
     Vector3 pufferInitPosition;
     Quaternion pufferInitRotation;
     Vector3 cameraInitPosition;
     Quaternion cameraInitRotation;
+
+    public  Pearl pearl;
+
     private void Awake()
     {
         _instance = this;
@@ -53,6 +57,11 @@ public class BatteryAIO : MonoBehaviour
         pufferInitRotation = puffer.transform.rotation;
         cameraInitPosition = playerCamera.position;
         cameraInitRotation = playerCamera.rotation;
+
+        //shell settings-Awake
+        //shoot settings- Awake
+        enableCameraMovement = false; canShoot = false;
+        bullet = Resources.Load<GameObject>("Prefabs/bullet");
     }
     public  void ResetBatteryPos()
     {
@@ -61,18 +70,7 @@ public class BatteryAIO : MonoBehaviour
         puffer.position = pufferInitPosition;
         puffer.rotation = pufferInitRotation;
     }
-    private void Start()
-    {
-        //Look Settings - Start
-        enableCameraMovement = true;
-        lockAndHideMouse = true;
-        if (lockAndHideMouse) { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
-        //AudioSettings
-        if (GetComponent<AudioSource>() == null) { gameObject.AddComponent<AudioSource>(); }        
-        //ShootSettings
-        bullet = Resources.Load<GameObject>("Prefabs/bullet");
 
-    }
   
     private void Update()
     {
@@ -110,14 +108,15 @@ public class BatteryAIO : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false;
 
-            if (shotCount > 0)
+            if (pearl == null) return;
+            if (pearl.firstOk|| pearl.secondOk|| pearl.thirdOk)
             {
                 if (Input.GetMouseButtonUp(0))
                 {
                     Shoot();
-                    shotCount--;
+                    SetShotCount();
                 }
-            }  
+            }
         }
         #endregion
 
@@ -126,12 +125,33 @@ public class BatteryAIO : MonoBehaviour
             GameManager2._instance.Change2PlayerView();
         }
     }   
+    void SetShotCount()
+    {
+        if (pearl == null) return;
+        if (pearl.firstOk)
+        {
+            pearl.firstOk = false;
+            Level2UIManager._instance.circleProgress[0].fillAmount = 1;
+        }
+        else if(pearl.secondOk)
+        {
+            pearl.secondOk = false;
+            Level2UIManager._instance.circleProgress[1].fillAmount = 1;
+        }
+        else if (pearl.thirdOk)
+        {
+            pearl.thirdOk = false;
+            Level2UIManager._instance.circleProgress[2].fillAmount = 1;
+        }
+    }
     void Shoot()
     {
         Camera cam = playerCamera.GetComponent<Camera>();
-        Vector3 centerPoint =cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 2));
-        GameObject bulletGo= Instantiate(bullet,centerPoint+playerCamera.transform.forward*10,Quaternion.identity);
+        Vector3 centerPoint = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 2));
+        GameObject bulletGo = Instantiate(bullet, centerPoint + playerCamera.transform.forward * 10, Quaternion.identity);
         bulletGo.GetComponent<Rigidbody>().velocity = playerCamera.transform.forward * 200;
+        if (bulletGo != null) { Destroy(bulletGo, 5f); }
+
     }
     public void GameOver()
     {

@@ -12,7 +12,6 @@ public class EmitManager : MonoBehaviour {
     public float waveRate = 5;
     public BigWave[] FirstLevelWave;
     public BigWave[] SecondLevelWave;
-    public BigWave[] ThirdLevelWave;
     GameObject donut;
     GameObject lollipop;
     GameObject macaron;
@@ -94,9 +93,17 @@ public class EmitManager : MonoBehaviour {
         {
             int random_x = Random.Range(-randomRange, randomRange);
             int random_z = Random.Range(-randomRange, randomRange);
+            if (prefab.tag.Equals("chocolateFrog"))
+            {
+                AudioManager._instance.PlayEffect("frog");
+            }
+            else
+            {
+                AudioManager._instance.PlayEffect("refract");
+            }
             Instantiate(prefab, transform.position + new Vector3(random_x, 0, random_z), prefab.transform.rotation);
             GameManager2._instance.level1foodAmount++;
-            AudioManager._instance.PlayEffect("refract");
+
         }
     }
     void SpawnTwo(GameObject prefab)

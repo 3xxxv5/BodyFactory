@@ -11,7 +11,7 @@ public class Monster : MonoBehaviour {
     HighlightableObject ho;
     public float radius = 5.0F;
     public float power = 1000;
-
+    float rotateSpeed = 10f;
     void Awake () {
         if (chips == null) chips = Resources.Load<GameObject>("Prefabs/m_donutChips");
         life = lifeBase;
@@ -43,6 +43,7 @@ public class Monster : MonoBehaviour {
             trueSpeed = dropSpeed + GameManager2._instance.buffDropSpeed;
             Mathf.Clamp(trueSpeed, 1f, 10);
             transform.position = Vector3.Lerp(transform.position, transform.position + new Vector3(0, -1, 0), Time.deltaTime * trueSpeed);
+            transform.Rotate(Vector3.up,Time.deltaTime*rotateSpeed);
     }
 
 

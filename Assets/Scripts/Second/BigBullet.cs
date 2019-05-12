@@ -13,7 +13,7 @@ public class BigBullet : MonoBehaviour
             if (col.gameObject.tag.Equals("chocolateFrog"))
             {
                 StartCoroutine(GameManager2._instance.ChangeAllDropSpeed());//巧克力蛙buff       
-                GameManager2._instance.SpawnSpecialEffects("frogHeart",transform.position,0.5f);
+                GameManager2._instance.SpawnSpecialEffects("frogFrost", transform.position,0.5f);
             }
             else
             {

@@ -81,7 +81,10 @@ public class Save: MonoBehaviour{
         PlayerPrefs.SetInt("volume", volumeIndex);
     }
      
-
+    public void SavePlaySecondMovie(int hasPlay)
+    {
+        PlayerPrefs.SetInt("hasPlay", hasPlay);
+    }
     public void SaveBackState()
     {
         //确定一下是返回的，不是第一次打开就行

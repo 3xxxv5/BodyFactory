@@ -16,6 +16,7 @@ public class Level1UIManager : MonoBehaviour
     }
     void Init()
     {
+        AudioManager._instance.PlayeBGM("first");
         //pause panel
         pauseCanvas = transform.Find("PausePanel").GetComponent<CanvasGroup>();
         Utility.DisableCanvas(pauseCanvas, 0f);
@@ -37,8 +38,6 @@ public class Level1UIManager : MonoBehaviour
 
     void Pause()
     {
-        int index = Random.Range(1, 5);
-        AudioManager._instance.PlayEffect("click" + index.ToString());
         AudioManager._instance.bgmPlayer.Pause();
         Utility.EnableCanvas(pauseCanvas, 0f);
         Time.timeScale = 0f;
@@ -46,25 +45,20 @@ public class Level1UIManager : MonoBehaviour
 
     public void ButtonDown(string name)
     {
+        AudioManager._instance.PlayEffect("click");
         switch (name)
         {
             case "Restart":
-                Time.timeScale = 1f;
-                int index = Random.Range(1, 5);
-                AudioManager._instance.PlayEffect("click" + index.ToString());
+                Time.timeScale = 1f;               
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 break;
             case "Resume":
-                Time.timeScale = 1f;
-                index = Random.Range(1, 5);
-                AudioManager._instance.PlayEffect("click" + index.ToString());
+                Time.timeScale = 1f;              
                 AudioManager._instance.bgmPlayer.UnPause();
                 Utility.DisableCanvas(pauseCanvas, 0f);
                 break;
             case "Quit":
-                Time.timeScale = 1;
-                index = Random.Range(1, 5);
-                AudioManager._instance.PlayEffect("click" + index.ToString());
+                Time.timeScale = 1;               
                 SceneManager.LoadScene("0_start");
                 break;
         }

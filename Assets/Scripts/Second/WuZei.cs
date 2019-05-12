@@ -18,6 +18,9 @@ public class WuZei : MonoBehaviour
     int animIndex = 0;
     Animator animator;
     bool checkQteTrigger = true;
+    bool hasPlayQteAudio = false;
+    public Transform level1ReviveTrans;
+    public Transform seaReviveTrans;
     void Awake()
     {
         _instance = this;            
@@ -38,13 +41,18 @@ public class WuZei : MonoBehaviour
         //在qte时间内，检测组合键的按下
         if (checkQte)
         {
+            //if (!hasPlayQteAudio)
+            //{
+            //    AudioManager._instance.PlayEffect("qteTime");//音效
+            //    hasPlayQteAudio = true;
+            //}
             if (Input.GetMouseButtonUp(1))
             {
                 pressCount++;
             }
             if (pressCount >= 2) {
                 FirstPersonAIO._instance.qteWin = true;//不再进行失败检测
-                AudioManager._instance.PlayEffect("tower");//音效
+                AudioManager._instance.PlayEffect("qteWin");//音效
                 //播放打击动画
                 animIndex = Random.Range(1, 4);
                 animator.SetInteger("qteAnim", animIndex);
@@ -75,13 +83,21 @@ public class WuZei : MonoBehaviour
         }
         if (col.gameObject.tag.Equals("sea"))
         {
-            StartCoroutine(GameManager2._instance.SeaDead(1f,1f,1f));
+            StartCoroutine(GameManager2._instance.SeaDead(1f,1f,1f,seaReviveTrans));
+        }
+        if (col.gameObject.tag.Equals("level1Sea"))
+        {
+            StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, level1ReviveTrans));
+        }
+        if (col.gameObject.tag.Equals("level2Sea"))
+        {
+            StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, seaReviveTrans));
         }
         if (col.gameObject.tag.Equals("electric"))
         {
             print("被电击了");
             GameManager2._instance.SpawnSpecialEffects("lightning", transform.position + transform.forward * 3, 5f);
-            StartCoroutine(GameManager2._instance.SeaDead(3f, 1f, 1f));
+            StartCoroutine(GameManager2._instance.SeaDead(3f, 1f, 1f,seaReviveTrans));
         }
         if (col.gameObject.tag.Equals("dragon"))
         {
@@ -95,12 +111,19 @@ public class WuZei : MonoBehaviour
         qteCanvas.gameObject.SetActive(true);
         checkQte = true;   Time.timeScale = timeScale;//慢动作
         yield return new WaitForSecondsRealtime(qteTime);
-        if (!FirstPersonAIO._instance.qteWin) DisableQtePanel();
+        AudioManager._instance.PlayEffect("");//音效
+        if (!FirstPersonAIO._instance.qteWin)
+        {
+            AudioManager._instance.PlayEffect("qteLose");//音效
+            DisableQtePanel();
+        }
+
     }
     void DisableQtePanel()
     {
         qteCanvas.gameObject.SetActive(false);
         checkQte = false; Time.timeScale = 1;//恢复时间
+        hasPlayQteAudio = false;
         pressCount = 0;
         checkQteTrigger = true;
         //此时不应该检测qte呀

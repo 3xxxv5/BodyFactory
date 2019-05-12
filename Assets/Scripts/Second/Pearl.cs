@@ -1,41 +1,79 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pearl : MonoBehaviour
 {
-    float ticktock = 0;
-    public  Transform[] bullets;
+    float produceTimer1=5;
+    float ticktock1 = 0;
+    float produceTimer2=10;
+    float ticktock2 = 0;
+    float produceTimer3=15;
+    float ticktock3 = 0;
+    [HideInInspector]public bool firstOk = true;
+    [HideInInspector]public bool secondOk = true;
+    [HideInInspector]public bool thirdOk = true;
+    //public Transform[] bullets;
+    //public Animator[] shellAnimators;
+    public Text timeText;
+    public Text countText;
 
     private void Awake()
     {
-        BatteryAIO._instance.shotCount = BatteryAIO._instance.shotMaxAmount;
+        if (countText != null && timeText != null)
+        {
+            timeText.gameObject.SetActive(false);
+            countText.gameObject.SetActive(false);
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        //SetShellBullets();
-
-        ticktock += Time.deltaTime;
-        if (ticktock >= BatteryAIO._instance.produceTimer)
+        if (!firstOk)
         {
-            ticktock = 0;
-            if (BatteryAIO._instance.shotCount < BatteryAIO._instance.shotMaxAmount)
+            ticktock1 += Time.deltaTime;
+            float fillAmount = 1 - (ticktock1 / produceTimer1);
+            Level2UIManager._instance.circleProgress[0].fillAmount = fillAmount;
+            if (ticktock1 >= produceTimer1)
             {
-                BatteryAIO._instance.shotCount++;
+                ticktock1 = 0;
+                Level2UIManager._instance.circleProgress[0].fillAmount = 0;
+                firstOk = true;
             }
         }
-    }
-
-    void SetShellBullets()
-    {
-        for (int i = 0; i < BatteryAIO._instance.shotCount; i++)
+        if (!secondOk)
         {
-            bullets[i].gameObject.SetActive(true);
+            ticktock2 += Time.deltaTime;
+            float fillAmount = 1 - (ticktock2 / produceTimer2);
+            Level2UIManager._instance.circleProgress[1].fillAmount = fillAmount;
+            if (ticktock2 >= produceTimer2)
+            {
+                ticktock2 = 0;
+                Level2UIManager._instance.circleProgress[1].fillAmount = 0;
+                secondOk = true;
+            }
         }
-        for (int i = BatteryAIO._instance.shotMaxAmount - 1; i >= BatteryAIO._instance.shotCount; i--)
+        if (!thirdOk)
         {
-            bullets[i].gameObject.SetActive(false);
+            ticktock3 += Time.deltaTime;
+            float fillAmount = 1 - (ticktock3 / produceTimer3);
+            Level2UIManager._instance.circleProgress[2].fillAmount = fillAmount;
+            if (ticktock3 >= produceTimer3)
+            {
+                ticktock3 = 0;
+                Level2UIManager._instance.circleProgress[2].fillAmount = 0;
+                thirdOk = true;
+            }
+        }
+
+        if (countText != null)
+        {
+            countText.text = "first：" + firstOk + " " + "second：" + secondOk + " " + "third：" + thirdOk;
+        }
+        if (timeText != null)
+        {
+            timeText.text = ticktock1.ToString();
         }
     }
 }

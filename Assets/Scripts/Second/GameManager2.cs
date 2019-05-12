@@ -55,11 +55,6 @@ public class GameManager2 : MonoBehaviour
     //切换炮台
     public Transform wuzei;
     public BatteryAIO battery;
-    public Pearl pearl;
-
-
-    //sea
-    public Transform reviveTrans;
 
      public  bool canChange2Battery = true;
     public float boomDistance = 0.5f;
@@ -107,23 +102,22 @@ public class GameManager2 : MonoBehaviour
     #region 切换炮台-settings
     public void Change2BatteryView()
     {
+        AudioManager._instance.PlayEffect("toBattery");//音效
         Level2UIManager._instance.simpleCross.gameObject.SetActive(false);
         Level2UIManager._instance.batteryCross.gameObject.SetActive(true);
         wuzei.gameObject.SetActive(false);
-        battery.enabled=true;
-        pearl.enabled = true;
+        battery.canShoot = true; battery.enableCameraMovement = true;
         canChange2Battery = false;
 
     }
     public void Change2PlayerView()
     {
+        AudioManager._instance.PlayEffect("toBattery");//音效
         Level2UIManager._instance.simpleCross.gameObject.SetActive(true);
         Level2UIManager._instance.batteryCross.gameObject.SetActive(false);
         wuzei.gameObject.SetActive(true);
         battery.ResetBatteryPos();
-        battery.enabled = false;
-        pearl.enabled = false;
-
+        battery.canShoot = false;battery.enableCameraMovement = false;
     }
     #endregion
 
@@ -197,7 +191,7 @@ public class GameManager2 : MonoBehaviour
         }
     }
     
-    public  IEnumerator SeaDead(float toBlack,float toClear,float waitTime)
+    public  IEnumerator SeaDead(float toBlack,float toClear,float waitTime,Transform reviveTrans)
     {//并不是直接死，需要重新来过。而是短暂黑屏，首先玩家行动肯定受到了限制，然后其他物体先停止降落
         AudioManager._instance.PlayEffect("oops");
         FirstPersonAIO._instance.enableCameraMovement = false;
@@ -208,7 +202,8 @@ public class GameManager2 : MonoBehaviour
         FirstPersonAIO._instance.transform.rotation = reviveTrans.rotation;
         FirstPersonAIO._instance.transform.localScale = reviveTrans.localScale;
         Level2UIManager._instance.fadeImage.DOFade(0f,toClear);
-        yield return new WaitForSeconds(toClear);
+        AudioManager._instance.PlayEffect("revise");//音效
+        yield return new WaitForSeconds(toClear);       
         Level2UIManager._instance.fadeImage.GetComponent<Animator>().enabled = true;
         FirstPersonAIO._instance.enableCameraMovement = true;
     }

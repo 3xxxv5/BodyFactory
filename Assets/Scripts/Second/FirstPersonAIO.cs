@@ -226,6 +226,8 @@ public class FirstPersonAIO : MonoBehaviour {
     public Transform[] camTargets;
     public float camMoveSpeed = 2;
     int index = 0;
+
+    public float distance = 20f;
     #endregion
 
     #endregion
@@ -479,7 +481,7 @@ public class FirstPersonAIO : MonoBehaviour {
         }       
 
         canTransfer = true;        //开启移动开关
-        targetPos = wallHit.point;//设置落地地点
+        targetPos = wallHit.point - distance*transform.forward;//设置落地地点
         imageEffectCube.gameObject.SetActive(true);//设置屏幕特效
         ChangeTpsCamera();//切换到第三人称相机
     }

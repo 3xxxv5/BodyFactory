@@ -78,7 +78,8 @@ public class Hair_PlayerMove : MonoBehaviour
             {
                 anim.SetBool("Climb", true);
                 isClimbing = true;
-            }
+                AudioManager._instance.PlayEffect("climb");
+        }
             else
             {
                 MoveManager();
@@ -86,6 +87,7 @@ public class Hair_PlayerMove : MonoBehaviour
             }
             if (isClimbing)//爬行中，设置向上的速度
             {
+             
                 rb.velocity = Vector3.up * climbSpeed;
             }
             else

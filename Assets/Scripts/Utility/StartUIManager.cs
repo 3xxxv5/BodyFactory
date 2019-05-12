@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class StartUIManager : MonoBehaviour
 {
+    private CanvasGroup canvasGroup;
+    public VideoPlayer videoPlayer;
     Image fadeImage;
     CanvasGroup volumeCanvas;
     Image volumeSlider;
@@ -15,12 +18,14 @@ public class StartUIManager : MonoBehaviour
     Dictionary<int, float> volumeDic = new Dictionary<int, float>(6);
     bool isOpen = true;
     Button rightEarBtn;
-    // Start is called before the first frame update
+    CanvasGroup startCanvas;       
     void Start()
     {
+        canvasGroup = GetComponent<CanvasGroup>();
         fadeImage = transform.Find("fadeImage").GetComponent<Image>();
-        AudioManager._instance.PlayeBGM("first");
-        //Volume Slider Init
+
+        AudioManager._instance.PlayeBGM("start");
+        //设置音量界面
         rightEarBtn = transform.Find("SelectPanel/body/rightEarBtn").GetComponent<Button>();
         volumeCanvas = transform.Find("SelectPanel/body/volumePanel").GetComponent<CanvasGroup>();
         volumeSlider = volumeCanvas.transform.Find("volumeSlider").GetComponent<Image>();
@@ -31,14 +36,23 @@ public class StartUIManager : MonoBehaviour
             int saveIndex = PlayerPrefs.GetInt("volume");
             volumeSlider.sprite = volumeSprites[saveIndex];
             AudioManager._instance.SetPlayerVolume(volumeDic[saveIndex]);
+            videoPlayer.SetDirectAudioVolume(0,volumeDic[saveIndex]);
         }
         else
         {
             volumeIndex = 2;
             volumeSlider.sprite = volumeSprites[volumeIndex];//设置初始档位的图片
             AudioManager._instance.SetPlayerVolume(volumeDic[volumeIndex]);//根据档位设置音量
+            videoPlayer.SetDirectAudioVolume(0, volumeDic[volumeIndex]);
         }
         Utility.DisableCanvas(volumeCanvas,0f);
+
+        //开始界面
+        startCanvas = transform.Find("StartPanel").GetComponent<CanvasGroup>();
+        Utility.EnableCanvas(startCanvas, 0f);
+        //播放视频
+        videoPlayer.playOnAwake = false;
+
     }
     void SetVolumeDic()
     {
@@ -55,10 +69,29 @@ public class StartUIManager : MonoBehaviour
     {
         
     }
+    IEnumerator startGame()
+    {
+        Utility.DisableCanvas(startCanvas, 0f);
+        canvasGroup.DOFade(0f, 0.5f);
+        canvasGroup.interactable = false;
+        AudioManager._instance.bgmPlayer.Pause();
+        yield return new WaitForSeconds(0.5f);
+        //播放开场动画
+        videoPlayer.Play();
+        yield return new WaitForSeconds((float)videoPlayer.length);
+        //开场动画播完了
+        canvasGroup.DOFade(1f, 0.5f);
+        canvasGroup.interactable = true;
+        AudioManager._instance.bgmPlayer.UnPause();
+    }
     public void ButtonDown(string name)
     {
+        AudioManager._instance.PlayEffect("click");
         switch (name)
         {
+            case "start":
+                StartCoroutine(startGame());
+                break;
             case "firstLevel":
                 OpenLevel(1);
                 break;
@@ -79,28 +112,21 @@ public class StartUIManager : MonoBehaviour
                     //Save
                     Save._instance.SaveAudioSettings(volumeIndex);
                     Utility.DisableCanvas(volumeCanvas, 0.5f);
+                    isOpen = true;
                 }
 
                 break;
             case "changeVolume":
                 volumeIndex = (volumeIndex + 1) % 6;
                 AudioManager._instance.SetPlayerVolume(volumeDic[volumeIndex]);//根据档位设置音量：已经改变了，不会存在不保存的情况
+                videoPlayer.SetDirectAudioVolume(0, volumeDic[volumeIndex]);
                 volumeSlider.sprite = volumeSprites[volumeIndex]; 
                 break;
             case "luminanceSetting":
 
                 break;
             case "Quit":
-                //index = UnityEngine.Random.Range(1, 5);
-                //AudioManager._instance.PlayEffect("click" + index.ToString());
-                //if (isLevelMode)
-                //{
-                //    selcetMode.ChangeSwipeMenu(true);
-                //}
-                //else
-                //{
-                //    Application.Quit();
-                //}
+                Application.Quit();
                 break;
         }
     }

@@ -6,14 +6,14 @@ public class EmitTwoCol : MonoBehaviour
 {
     void StopLifeAnim()
     {
-        Level2UIManager._instance.lifeAnim.SetBool("shake", false);
+
     }
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
             GameManager2._instance.level2Hp -= 1;
-            Level2UIManager._instance.lifeAnim.SetBool("shake", true);
+
             Invoke("StopLifeAnim", 1f);
             AudioManager._instance.PlayEffect("bud");
         }
