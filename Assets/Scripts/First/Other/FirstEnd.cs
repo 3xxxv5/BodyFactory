@@ -30,7 +30,7 @@ public class FirstEnd : MonoBehaviour
     {
         fadeImage.DOFade(1, 1f);
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("2_official");
+        SceneManager.LoadScene("4_end");
     }
     private void OnTriggerEnter(Collider col)
     {

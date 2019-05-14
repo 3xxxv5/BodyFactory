@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 9106347015771844527}
   - component: {fileID: 3235071507215107195}
   - component: {fileID: 1919556573866947591}
-  - component: {fileID: 144799485}
-  - component: {fileID: 144799486}
   m_Layer: 18
   m_Name: m_chocolateFrog
   m_TagString: chocolateFrog
@@ -44,12 +42,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4941742106540891160}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b6ca71603ac169449823be44657c490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropSpeed: 0
+  dropSpeed: 3
   chips: {fileID: 1629271418919193744, guid: 22f42f9e614702b428caa252dfef6e32, type: 3}
   lifeBase: 1
   life: 0
@@ -84,33 +82,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.005, y: 0.005, z: 0.005}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &144799485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4941742106540891160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &144799486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4941742106540891160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7501193310bc8104e98f5fb419b4ad12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp1: {r: 0, g: 1, b: 0.8328996, a: 1}
-  hp2: {r: 0, g: 0, b: 0, a: 0}
-  hp3: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6776727413057109196
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +94,7 @@ GameObject:
   - component: {fileID: 3397704759070017166}
   - component: {fileID: 5390684948997418985}
   - component: {fileID: 9127200436186897565}
-  m_Layer: 23
+  m_Layer: 18
   m_Name: centerBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +183,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 6d4b949d87e594541b9a53ffe8ff62c0, type: 3}
       propertyPath: m_Name
       value: shit frog
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6d4b949d87e594541b9a53ffe8ff62c0, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6d4b949d87e594541b9a53ffe8ff62c0, type: 3}
       propertyPath: m_LocalPosition.x

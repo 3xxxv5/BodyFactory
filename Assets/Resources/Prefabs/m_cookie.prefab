@@ -81,10 +81,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6ca71603ac169449823be44657c490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropSpeed: 1
+  dropSpeed: 3
   chips: {fileID: 7405810806708586546, guid: 67228f6a6496df84cabc0fbb67f5bfc9, type: 3}
   lifeBase: 1
   life: 0
+  radius: 5
+  power: 1000
 --- !u!1 &652320124940108649
 GameObject:
   m_ObjectHideFlags: 0

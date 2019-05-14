@@ -2,33 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmitManager : MonoBehaviour {
+public class EmitManager : MonoBehaviour
+{
     public static EmitManager _instance { get; private set; }
-    public  float timer = 4;
-    float time = 0;
-    public int randomRange =18;
-    int randomMonster = 0;
+
+    public int randomRange = 18;
     public float queueRate = 0;
     public float waveRate = 5;
     public BigWave[] FirstLevelWave;
     public BigWave[] SecondLevelWave;
-    GameObject donut;
-    GameObject lollipop;
-    GameObject macaron;
+
 
     private void Awake()
     {
         _instance = this;
     }
-    void Start () {
+    void Start()
+    {
         InitTest();
-        StartCoroutine(SpawnWave1(FirstLevelWave,1));
+        StartCoroutine(SpawnWave1(FirstLevelWave, 1));
     }
     void InitTest()
     {
         CountAmount(FirstLevelWave, ref GameManager2._instance.level1foodAmountBase);
     }
-   public void CountAmount(BigWave[] levelWave, ref int amount)
+    public void CountAmount(BigWave[] levelWave, ref int amount)
     {
         for (int v = 0; v < levelWave.Length; v++)
         {
@@ -36,17 +34,15 @@ public class EmitManager : MonoBehaviour {
             {
                 for (int i = 0; i < levelWave[v].myQueues[j].count; i++)//小队里怪物的个数
                 {
-                    amount++;                   
+                    amount++;
                 }
             }
         }
     }
-    void Update () {
-        
-    }
-   public  IEnumerator SpawnWave1(BigWave[] levelWave,int level)
+
+    public IEnumerator SpawnWave1(BigWave[] levelWave, int level)
     {
-        for(int v = 0; v < levelWave.Length;v++)
+        for (int v = 0; v < levelWave.Length; v++)
         {
             for (int j = 0; j < levelWave[v].myQueues.Length; j++)//第一波里的3个小队
             {
@@ -60,7 +56,7 @@ public class EmitManager : MonoBehaviour {
             if (v != levelWave.Length - 1)
             {
                 yield return new WaitForSeconds(waveRate);//每一波之间要等的时间
-            }            
+            }
         }
         //全部发射完后进行检测
         GameManager2._instance.CheckWin(level);
@@ -99,7 +95,7 @@ public class EmitManager : MonoBehaviour {
             }
             else
             {
-                AudioManager._instance.PlayEffect("refract");
+                AudioManager._instance.PlayEffect("foodDrop");
             }
             Instantiate(prefab, transform.position + new Vector3(random_x, 0, random_z), prefab.transform.rotation);
             GameManager2._instance.level1foodAmount++;
@@ -114,7 +110,22 @@ public class EmitManager : MonoBehaviour {
             int random_z = Random.Range(-randomRange, randomRange);
             Instantiate(prefab, transform.position + new Vector3(random_x, 0, random_z), prefab.transform.rotation);
             GameManager2._instance.level2foodAmount++;
-            AudioManager._instance.PlayEffect("refract");
+            if (prefab.tag.Equals("chocolateFrog"))
+            {
+                AudioManager._instance.PlayEffect("frog");
+            }
+            else if (prefab.tag.Equals("dragonRoad"))
+            {
+                AudioManager._instance.PlayEffect("skr");
+                FirstPersonAIO._instance.attackDragon = true;
+            }
+            else
+            {
+                {
+                    AudioManager._instance.PlayEffect("foodDrop");
+                }
+            }
         }
     }
 }
+

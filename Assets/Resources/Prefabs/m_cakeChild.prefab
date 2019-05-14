@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 323637302367842646}
   - component: {fileID: 7995485576294085544}
   - component: {fileID: 7421966249691314828}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Group46806
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,11 +86,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8869338340414246071}
-  - component: {fileID: 3870797621163264530}
   - component: {fileID: 6689502725291981567}
   - component: {fileID: 635293545959965921}
-  m_Layer: 0
-  m_Name: m_cakeChild2
+  - component: {fileID: 3870797621163264530}
+  m_Layer: 18
+  m_Name: m_cakeChild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,24 +112,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -216.644}
---- !u!114 &3870797621163264530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7305390273082551907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6ca71603ac169449823be44657c490, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropSpeed: 1
-  chips: {fileID: 3743932680920338005, guid: bc810d359e108b347b69e6fd1c9d3f62, type: 3}
-  lifeBase: 1
-  life: 0
-  radius: 5
-  power: 1000
 --- !u!54 &6689502725291981567
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -159,6 +141,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 13.848197, y: 18.5302, z: 19.147003}
   m_Center: {x: -3.8101645, y: -28.434727, z: 14.448636}
+--- !u!114 &3870797621163264530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305390273082551907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6ca71603ac169449823be44657c490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropSpeed: 1
+  chips: {fileID: 3743932680920338005, guid: bc810d359e108b347b69e6fd1c9d3f62, type: 3}
+  lifeBase: 1
+  life: 0
+  radius: 5
+  power: 1000
 --- !u!1 &9151912171215468756
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 3945725694019906438}
   - component: {fileID: 7683356017320284046}
   - component: {fileID: 5268142928075967146}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Group21608
   m_TagString: Untagged
   m_Icon: {fileID: 0}

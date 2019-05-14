@@ -87,7 +87,7 @@ Material:
     - _MaskClipValue: 0.5
     - _Metallicness: 0
     - _NORMAL_MAP: 1
-    - _NormalStrength: 0.759
+    - _NormalStrength: 0.777
     - _NormalTiling: 0.9
     - _Pixelate: 0
     - _RT_REFRACTION: 0
@@ -128,5 +128,5 @@ Material:
     - _FresnelColor: {r: 0.2216981, g: 0.6641572, b: 1, a: 0}
     - _RimColor: {r: 0.92096835, g: 0.97294134, b: 0.9811321, a: 0.134}
     - _WaterColor: {r: 0.28924885, g: 0.8579995, b: 0.9433962, a: 0}
-    - _WaterShallowColor: {r: 0.9150943, g: 0.6949537, b: 0.8145528, a: 0}
+    - _WaterShallowColor: {r: 0.754717, g: 0.7128049, b: 0.65859735, a: 0}
     - _WaveDirection: {r: -0.09, g: 0, b: 0.69, a: 0}

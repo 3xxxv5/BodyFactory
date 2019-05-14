@@ -12,32 +12,26 @@ public class GameManager2 : MonoBehaviour
     #region  level-settings
     [Header("Level 1")]
     [Space(8)]
+    public Transform level1Sea;
     public GameObject level1Collider;
     public int level1HpBase = 5;
-    [HideInInspector]
-    public int level1Hp=0;
+    [HideInInspector]    public int level1Hp=0;
     public PlayableDirector level1Clip;
     public Camera level1Camera;
     public int level1foodAmount=0;
     public int level1foodAmountBase=0;
     [Header("Level 2")]
     [Space(8)]
-    public GameObject level2Collider;
+    public Transform level2Sea;
+    public Transform level2Collider;
     public int level2HpBase = 8;
-    [HideInInspector]
-    public int level2Hp=0;
+    [HideInInspector]    public int level2Hp=0;
     public PlayableDirector level2Clip;
     public Camera level2Camera;
     public int level2foodAmount=0;
     public int level2foodAmountBase=0;
-    [Header("Level 3")]
-    [Space(8)]
-    public GameObject level3Collider;
-    public int level3HpBase = 10;
-    [HideInInspector]
-    public int level3Hp=0;
-    public PlayableDirector level3Clip;
-    public Camera level3Camera;
+    public Animator dragonRoadAnim;
+
     enum LevelNow
     {
         isLevel1,
@@ -66,8 +60,7 @@ public class GameManager2 : MonoBehaviour
     //MonsterColor
     public Color once;
     public Color twice;
-    public Color threeTimes;
-
+    public int dragonHp = 3;
     #endregion
 
     private void Awake()
@@ -174,16 +167,13 @@ public class GameManager2 : MonoBehaviour
             case 2:
                 CheckLevel2Win();
                 break;
-            case 3:
-                CheckLevel3Win();
-                break;
         }
     }
     void Level1Over()
     {
         if (!hasOver)
         {
-            AudioManager._instance.PlayEffect("oops");
+            AudioManager._instance.PlayEffect("gameOver2");
             FirstPersonAIO._instance.GameOver();
             //出现UI 
             Utility.EnableCanvas(Level2UIManager._instance.overCanvas, 1f);
@@ -212,40 +202,39 @@ public class GameManager2 : MonoBehaviour
     {
         if (level1Hp >= 0)
         {
-            AudioManager._instance.PlayEffect("tower");
+            AudioManager._instance.PlayEffect("gameWin");
             //过场动画
-           // StartCoroutine(WinAnim(level1Clip));
+           StartCoroutine(WinAnim(level1Clip));
         }
     }
     public void CheckLevel2Win()
     {
-        if (level2Hp >= 0)
+        if (level2Hp >= 0&&dragonHp<=0)
         {
-            AudioManager._instance.PlayEffect("tower");
+            AudioManager._instance.PlayEffect("gameWin");
             //过场动画
-            StartCoroutine(WinAnim(level2Clip));
-        }
-    }
-    public void CheckLevel3Win()
-    {
-        if (level3Hp >= 0)
-        {
-            AudioManager._instance.PlayEffect("tower");
-            //过场动画
-            StartCoroutine(WinAnim(level3Clip));
+            StartCoroutine(Level2Win());
         }
     }
 
+    IEnumerator Level2Win()
+    {
+          yield return null;
+          Level2UIManager._instance.fadeImage.DOFade(1, Level2UIManager._instance.toBlackTime);
+          
+    }
     IEnumerator WinAnim(PlayableDirector clip)
     {
         //变黑
+        Level2UIManager._instance.fadeImage.GetComponent<Animator>().enabled = false;
         Level2UIManager._instance.fadeImage.DOFade(1, Level2UIManager._instance.toBlackTime);
         Utility.DisableCanvas(Level2UIManager._instance.dataCanvas,1f);
-        level1Collider.GetComponent<Collider>().enabled = false;
+       
         yield return new WaitForSeconds(Level2UIManager._instance.toBlackTime);
         Utility.DisableCamera(FirstPersonAIO._instance.transform);
         Utility.EnableCamera(level1Camera.transform);
-        
+        Utility.DisableCanvas(Level2UIManager._instance.crossCanvas,1f);
+
         //全黑时开始播过场
         clip.Play();
         //同时开始播变白的动画
@@ -256,17 +245,18 @@ public class GameManager2 : MonoBehaviour
         Level2UIManager._instance.waveSlider.value = 0;
         Level2UIManager._instance.lifeSlider.value = 1;
         //播到还差20%结束时，开始变黑
-        Level2UIManager._instance.fadeImage.DOFade(1, Level2UIManager._instance.toBlackTime);
+        Level2UIManager._instance.fadeImage.DOFade(1, Level2UIManager._instance.toBlackTime);       
         yield return new WaitForSeconds(Level2UIManager._instance.toBlackTime);
-
+        Destroy(level1Collider.gameObject); Destroy(level1Sea.gameObject);
+        level2Sea.gameObject.SetActive(true);
         Utility.DisableCamera(level1Camera.transform);
         Utility.EnableCamera(FirstPersonAIO._instance.transform);
 
         Utility.EnableCanvas(Level2UIManager._instance.dataCanvas, Level2UIManager._instance.toClearTime);
+        Utility.EnableCanvas(Level2UIManager._instance.crossCanvas, Level2UIManager._instance.toClearTime);
         Level2UIManager._instance.fadeImage.DOFade(0, Level2UIManager._instance.toClearTime);
         yield return new WaitForSeconds(Level2UIManager._instance.toClearTime);
         Level2_Init();
-
     }
     #endregion
 

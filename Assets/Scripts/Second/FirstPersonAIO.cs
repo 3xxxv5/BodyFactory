@@ -228,6 +228,7 @@ public class FirstPersonAIO : MonoBehaviour {
     int index = 0;
 
     public float distance = 20f;
+    public  bool attackDragon = false;
     #endregion
 
     #endregion
@@ -371,7 +372,7 @@ public class FirstPersonAIO : MonoBehaviour {
             if (canTransfer)
             {
                 Transfer();//因为是持续运动，所以需要在Update里执行
-                /*if(hasQte) */CameraTransfer();//第三人称的相机运动
+                if (hasQte) CameraTransfer();//第三人称的相机运动
             }
         }     
 
@@ -391,6 +392,7 @@ public class FirstPersonAIO : MonoBehaviour {
     }
     void CameraTransfer()
     {
+        if (Dragon._instance.attackDragon) return;
         while(index<camTargets.Length)//0,1
         {
 

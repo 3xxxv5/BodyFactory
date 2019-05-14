@@ -8,9 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: dragon
-  m_Shader: {fileID: 4800000, guid: 47e9b36155428654a8e41d5da1e6262d, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -36,11 +36,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 752f8471fbe973c439e34459d5d69ce1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 5659b5138f944f94889cdde2ce947fbd, type: 3}
+        m_Texture: {fileID: 2800000, guid: e199c49790e5efd498109c44c72816b1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -77,9 +77,9 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - _dissolveAmount: 1
-    - _edgeWidth: 0.05
+    - _edgeWidth: 0.027
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.18039216, g: 1.027451, b: 1.4980392, a: 1}
     - _baseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _edgeColor: {r: 0.2216981, g: 0.4701848, b: 1, a: 1}
+    - _edgeColor: {r: 0.22513089, g: 0.4712042, b: 1, a: 1}

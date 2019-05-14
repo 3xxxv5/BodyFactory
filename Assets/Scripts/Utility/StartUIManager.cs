@@ -10,7 +10,6 @@ public class StartUIManager : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
     public VideoPlayer videoPlayer;
-    Image fadeImage;
     CanvasGroup volumeCanvas;
     Image volumeSlider;
     public Sprite[] volumeSprites;
@@ -18,11 +17,11 @@ public class StartUIManager : MonoBehaviour
     Dictionary<int, float> volumeDic = new Dictionary<int, float>(6);
     bool isOpen = true;
     Button rightEarBtn;
+    public Image fadeImage;
     CanvasGroup startCanvas;       
     void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
-        fadeImage = transform.Find("fadeImage").GetComponent<Image>();
+        canvasGroup = GetComponent<CanvasGroup>();      
 
         AudioManager._instance.PlayeBGM("start");
         //设置音量界面
@@ -31,27 +30,27 @@ public class StartUIManager : MonoBehaviour
         volumeSlider = volumeCanvas.transform.Find("volumeSlider").GetComponent<Image>();
         SetVolumeDic();
         //根据存档设置音量，若无存档，初始化一个
-        if (PlayerPrefs.HasKey("volume"))
-        {
-            int saveIndex = PlayerPrefs.GetInt("volume");
-            volumeSlider.sprite = volumeSprites[saveIndex];
-            AudioManager._instance.SetPlayerVolume(volumeDic[saveIndex]);
-            videoPlayer.SetDirectAudioVolume(0,volumeDic[saveIndex]);
-        }
-        else
-        {
+        //if (PlayerPrefs.HasKey("volume"))
+        //{
+        //    int saveIndex = PlayerPrefs.GetInt("volume");
+        //    volumeSlider.sprite = volumeSprites[saveIndex];
+        //    AudioManager._instance.SetPlayerVolume(volumeDic[saveIndex]);
+        //    videoPlayer.SetDirectAudioVolume(0,volumeDic[saveIndex]);
+        //}
+        //else
+        //{
             volumeIndex = 2;
             volumeSlider.sprite = volumeSprites[volumeIndex];//设置初始档位的图片
             AudioManager._instance.SetPlayerVolume(volumeDic[volumeIndex]);//根据档位设置音量
             videoPlayer.SetDirectAudioVolume(0, volumeDic[volumeIndex]);
-        }
+        //}
         Utility.DisableCanvas(volumeCanvas,0f);
 
         //开始界面
-        startCanvas = transform.Find("StartPanel").GetComponent<CanvasGroup>();
-        Utility.EnableCanvas(startCanvas, 0f);
+        //startCanvas = transform.Find("StartPanel").GetComponent<CanvasGroup>();
+        //Utility.EnableCanvas(startCanvas, 0f);
         //播放视频
-        videoPlayer.playOnAwake = false;
+        //videoPlayer.playOnAwake = false;
 
     }
     void SetVolumeDic()
@@ -72,7 +71,7 @@ public class StartUIManager : MonoBehaviour
     IEnumerator startGame()
     {
         Utility.DisableCanvas(startCanvas, 0f);
-        canvasGroup.DOFade(0f, 0.5f);
+        canvasGroup.DOFade(0f, 0f);
         canvasGroup.interactable = false;
         AudioManager._instance.bgmPlayer.Pause();
         yield return new WaitForSeconds(0.5f);

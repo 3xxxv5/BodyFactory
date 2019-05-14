@@ -52,7 +52,7 @@ public class BatteryAIO : MonoBehaviour
         _instance = this;
         //Look Settings - Awake
         originalRotation = transform.localRotation.eulerAngles;
-        puffer = transform.Find("Player Camera/puffer");
+        puffer = transform.Find("BatteryCamera/puffer");
         pufferInitPosition = puffer.transform.position;
         pufferInitRotation = puffer.transform.rotation;
         cameraInitPosition = playerCamera.position;

@@ -27,9 +27,6 @@ public class Monster : MonoBehaviour {
     {
         switch (life)
         {
-            case 3:
-                ho.ConstantOn(GameManager2._instance.threeTimes);
-                break;
             case 2:
                 ho.ConstantOn(GameManager2._instance.twice);
                 break;
@@ -45,8 +42,6 @@ public class Monster : MonoBehaviour {
             transform.position = Vector3.Lerp(transform.position, transform.position + new Vector3(0, -1, 0), Time.deltaTime * trueSpeed);
             transform.Rotate(Vector3.up,Time.deltaTime*rotateSpeed);
     }
-
-
 
    public  void ReduceLife(int num)
     {

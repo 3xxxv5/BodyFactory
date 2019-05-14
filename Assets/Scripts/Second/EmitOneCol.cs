@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class EmitOneCol : MonoBehaviour
 {
-    void StopLifeAnim()
-    {
-
-    }
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("monster"))
