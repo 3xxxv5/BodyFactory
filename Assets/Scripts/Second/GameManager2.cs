@@ -226,7 +226,6 @@ public class GameManager2 : MonoBehaviour
     IEnumerator WinAnim(PlayableDirector clip)
     {
         //变黑
-        Level2UIManager._instance.fadeImage.GetComponent<Animator>().enabled = false;
         Level2UIManager._instance.fadeImage.DOFade(1, Level2UIManager._instance.toBlackTime);
         Utility.DisableCanvas(Level2UIManager._instance.dataCanvas,1f);
        

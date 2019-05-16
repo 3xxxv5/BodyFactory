@@ -67,8 +67,11 @@ public class BatteryAIO : MonoBehaviour
     {
         playerCamera.position = cameraInitPosition;
         playerCamera.rotation = cameraInitRotation;
-        puffer.position = pufferInitPosition;
-        puffer.rotation = pufferInitRotation;
+        if (puffer != null)
+        {
+            puffer.position = pufferInitPosition;
+            puffer.rotation = pufferInitRotation;
+        }
     }
 
   

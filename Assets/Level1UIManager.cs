@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class Level1UIManager : MonoBehaviour
 {
     public static Level1UIManager _instance { get; private set; }
     //pause panel
     [HideInInspector] public CanvasGroup pauseCanvas;
-
+    Image fadeImage;
     private void Awake()
     {
         _instance = this;
@@ -16,6 +18,7 @@ public class Level1UIManager : MonoBehaviour
     }
     void Init()
     {
+
         AudioManager._instance.PlayeBGM("first");
         //pause panel
         pauseCanvas = transform.Find("PausePanel").GetComponent<CanvasGroup>();
@@ -23,13 +26,16 @@ public class Level1UIManager : MonoBehaviour
     }
     void Start()
     {
-
+        fadeImage = transform.Find("fadeImage").GetComponent<Image>();
+        fadeImage.color = Color.black;
+        fadeImage.DOFade(0f, 1f);
     }
 
     // Update is called once per frame
 
     void Update()
     {
+        Utility.ChangeVolume();
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             Pause();

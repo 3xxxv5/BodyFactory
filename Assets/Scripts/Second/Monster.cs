@@ -11,7 +11,7 @@ public class Monster : MonoBehaviour {
     HighlightableObject ho;
     public float radius = 5.0F;
     public float power = 1000;
-    float rotateSpeed = 10f;
+    float rotateSpeed = 30f;
     void Awake () {
         if (chips == null) chips = Resources.Load<GameObject>("Prefabs/m_donutChips");
         life = lifeBase;

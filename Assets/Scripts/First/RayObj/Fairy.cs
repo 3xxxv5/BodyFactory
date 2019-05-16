@@ -44,7 +44,7 @@ public class Fairy : MonoBehaviour {
         rotateButton.onClick.AddListener(RotateFairy);
         tipBoard.gameObject.SetActive(false);    
         rotateTip.gameObject.SetActive(false);
-        anim = transform.GetComponentInChildren<Animator>();
+        anim = transform.Find("elf").GetComponent<Animator>();
         movePoint = Resources.Load<GameObject>("Prefabs/movePoint");
         pointsObjects = new List<GameObject>();
         canFollow = false;

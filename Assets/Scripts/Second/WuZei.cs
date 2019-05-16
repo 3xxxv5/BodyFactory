@@ -72,7 +72,7 @@ public class WuZei : MonoBehaviour
     {
         if (checkQte) return;
         if (GameManager2._instance.canChange2Battery&& col.gameObject.layer == LayerMask.NameToLayer("battery"))
-        {
+        {           
             GameManager2._instance.Change2BatteryView();
         }
         if (col.gameObject.layer==LayerMask.NameToLayer("monster"))

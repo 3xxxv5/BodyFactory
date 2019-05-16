@@ -20,13 +20,12 @@ public class Level2UIManager : MonoBehaviour
     [HideInInspector] public Image batteryCross;
     //over panel
     [HideInInspector] public CanvasGroup overCanvas;
-    [HideInInspector] public Image fadeImage;
+    [HideInInspector]public Image fadeImage;
     public float toBlackTime = 1f;
     public float toClearTime = 1f;
     //pause panel
     [HideInInspector] public CanvasGroup pauseCanvas;
-    //other
-    [HideInInspector] public Animator lifeAnim;
+
     //viedo
     private CanvasGroup canvasGroup;
     public VideoPlayer videoPlayer;
@@ -39,7 +38,9 @@ public class Level2UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        fadeImage = transform.Find("fadeImage").GetComponent<Image>();
+        fadeImage.color = Color.black;
+        fadeImage.DOFade(0f, 1f);
     }
     void Init()
     {
@@ -69,7 +70,6 @@ public class Level2UIManager : MonoBehaviour
 
       
         //over panel
-        fadeImage = transform.Find("FadeImage").GetComponent<Image>();
         overCanvas = transform.Find("GameOverPanel").GetComponent<CanvasGroup>();
         Utility.DisableCanvas(overCanvas, 0f);
 
@@ -100,9 +100,10 @@ public class Level2UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Utility.ChangeVolume();
         if (!GameManager2._instance.hasOver)
         {
-            if (Input.GetKeyUp(KeyCode.R))
+            if (Input.GetKeyUp(KeyCode.Escape))
             {
                 Pause();
             }

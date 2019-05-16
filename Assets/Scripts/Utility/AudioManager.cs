@@ -26,6 +26,10 @@ public class AudioManager : MonoBehaviour {
     Dictionary<string, string> bgmDic;
     public float initBgmVolume = 0.1f;
     public float initEffectVolume = 0.5f;
+    public float saveVolume;
+    public  bool reduceVol = false;
+    public  bool increaseVol = false;
+
     string sceneName;
 
     private void Awake()
@@ -81,6 +85,7 @@ public class AudioManager : MonoBehaviour {
     //什么时候执行？需要换背景音乐的时候
     public  void PlayeBGM(string name)
     {
+        increaseVol = true;
         string lastName;
         //上个场景在播放的clip以实际为准
         if (bgmPlayer.clip == null)

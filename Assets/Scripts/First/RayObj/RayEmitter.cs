@@ -23,7 +23,7 @@ public class RayEmitter : MonoBehaviour {
         lineRenderer.positionCount = 2;
         lineRenderer.startWidth = lineRenderer.endWidth = 0.2f;
         lineRenderer.material = Resources.Load<Material>("Materials/TexAnim");
-        layerMask = LayerMask.GetMask("tower", "reflectObj", "refractObj", "bud");
+        layerMask = LayerMask.GetMask("tower", "reflectObj", "refractObj", "bud","sphereBoard");
         lastHit = null;
         gameObject.AddComponent<TextureAnim>();
     }
@@ -52,12 +52,12 @@ public class RayEmitter : MonoBehaviour {
         RaycastHit hitInfo;
         //射线不要把父物体算进去
         transform.parent.GetComponent<Collider>().enabled = false;
-        bool isHit = Physics.Raycast(ray, out hitInfo, 1000,layerMask);
+        bool isHit = Physics.Raycast(ray, out hitInfo, Mathf.Infinity,layerMask);
         transform.parent.GetComponent<Collider>().enabled = true;
 
-        if (isHit && hitInfo.collider.gameObject.GetComponent<Fairy>() != null 
-            && hitInfo.collider.gameObject.GetComponent<Fairy>().isPicked)//射中了且在选择模式
+        if (isHit)//射中了且在选择模式
         {
+            // && hitInfo.collider.gameObject.GetComponent<Fairy>() != null && hitInfo.collider.gameObject.GetComponent<Fairy>().isPicked)
             //射中了某个物体
             endY = hitInfo.transform.position.y;
             UpdateLastHit(hitInfo);
