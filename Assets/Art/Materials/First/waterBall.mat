@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: waterBall
-  m_Shader: {fileID: 4800000, guid: cc4347574b823934ba11785e25895920, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: 58b45e8f22417504499c2ee21b388c78, type: 3}
+  m_ShaderKeywords: _WORLDSPACETILING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normals:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -55,25 +59,59 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Shadermap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _Depth: 30
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _ENABLE_VC: 0
+    - _EdgeFade: 0.2448298
+    - _FoamOpacity: 0.05
+    - _FoamSize: 0
+    - _FoamSpeed: 0.1
+    - _FoamTiling: 0.05
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _InvFade: 1
+    - _InvFade: 0.59
+    - _LIGHTING: 0
     - _Metallic: 0
+    - _Metallicness: 0
     - _Mode: 0
+    - _NORMAL_MAP: 0
+    - _NormalStrength: 0.25
+    - _NormalTiling: 0.9
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _RimSize: 5
+    - _Rimfalloff: 3
+    - _Rimtiling: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Transparency: 0.75
+    - _USE_VC_INTERSECTION: 0
     - _UVSec: 0
+    - _Unlit: 0
+    - _UseIntersectionFoam: 0
+    - _WaveFoam: 0
+    - _WaveHeight: 0.5366272
+    - _WaveSize: 0.1
+    - _Wavesspeed: 0.75
+    - _Wavetint: 0
+    - _Worldspacetiling: 1
     - _ZWrite: 1
+    - __dirty: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     - _TintColor: {r: 0.22801706, g: 0.49806103, b: 0.7924528, a: 0.3137255}
+    - _WaterColor: {r: 0.1176471, g: 0.6348885, b: 1, a: 0}
+    - _WaterShallowColor: {r: 0.4191176, g: 0.7596349, b: 1, a: 0}
+    - _WaveDirection: {r: 1, g: 0, b: 0, a: 0}

@@ -354,19 +354,19 @@ MonoBehaviour:
       size: 1
       luminanceContribution: 0.8
   vignette:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       mode: 0
-      color: {r: 0.21235222, g: 0.15356888, b: 0.2735849, a: 1}
+      color: {r: 0, g: 0, b: 0, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0.454
-      smoothness: 0.672
+      intensity: 0.33
+      smoothness: 0.52
       roundness: 1
       mask: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
       opacity: 1
       rounded: 0
   dithering:
-    m_Enabled: 0
+    m_Enabled: 1
   monitors:
     currentMonitorID: 0
     refreshOnPlay: 0

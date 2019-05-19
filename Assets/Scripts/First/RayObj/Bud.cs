@@ -17,6 +17,7 @@ public class Bud : MonoBehaviour {
     bool startShow = false;
     public float showSpeed = 1.0f;
     public Color creeperColor;
+    [HideInInspector]public  bool hasLighted = false;
 
     private void Awake()
     {
@@ -53,6 +54,7 @@ public class Bud : MonoBehaviour {
     }
     void LightAndDarkLeaves()
     {
+        if (hasLighted) return;
         nowRayNum = Mathf.Clamp(nowRayNum, 0, needRayNum);
         for (int i = 0; i < nowRayNum; i++)
         {
@@ -62,6 +64,7 @@ public class Bud : MonoBehaviour {
         {
             leaves[i].gameObject.GetComponent<MeshRenderer>().material = blackBud;
         }
+        if (nowRayNum == needRayNum) hasLighted = true;
     }
     void GrowCreeper()
     {

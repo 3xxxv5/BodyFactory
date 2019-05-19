@@ -163,10 +163,11 @@ public class RayEmitter : MonoBehaviour {
                 Bud bud = trans.GetComponent<Bud>();
                 if (bud != null)
                 {
-                    if (isHited)
+                    if (isHited && !bud.hasLighted)
                     {
                         if (!hasAddBud)
                         {
+
                             AudioManager._instance.PlayEffect("bud");
                             bud.nowRayNum++;
                             hasAddBud = true;
