@@ -16,18 +16,7 @@ public class Pearl : MonoBehaviour
     [HideInInspector]public bool thirdOk = true;
     //public Transform[] bullets;
     //public Animator[] shellAnimators;
-    public Text timeText;
-    public Text countText;
 
-    private void Awake()
-    {
-        if (countText != null && timeText != null)
-        {
-            timeText.gameObject.SetActive(false);
-            countText.gameObject.SetActive(false);
-        }
-    }
-    // Update is called once per frame
     void Update()
     {
         if (!firstOk)
@@ -65,15 +54,6 @@ public class Pearl : MonoBehaviour
                 Level2UIManager._instance.circleProgress[2].fillAmount = 0;
                 thirdOk = true;
             }
-        }
-
-        if (countText != null)
-        {
-            countText.text = "first：" + firstOk + " " + "second：" + secondOk + " " + "third：" + thirdOk;
-        }
-        if (timeText != null)
-        {
-            timeText.text = ticktock1.ToString();
         }
     }
 }

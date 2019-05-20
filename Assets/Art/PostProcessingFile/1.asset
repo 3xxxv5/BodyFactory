@@ -41,9 +41,9 @@ MonoBehaviour:
         stationaryBlending: 0.95
         motionBlending: 0.85
   ambientOcclusion:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
-      intensity: 0
+      intensity: 0.27
       radius: 0.4
       sampleCount: 16
       downsampling: 1
@@ -72,7 +72,7 @@ MonoBehaviour:
   depthOfField:
     m_Enabled: 0
     m_Settings:
-      focusDistance: 0.35
+      focusDistance: 0.93
       aperture: 32
       focalLength: 96
       useCameraFov: 1
@@ -84,7 +84,7 @@ MonoBehaviour:
       sampleCount: 10
       frameBlending: 0
   eyeAdaptation:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       lowPercent: 45
       highPercent: 95
@@ -356,13 +356,13 @@ MonoBehaviour:
   vignette:
     m_Enabled: 0
     m_Settings:
-      mode: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
+      mode: 1
+      color: {r: 1, g: 1, b: 1, a: 1}
       center: {x: 0.5, y: 0.5}
       intensity: 0.33
       smoothness: 0.52
       roundness: 1
-      mask: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+      mask: {fileID: 2800000, guid: e589e7faccefdb44493a5f2927a21909, type: 3}
       opacity: 1
       rounded: 0
   dithering:

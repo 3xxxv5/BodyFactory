@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
-using UnityEngine.Video;
 
 public class StartSelect : MonoBehaviour
 {
@@ -15,6 +14,8 @@ public class StartSelect : MonoBehaviour
     Dictionary<int, float> volumeDic = new Dictionary<int, float>(6);
     bool isOpen = true;
     public  Button rightEarBtn;
+    public Button luneBtn;
+    public Button stomachBtn;
     public Image fadeImage;
  
     void Start()
@@ -97,5 +98,6 @@ public class StartSelect : MonoBehaviour
         fadeImage.DOFade(1f, waitTime);
         StartCoroutine(Utility.waitOpenLevel(waitTime, name));
     }
+
 
 }

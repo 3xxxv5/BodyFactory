@@ -185,7 +185,6 @@ public class GameManager2 : MonoBehaviour
     {//并不是直接死，需要重新来过。而是短暂黑屏，首先玩家行动肯定受到了限制，然后其他物体先停止降落
         AudioManager._instance.PlayEffect("oops");
         FirstPersonAIO._instance.enableCameraMovement = false;
-        Level2UIManager._instance.fadeImage.GetComponent<Animator>().enabled = false;
         Level2UIManager._instance.fadeImage.DOFade(1f,toBlack);
         yield return new WaitForSeconds(toBlack+waitTime);
         FirstPersonAIO._instance.transform.position = reviveTrans.position;//世界坐标
@@ -194,7 +193,6 @@ public class GameManager2 : MonoBehaviour
         Level2UIManager._instance.fadeImage.DOFade(0f,toClear);
         AudioManager._instance.PlayEffect("revise");//音效
         yield return new WaitForSeconds(toClear);       
-        Level2UIManager._instance.fadeImage.GetComponent<Animator>().enabled = true;
         FirstPersonAIO._instance.enableCameraMovement = true;
     }
 
@@ -226,6 +224,7 @@ public class GameManager2 : MonoBehaviour
     IEnumerator WinAnim(PlayableDirector clip)
     {
         //变黑
+        Level2UIManager._instance.fadeImage.color = Color.clear;
         Level2UIManager._instance.fadeImage.DOFade(1, Level2UIManager._instance.toBlackTime);
         Utility.DisableCanvas(Level2UIManager._instance.dataCanvas,1f);
        

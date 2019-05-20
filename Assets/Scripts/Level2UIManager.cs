@@ -26,10 +26,6 @@ public class Level2UIManager : MonoBehaviour
     //pause panel
     [HideInInspector] public CanvasGroup pauseCanvas;
 
-    //viedo
-    private CanvasGroup canvasGroup;
-    public VideoPlayer videoPlayer;
-    public Camera videoCamera;
     private void Awake()
     {
         _instance = this;
@@ -44,19 +40,6 @@ public class Level2UIManager : MonoBehaviour
     }
     void Init()
     {
-        canvasGroup = GetComponent<CanvasGroup>(); Save._instance.SavePlaySecondMovie(1);
-        if (PlayerPrefs.HasKey("hasPlay"))
-        {
-            AudioManager._instance.PlayeBGM("second");
-            videoCamera.gameObject.SetActive(false);
-        }
-        else
-        {
-            //播放视频
-            StartCoroutine(playMovie());
-        }
-
-
         for (int i = 0; i < circleProgress.Length; i++) circleProgress[i].fillAmount = 0;
         //pause panel
         pauseCanvas = transform.Find("PausePanel").GetComponent<CanvasGroup>();
@@ -82,21 +65,7 @@ public class Level2UIManager : MonoBehaviour
         Utility.EnableCanvas(crossCanvas, 1f);
 
     }
-    IEnumerator playMovie()
-    {
-        AudioManager._instance.PlayeBGM("");
-        AudioManager._instance.PlayEffect("");
-        videoCamera.gameObject.SetActive(true);
-        canvasGroup.DOFade(0f, 0.5f);
-        canvasGroup.interactable = false;
-        videoPlayer.playOnAwake = true;
-        yield return new WaitForSeconds((float)videoPlayer.length);
-        AudioManager._instance.PlayeBGM("second");
-        canvasGroup.DOFade(1f, 0.5f);
-        canvasGroup.interactable = true;
-        videoCamera.gameObject.SetActive(false);
-        Save._instance.SavePlaySecondMovie(1);
-    }
+
     // Update is called once per frame
     void Update()
     {
