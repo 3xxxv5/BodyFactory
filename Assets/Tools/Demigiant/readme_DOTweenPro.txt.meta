@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5f871084b42812f4dbe1875946468854
+guid: 24123b2fcdc15c943bed44e0c6beeec7
 labels:
 - Tween
 - Tweening
@@ -16,7 +16,4 @@ labels:
 - Shake
 - Punch
 TextScriptImporter:
-  externalObjects: {}
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
