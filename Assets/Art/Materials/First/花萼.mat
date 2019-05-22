@@ -8,9 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: "\u82B1\u843C"
-  m_Shader: {fileID: 4800000, guid: 48dca5b99d113b8d11006bab44295342, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 2
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -77,5 +77,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.56078434, g: 1, b: 0.7659303, a: 1}
-    - _EmissionColor: {r: 0.16415983, g: 0.2924528, b: 0.22372441, a: 1}
+    - _Color: {r: 0.44488752, g: 0.5566038, b: 0.29142934, a: 1}
+    - _EmissionColor: {r: 0.25882742, g: 0.13291138, b: 0.023317786, a: 1}
