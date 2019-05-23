@@ -2,25 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeachTower : Tower
+public class TeachTower : MonoBehaviour
 {
+    protected Transform tipBoard;
+    [HideInInspector] public RayEmitter rayEmitter;
+    [HideInInspector]
+    public bool beHited = false;
+    public bool hasPlayEffect = false;
+    [HideInInspector] public Animator anim;
     public ReflectFairy reflectFairy;
     public RefractFairy refractFairy;
     bool hasTeach = false;
     [HideInInspector]public  HighlightableObject ho;
     public Color color;
-    void Start()
+    void Awake()
     {
+        Init();
+    } 
+    public  void Init()
+    {
+        tipBoard = transform.Find("tipBoard");
+        tipBoard.gameObject.SetActive(false);
+        rayEmitter = GetComponentInChildren<RayEmitter>();
+        rayEmitter.startPoint = transform.position;
+        anim = transform.Find("flowerTower").GetComponentInChildren<Animator>();
         ho = GetComponent<HighlightableObject>();
-
     }
-
     // Update is called once per frame
     void Update()
     {
         PlayerLight();
     }
-    public override void PlayerLight()
+    public void PlayerLight()
     {
         //主角点亮
         if (!hasTeach)
@@ -48,6 +61,7 @@ public class TeachTower : Tower
             if (!rayEmitter.lineRenderer.enabled)
             {
                 tipBoard.gameObject.SetActive(true);
+
             }
         }
     }

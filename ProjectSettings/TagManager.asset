@@ -24,6 +24,8 @@ TagManager:
   - level1Sea
   - level2Sea
   - Sea
+  - rotateBtn
+  - turnBtn
   layers:
   - Default
   - TransparentFX

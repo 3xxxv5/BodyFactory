@@ -21,6 +21,5 @@ public class direction : MonoBehaviour {
         value =new Vector4(hero.transform.position.x, hero.transform.position.y, hero.transform.position.z, 1);
         //targetPos = grassMaterial.material.GetFloat();
         grassMaterial.material.SetVector("_heroPos", value);
-        print(grassMaterial.material.GetVector("_heroPos"));
     }
 }
