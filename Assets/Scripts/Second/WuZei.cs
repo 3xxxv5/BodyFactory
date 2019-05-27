@@ -37,6 +37,7 @@ public class WuZei : MonoBehaviour
         if (FirstPersonAIO._instance.gameOver)
         {
             animator.enabled = false;
+            print("animator被禁用");
         }
         //在qte时间内，检测组合键的按下
         if (checkQte)
@@ -54,8 +55,10 @@ public class WuZei : MonoBehaviour
                 FirstPersonAIO._instance.qteWin = true;//不再进行失败检测
                 AudioManager._instance.PlayEffect("qteWin");//音效
                 //播放打击动画
-                animIndex = Random.Range(1, 4);
+                //animIndex = Random.Range(1, 4);
+                animIndex = 2;
                 animator.SetInteger("qteAnim", animIndex);
+                print("animIndex:"+animator.GetInteger("qteAnim"));
                 AnimatorStateInfo a = animator.GetCurrentAnimatorStateInfo(0);
                 StartCoroutine(ChangeAnimState(a.length));
                 //关闭qte面板

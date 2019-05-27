@@ -27,6 +27,7 @@ public class Fairy : MonoBehaviour {
     protected float moveSpeed = 5f;
     protected bool canMove = false;
     protected Vector3 targetPos;
+    public FairySorts fairySorts;  
     [HideInInspector]
     public  enum FairyState
     {
@@ -40,7 +41,7 @@ public class Fairy : MonoBehaviour {
     {
         tipBoard = transform.Find("tipBoard");
         rotateTip = tipBoard.Find("RotateTip");
-        rotateButton = rotateTip.GetComponent<Button>();
+        rotateButton = GameObject.FindWithTag("rotateBtn").GetComponent<Button>();
         rotateButton.onClick.AddListener(RotateFairy);
         tipBoard.gameObject.SetActive(false);    
         rotateTip.gameObject.SetActive(false);
@@ -66,14 +67,22 @@ public class Fairy : MonoBehaviour {
         if (truePicked)
         {
             tipBoard.gameObject.SetActive(true);
-            if (rayHited)       
-                rotateTip.gameObject.SetActive(true);
+            if (rayHited)
+            {
+                //rotateTip.gameObject.SetActive(true);
+                Level1UIManager._instance.ShowTip(fairySorts);
+            }
             else
-                rotateTip.gameObject.SetActive(false);               
+            {
+                //rotateTip.gameObject.SetActive(false);               
+                Level1UIManager._instance.DisableTip();
+            }
+
         }
         else
         {
-            tipBoard.gameObject.SetActive(false);     
+            Level1UIManager._instance.DisableTip();
+            //tipBoard.gameObject.SetActive(false);     
         }       
     }
 

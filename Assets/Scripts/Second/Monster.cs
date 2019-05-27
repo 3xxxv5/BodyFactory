@@ -9,9 +9,10 @@ public class Monster : MonoBehaviour {
     public  int lifeBase = 2;
     [HideInInspector]public  int life = 0;
     HighlightableObject ho;
-    public float radius = 5.0F;
-    public float power = 1000;
+    float radius = 6;
+    float power = 500;
     float rotateSpeed = 30f;
+    float explodeDistance = 5f;
     void Awake () {
         if (chips == null) chips = Resources.Load<GameObject>("Prefabs/m_donutChips");
         life = lifeBase;
@@ -83,19 +84,18 @@ public class Monster : MonoBehaviour {
         if (life < 1)
         {
             //生成食物碎块       
-            GameObject myChips = Instantiate(chips, transform.position + transform.forward * GameManager2._instance.boomDistance, Quaternion.identity);
-            Destroy(myChips, 3);
+            GameObject myChips = Instantiate(chips, transform.position, Quaternion.identity);
+            myChips.transform.SetParent(WuZei._instance.transform);
+            Destroy(myChips, 1f);
             //向碎块添加爆炸力
-            Vector3 explosionPos = myChips.transform.position;
+            Vector3 explosionPos = myChips.transform.position - WuZei._instance.transform.forward * explodeDistance;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);//对爆炸点半径内的collider造成影响
             foreach (Collider hit in colliders)
             {
                 Rigidbody rb = hit.GetComponent<Rigidbody>();
-                if (rb != null) rb.GetComponent<Rigidbody>().AddExplosionForce(power, explosionPos, radius, 3.0F);
-                if (hit.tag == "fragment") Destroy(hit.gameObject, 0.5f);
-            }
+                if (rb != null) rb.GetComponent<Rigidbody>().AddExplosionForce(power, explosionPos, radius,-3f);
+            }         
             Destroy(gameObject);
         }
-
     }
 }

@@ -11,6 +11,9 @@ public class Level1UIManager : MonoBehaviour
     //pause panel
     [HideInInspector] public CanvasGroup pauseCanvas;
     Image fadeImage;
+    //tip panel
+    Button rotateButton;
+    Button overTurnButton;    
     private void Awake()
     {
         _instance = this;
@@ -22,7 +25,11 @@ public class Level1UIManager : MonoBehaviour
         AudioManager._instance.PlayeBGM("first");
         //pause panel
         pauseCanvas = transform.Find("PausePanel").GetComponent<CanvasGroup>();
+        rotateButton = transform.Find("RoateButton").GetComponent<Button>();
+        overTurnButton = transform.Find("TurnButton").GetComponent<Button>();
         Utility.DisableCanvas(pauseCanvas, 0f);
+        rotateButton.interactable = false;
+        overTurnButton.interactable = false;
     }
     void Start()
     {
@@ -68,6 +75,25 @@ public class Level1UIManager : MonoBehaviour
                 SceneManager.LoadScene("0_start");
                 break;
         }
+    }
+
+    public void ShowTip(FairySorts fairySorts)
+    {
+        rotateButton.interactable = true;
+
+        if (fairySorts == FairySorts.Refract)
+        {
+            overTurnButton.interactable = false;
+        }
+        else
+        {
+            overTurnButton.interactable = true;
+        }
+    }
+    public void DisableTip()
+    {
+        rotateButton.interactable = false;
+        overTurnButton.interactable = false;
     }
 }
 

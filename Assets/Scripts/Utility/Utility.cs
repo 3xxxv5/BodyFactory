@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
+public enum FairySorts
+{
+    Reflect,
+    Refract
+}
 public class Utility : MonoBehaviour
 {
+
     public static float waitTime = 1f;
     public static void DisableCanvas(CanvasGroup canvas,float time)
     {
@@ -19,6 +24,11 @@ public class Utility : MonoBehaviour
         canvas.gameObject.SetActive(true);
         canvas.DOFade(1,time);
         canvas.interactable = true;
+    }
+    public static IEnumerator waitToDisable(CanvasGroup canvas, float time)
+    {
+        yield return new WaitForSeconds(time);
+        canvas.gameObject.SetActive(false);
     }
     public static void DisableCamera(Transform trans)
     {

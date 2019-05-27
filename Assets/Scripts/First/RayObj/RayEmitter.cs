@@ -17,15 +17,21 @@ public class RayEmitter : MonoBehaviour {
     protected LayerMask layerMask;
     protected Transform lastHit;
 
+    protected Transform towerGlow;
+
     void Awake () {        
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
         lineRenderer.positionCount = 2;
         lineRenderer.startWidth = lineRenderer.endWidth = 0.2f;
         lineRenderer.material = Resources.Load<Material>("Materials/TexAnim");
+
+        towerGlow = transform.Find("towerGlow");
+        towerGlow.gameObject.SetActive(false);
+
         layerMask = LayerMask.GetMask("tower", "reflectObj", "refractObj", "bud","sphereBoard");
         lastHit = null;
-        gameObject.AddComponent<TextureAnim>();
+        gameObject.AddComponent<TextureAnim>();    
     }
 	
 
@@ -71,6 +77,10 @@ public class RayEmitter : MonoBehaviour {
         //画出射线
         lineRenderer.SetPosition(0, startPoint);
         lineRenderer.SetPosition(1, new Vector3(startPoint.x, endY, startPoint.z));       
+
+        //距离：2->
+
+        //旋转：
     }
  
   protected void EmptyLastHit()

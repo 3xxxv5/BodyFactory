@@ -1,0 +1,783 @@
+fileFormatVersion: 2
+guid: 2d5190b4248bd014ab5ca067a627ebf2
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: boyjump:boy_Ctrl_ChestEndEffector
+    100004: boyjump:boy_Ctrl_ChestOriginEffector
+    100006: boyjump:boy_Ctrl_Head
+    100008: boyjump:boy_Ctrl_HeadEffector
+    100010: boyjump:boy_Ctrl_Hips
+    100012: boyjump:boy_Ctrl_HipsEffector
+    100014: boyjump:boy_Ctrl_LeftAnkleEffector
+    100016: boyjump:boy_Ctrl_LeftArm
+    100018: boyjump:boy_Ctrl_LeftElbowEffector
+    100020: boyjump:boy_Ctrl_LeftFoot
+    100022: boyjump:boy_Ctrl_LeftForeArm
+    100024: boyjump:boy_Ctrl_LeftHand
+    100026: boyjump:boy_Ctrl_LeftHandMiddle1
+    100028: boyjump:boy_Ctrl_LeftHandMiddle2
+    100030: boyjump:boy_Ctrl_LeftHandMiddleEffector
+    100032: boyjump:boy_Ctrl_LeftHipEffector
+    100034: boyjump:boy_Ctrl_LeftKneeEffector
+    100036: boyjump:boy_Ctrl_LeftLeg
+    100038: boyjump:boy_Ctrl_LeftShoulder
+    100040: boyjump:boy_Ctrl_LeftShoulderEffector
+    100042: boyjump:boy_Ctrl_LeftUpLeg
+    100044: boyjump:boy_Ctrl_LeftWristEffector
+    100046: boyjump:boy_Ctrl_Neck
+    100048: boyjump:boy_Ctrl_Reference
+    100050: boyjump:boy_Ctrl_RightAnkleEffector
+    100052: boyjump:boy_Ctrl_RightArm
+    100054: boyjump:boy_Ctrl_RightElbowEffector
+    100056: boyjump:boy_Ctrl_RightFoot
+    100058: boyjump:boy_Ctrl_RightForeArm
+    100060: boyjump:boy_Ctrl_RightHand
+    100062: boyjump:boy_Ctrl_RightHandMiddle1
+    100064: boyjump:boy_Ctrl_RightHandMiddle2
+    100066: boyjump:boy_Ctrl_RightHandMiddleEffector
+    100068: boyjump:boy_Ctrl_RightHipEffector
+    100070: boyjump:boy_Ctrl_RightKneeEffector
+    100072: boyjump:boy_Ctrl_RightLeg
+    100074: boyjump:boy_Ctrl_RightShoulder
+    100076: boyjump:boy_Ctrl_RightShoulderEffector
+    100078: boyjump:boy_Ctrl_RightUpLeg
+    100080: boyjump:boy_Ctrl_RightWristEffector
+    100082: boyjump:boy_Ctrl_Spine
+    100084: boyjump:boy_Ctrl_Spine1
+    100086: boyjump:boy_Ctrl_Spine2
+    100088: boyjump:boy_Head
+    100090: boyjump:boy_Hips
+    100092: boyjump:boy_LeftArm
+    100094: boyjump:boy_LeftFoot
+    100096: boyjump:boy_LeftForeArm
+    100098: boyjump:boy_LeftHand
+    100100: boyjump:boy_LeftHandMiddle1
+    100102: boyjump:boy_LeftHandMiddle2
+    100104: boyjump:boy_LeftLeg
+    100106: boyjump:boy_LeftShoulder
+    100108: boyjump:boy_LeftUpLeg
+    100110: boyjump:boy_Neck
+    100112: boyjump:boy_Reference
+    100114: boyjump:boy_RightArm
+    100116: boyjump:boy_RightFoot
+    100118: boyjump:boy_RightForeArm
+    100120: boyjump:boy_RightHand
+    100122: boyjump:boy_RightHandMiddle1
+    100124: boyjump:boy_RightHandMiddle2
+    100126: boyjump:boy_RightLeg
+    100128: boyjump:boy_RightShoulder
+    100130: boyjump:boy_RightUpLeg
+    100132: boyjump:boy_Spine
+    100134: boyjump:boy_Spine1
+    100136: boyjump:boy_Spine2
+    100138: boyjump:Group32994
+    100140: "boyjump:\u5BF9\u8C61001"
+    100142: "boyjump:\u5BF9\u8C61002"
+    100144: ika_qte:Bone001
+    100146: ika_qte:Bone002
+    100148: ika_qte:Bone003
+    100150: ika_qte:Bone004
+    100152: ika_qte:Bone005
+    100154: ika_qte:Bone006
+    100156: ika_qte:Bone008
+    100158: ika_qte:Bone009
+    100160: ika_qte:Bone010
+    100162: ika_qte:Bone012
+    100164: ika_qte:Bone013
+    100166: ika_qte:Bone017
+    100168: ika_qte:Bone018
+    100170: ika_qte:Bone019
+    100172: ika_qte:Bone021
+    100174: ika_qte:Bone023
+    100176: ika_qte:Bone024
+    100178: ika_qte:Bone026
+    100180: ika_qte:Bone027
+    100182: ika_qte:Bone028
+    100184: ika_qte:ika2_oPP:Group2
+    400000: //RootNode
+    400002: boyjump:boy_Ctrl_ChestEndEffector
+    400004: boyjump:boy_Ctrl_ChestOriginEffector
+    400006: boyjump:boy_Ctrl_Head
+    400008: boyjump:boy_Ctrl_HeadEffector
+    400010: boyjump:boy_Ctrl_Hips
+    400012: boyjump:boy_Ctrl_HipsEffector
+    400014: boyjump:boy_Ctrl_LeftAnkleEffector
+    400016: boyjump:boy_Ctrl_LeftArm
+    400018: boyjump:boy_Ctrl_LeftElbowEffector
+    400020: boyjump:boy_Ctrl_LeftFoot
+    400022: boyjump:boy_Ctrl_LeftForeArm
+    400024: boyjump:boy_Ctrl_LeftHand
+    400026: boyjump:boy_Ctrl_LeftHandMiddle1
+    400028: boyjump:boy_Ctrl_LeftHandMiddle2
+    400030: boyjump:boy_Ctrl_LeftHandMiddleEffector
+    400032: boyjump:boy_Ctrl_LeftHipEffector
+    400034: boyjump:boy_Ctrl_LeftKneeEffector
+    400036: boyjump:boy_Ctrl_LeftLeg
+    400038: boyjump:boy_Ctrl_LeftShoulder
+    400040: boyjump:boy_Ctrl_LeftShoulderEffector
+    400042: boyjump:boy_Ctrl_LeftUpLeg
+    400044: boyjump:boy_Ctrl_LeftWristEffector
+    400046: boyjump:boy_Ctrl_Neck
+    400048: boyjump:boy_Ctrl_Reference
+    400050: boyjump:boy_Ctrl_RightAnkleEffector
+    400052: boyjump:boy_Ctrl_RightArm
+    400054: boyjump:boy_Ctrl_RightElbowEffector
+    400056: boyjump:boy_Ctrl_RightFoot
+    400058: boyjump:boy_Ctrl_RightForeArm
+    400060: boyjump:boy_Ctrl_RightHand
+    400062: boyjump:boy_Ctrl_RightHandMiddle1
+    400064: boyjump:boy_Ctrl_RightHandMiddle2
+    400066: boyjump:boy_Ctrl_RightHandMiddleEffector
+    400068: boyjump:boy_Ctrl_RightHipEffector
+    400070: boyjump:boy_Ctrl_RightKneeEffector
+    400072: boyjump:boy_Ctrl_RightLeg
+    400074: boyjump:boy_Ctrl_RightShoulder
+    400076: boyjump:boy_Ctrl_RightShoulderEffector
+    400078: boyjump:boy_Ctrl_RightUpLeg
+    400080: boyjump:boy_Ctrl_RightWristEffector
+    400082: boyjump:boy_Ctrl_Spine
+    400084: boyjump:boy_Ctrl_Spine1
+    400086: boyjump:boy_Ctrl_Spine2
+    400088: boyjump:boy_Head
+    400090: boyjump:boy_Hips
+    400092: boyjump:boy_LeftArm
+    400094: boyjump:boy_LeftFoot
+    400096: boyjump:boy_LeftForeArm
+    400098: boyjump:boy_LeftHand
+    400100: boyjump:boy_LeftHandMiddle1
+    400102: boyjump:boy_LeftHandMiddle2
+    400104: boyjump:boy_LeftLeg
+    400106: boyjump:boy_LeftShoulder
+    400108: boyjump:boy_LeftUpLeg
+    400110: boyjump:boy_Neck
+    400112: boyjump:boy_Reference
+    400114: boyjump:boy_RightArm
+    400116: boyjump:boy_RightFoot
+    400118: boyjump:boy_RightForeArm
+    400120: boyjump:boy_RightHand
+    400122: boyjump:boy_RightHandMiddle1
+    400124: boyjump:boy_RightHandMiddle2
+    400126: boyjump:boy_RightLeg
+    400128: boyjump:boy_RightShoulder
+    400130: boyjump:boy_RightUpLeg
+    400132: boyjump:boy_Spine
+    400134: boyjump:boy_Spine1
+    400136: boyjump:boy_Spine2
+    400138: boyjump:Group32994
+    400140: "boyjump:\u5BF9\u8C61001"
+    400142: "boyjump:\u5BF9\u8C61002"
+    400144: ika_qte:Bone001
+    400146: ika_qte:Bone002
+    400148: ika_qte:Bone003
+    400150: ika_qte:Bone004
+    400152: ika_qte:Bone005
+    400154: ika_qte:Bone006
+    400156: ika_qte:Bone008
+    400158: ika_qte:Bone009
+    400160: ika_qte:Bone010
+    400162: ika_qte:Bone012
+    400164: ika_qte:Bone013
+    400166: ika_qte:Bone017
+    400168: ika_qte:Bone018
+    400170: ika_qte:Bone019
+    400172: ika_qte:Bone021
+    400174: ika_qte:Bone023
+    400176: ika_qte:Bone024
+    400178: ika_qte:Bone026
+    400180: ika_qte:Bone027
+    400182: ika_qte:Bone028
+    400184: ika_qte:ika2_oPP:Group2
+    2100000: 'ika_qte_Material #2'
+    2100002: boyjump_defaultMat
+    4300000: ika_qte:ika2_oPP:Group2
+    4300002: boyjump:Group32994
+    4300004: "boyjump:\u5BF9\u8C61001"
+    4300006: "boyjump:\u5BF9\u8C61002"
+    7400000: qteBoy
+    9500000: //RootNode
+    13700000: boyjump:Group32994
+    13700002: "boyjump:\u5BF9\u8C61001"
+    13700004: "boyjump:\u5BF9\u8C61002"
+    13700006: ika_qte:ika2_oPP:Group2
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: qteBoy
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 180
+    normalImportMode: 1
+    tangentImportMode: 1
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton:
+    - name: boy+ika_qte(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:ika2_oPP:Group2
+      parentName: boy+ika_qte(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.00000006657903, y: -0, z: -0, w: 1}
+      scale: {x: 0.57961327, y: 0.57961327, z: 0.57961327}
+    - name: boyjump:Group32994
+      parentName: boy+ika_qte(Clone)
+      position: {x: -0.00266269, y: 0.40527284, z: 0.011750705}
+      rotation: {x: -0.000000094156974, y: 0.7071068, z: 0.7071068, w: 0.000000094156974}
+      scale: {x: 16.387064, y: 16.387064, z: 16.387064}
+    - name: "boyjump:\u5BF9\u8C61001"
+      parentName: boy+ika_qte(Clone)
+      position: {x: -0.00266269, y: 0.40527284, z: 0.011750705}
+      rotation: {x: -0.000000094156974, y: 0.7071068, z: 0.7071068, w: 0.000000094156974}
+      scale: {x: 16.387064, y: 16.387064, z: 16.387064}
+    - name: "boyjump:\u5BF9\u8C61002"
+      parentName: boy+ika_qte(Clone)
+      position: {x: -0.00266269, y: 0.40527284, z: 0.011750705}
+      rotation: {x: -0.000000094156974, y: 0.7071068, z: 0.7071068, w: 0.000000094156974}
+      scale: {x: 16.387064, y: 16.387064, z: 16.387064}
+    - name: boyjump:boy_Reference
+      parentName: boy+ika_qte(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Hips
+      parentName: boyjump:boy_Reference
+      position: {x: -0.0028067534, y: 0.1257958, z: 0.031725116}
+      rotation: {x: 0.7730284, y: -0.0015528903, z: -0.00078018056, w: 0.6343691}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_LeftUpLeg
+      parentName: boyjump:boy_Hips
+      position: {x: -0.022275042, y: -0.015675016, z: -0.0000000017669305}
+      rotation: {x: -0.25857437, y: -0.04364762, z: -0.10071375, w: 0.95973486}
+      scale: {x: 1, y: 0.64490175, z: 1}
+    - name: boyjump:boy_LeftLeg
+      parentName: boyjump:boy_LeftUpLeg
+      position: {x: -0.0000000026509561, y: -0.112196654, z: -0.00000006607483}
+      rotation: {x: 0.17124249, y: -0.037897743, z: 0.026484955, w: 0.9841435}
+      scale: {x: 1, y: 0.70533323, z: 1}
+    - name: boyjump:boy_LeftFoot
+      parentName: boyjump:boy_LeftLeg
+      position: {x: -0.000000010849904, y: -0.10175242, z: -0.000000029914563}
+      rotation: {x: 0.21647996, y: -0.014250397, z: 0.004382897, w: 0.9761732}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_RightUpLeg
+      parentName: boyjump:boy_Hips
+      position: {x: 0.022275038, y: -0.015675012, z: 0.0000000034120147}
+      rotation: {x: -0.27554646, y: 0.009974071, z: 0.05079964, w: 0.95989275}
+      scale: {x: 1, y: 0.63670695, z: 1}
+    - name: boyjump:boy_RightLeg
+      parentName: boyjump:boy_RightUpLeg
+      position: {x: 0.0000003321848, y: -0.11219671, z: -0.0000006988733}
+      rotation: {x: 0.20384234, y: 0.03945723, z: -0.013463929, w: 0.9781156}
+      scale: {x: 1, y: 0.7186883, z: 1}
+    - name: boyjump:boy_RightFoot
+      parentName: boyjump:boy_RightLeg
+      position: {x: -7.459027e-10, y: -0.10175245, z: 0.000000018530178}
+      rotation: {x: 0.20692727, y: 0.014222485, z: -0.0029994994, w: 0.97824836}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Spine
+      parentName: boyjump:boy_Hips
+      position: {x: -7.973589e-12, y: 0.017500008, z: -0.00000000265282}
+      rotation: {x: -0.7122638, y: -0.001831176, z: 0.00092132384, w: 0.70190895}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Spine1
+      parentName: boyjump:boy_Spine
+      position: {x: -4.9807675e-11, y: 0.03166666, z: 0.0000000029841958}
+      rotation: {x: 0.35662273, y: 0.0007515741, z: -0.0011949826, w: 0.93424743}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Spine2
+      parentName: boyjump:boy_Spine1
+      position: {x: -8.244241e-11, y: 0.03166668, z: 0.0000000030328544}
+      rotation: {x: 0.3566238, y: 0.0013871335, z: 0.000109342, w: 0.9342471}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_LeftShoulder
+      parentName: boyjump:boy_Spine2
+      position: {x: -0.017500004, y: 0.035638027, z: -9.004634e-10}
+      rotation: {x: 0.02414573, y: -0.23511751, z: -0.25675938, w: 0.9371293}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_LeftArm
+      parentName: boyjump:boy_LeftShoulder
+      position: {x: -0.026768127, y: 0.00000034680116, z: -0.000000005613233}
+      rotation: {x: -0.31168517, y: 0.42152488, z: 0.61292595, w: 0.5911776}
+      scale: {x: 0.6393662, y: 0.6393662, z: 0.63936627}
+    - name: boyjump:boy_LeftForeArm
+      parentName: boyjump:boy_LeftArm
+      position: {x: -0.06826373, y: 0.0000009016316, z: -0.000000007425881}
+      rotation: {x: 0.27030972, y: 0.3915813, z: -0.13361213, w: 0.8693357}
+      scale: {x: 0.80746704, y: 0.80746704, z: 0.807467}
+    - name: boyjump:boy_LeftHand
+      parentName: boyjump:boy_LeftForeArm
+      position: {x: -0.06674282, y: -0.000005972597, z: 0.000000022423428}
+      rotation: {x: -0.12152204, y: 0.18864278, z: -0.13711986, w: 0.96480286}
+      scale: {x: 0.6156168, y: 0.6156168, z: 0.6156168}
+    - name: boyjump:boy_LeftHandMiddle1
+      parentName: boyjump:boy_LeftHand
+      position: {x: -0.022024369, y: 0.0012581606, z: 0.003261709}
+      rotation: {x: 0, y: -0, z: -0.00035932657, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_LeftHandMiddle2
+      parentName: boyjump:boy_LeftHandMiddle1
+      position: {x: -0.012158118, y: -0.0000054543098, z: 0.00000075518693}
+      rotation: {x: 0.000000013967004, y: -0.000031095955, z: 0.00044915822, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_RightShoulder
+      parentName: boyjump:boy_Spine2
+      position: {x: 0.0175, y: 0.03563803, z: 7.260765e-10}
+      rotation: {x: 0.029556945, y: 0.24802831, z: 0.23977041, w: 0.9381463}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_RightArm
+      parentName: boyjump:boy_RightShoulder
+      position: {x: 0.026768183, y: 0.0000010782999, z: -0.0000000046574895}
+      rotation: {x: -0.3274551, y: -0.53571963, z: -0.5803294, w: 0.5186477}
+      scale: {x: 0.742445, y: 0.742445, z: 0.742445}
+    - name: boyjump:boy_RightForeArm
+      parentName: boyjump:boy_RightArm
+      position: {x: 0.06826401, y: 0.0000027861495, z: -0.0000000122444135}
+      rotation: {x: 0.20528778, y: -0.32266036, z: 0.09156624, w: 0.9194362}
+      scale: {x: 0.67910963, y: 0.67910963, z: 0.67910963}
+    - name: boyjump:boy_RightHand
+      parentName: boyjump:boy_RightForeArm
+      position: {x: 0.066742495, y: -0.00001893587, z: 0.00000005668816}
+      rotation: {x: -0.111601554, y: -0.20801248, z: 0.16990145, w: 0.9567703}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_RightHandMiddle1
+      parentName: boyjump:boy_RightHand
+      position: {x: 0.022023348, y: 0.0012709503, z: 0.003263645}
+      rotation: {x: 0, y: 0, z: 0.0011329646, w: 0.99999934}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_RightHandMiddle2
+      parentName: boyjump:boy_RightHandMiddle1
+      position: {x: 0.012150726, y: -0.000017202672, z: -0.00042399418}
+      rotation: {x: -0.000024716996, y: -0.017452953, z: -0.00141599, w: 0.9998467}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Neck
+      parentName: boyjump:boy_Spine2
+      position: {x: 9.8855875e-11, y: 0.031666692, z: -0.0000000040957704}
+      rotation: {x: -0.20944846, y: -0.0003192752, z: -0.00048717172, w: 0.9778195}
+      scale: {x: 1, y: 0.6035566, z: 1}
+    - name: boyjump:boy_Head
+      parentName: boyjump:boy_Neck
+      position: {x: 2.2953386e-10, y: 0.12665898, z: 0.00000008767608}
+      rotation: {x: -0.058140922, y: -0.0003192791, z: 0.0012036202, w: 0.99830765}
+      scale: {x: 1.0941734, y: 1.1617274, z: 1.0941734}
+    - name: boyjump:boy_Ctrl_Reference
+      parentName: boy+ika_qte(Clone)
+      position: {x: 2.0816681e-19, y: -0.015545407, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_HipsEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.0027846359, y: 0.14440013, z: 0.016351497}
+      rotation: {x: 0.77302843, y: -0.0015528906, z: -0.0007801805, w: 0.634369}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftAnkleEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.04987759, y: 0.123042196, z: -0.121703066}
+      rotation: {x: 0.8394676, y: -0.023267668, z: -0.12451039, w: 0.5284412}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightAnkleEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: 0.030954354, y: 0.12248169, z: -0.12292389}
+      rotation: {x: 0.84833854, y: 0.007895576, z: 0.07866455, w: 0.5235182}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftWristEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.07159392, y: 0.11469775, z: 0.12321908}
+      rotation: {x: -0.102483496, y: 0.62822413, z: 0.27198994, w: 0.7217015}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightWristEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: 0.0550008, y: 0.11088308, z: 0.121361665}
+      rotation: {x: -0.14120415, y: -0.5788868, z: -0.33989978, w: 0.72761226}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftKneeEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.037690785, y: 0.121248186, z: -0.050998755}
+      rotation: {x: 0.84635013, y: -0.007875741, z: -0.08855551, w: 0.5251546}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightKneeEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: 0.0251295, y: 0.118775405, z: -0.050122228}
+      rotation: {x: 0.85166216, y: -0.00924642, z: 0.03968767, w: 0.5225046}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftElbowEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.06299817, y: 0.16639745, z: 0.11066225}
+      rotation: {x: 0.1888709, y: 0.5201612, z: 0.5599685, w: 0.6166}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightElbowEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: 0.052941363, y: 0.15522075, z: 0.11217861}
+      rotation: {x: 0.14365305, y: -0.45023528, z: -0.6043094, w: 0.6414532}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_ChestOriginEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.0027438381, y: 0.15584485, z: 0.04748985}
+      rotation: {x: 0.76593524, y: -0.0024307047, z: -0.0007527215, w: 0.6429128}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_ChestEndEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.002618126, y: 0.19787839, z: 0.13696952}
+      rotation: {x: 0.7326681, y: -0.0018577698, z: -0.0008857123, w: 0.68058306}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftShoulderEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.046557732, y: 0.19988503, z: 0.13331665}
+      rotation: {x: 0.5924577, y: 0.15715279, z: 0.33858967, w: 0.7139005}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightShoulderEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: 0.04111886, y: 0.20021844, z: 0.13228154}
+      rotation: {x: 0.50446624, y: -0.16853714, z: -0.48083356, w: 0.69707114}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_HeadEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.0025218395, y: 0.22102658, z: 0.20570487}
+      rotation: {x: 0.5235385, y: -0.0023283542, z: -0.0011063346, w: 0.8519982}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftHipEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.02505955, y: 0.14446077, z: 0.016358398}
+      rotation: {x: 0.77506036, y: 0.022364615, z: -0.12160557, w: 0.619672}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightHipEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: 0.019490277, y: 0.1443395, z: 0.016344596}
+      rotation: {x: 0.7689252, y: -0.023949442, z: 0.06617969, w: 0.63545316}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftHandMiddleEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.14248268, y: 0.18419206, z: 0.05778845}
+      rotation: {x: 0.73173255, y: 0.1576653, z: -0.1597622, w: 0.6435722}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightHandMiddleEffector
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: 0.14506006, y: 0.18052302, z: 0.057673067}
+      rotation: {x: 0.7327734, y: -0.13339745, z: 0.12960248, w: 0.654562}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_Hips
+      parentName: boyjump:boy_Ctrl_Reference
+      position: {x: -0.0027653605, y: 0.14980769, z: 0.031064196}
+      rotation: {x: 0.57228357, y: -0.0006518054, z: -0.0012047291, w: 0.8200547}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftUpLeg
+      parentName: boyjump:boy_Ctrl_Hips
+      position: {x: -0.022275, y: -0.015675, z: 0}
+      rotation: {x: 0.010428481, y: 0.011165277, z: -0.11915861, w: 0.9927577}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftLeg
+      parentName: boyjump:boy_Ctrl_LeftUpLeg
+      position: {x: 0.0046867514, y: -0.07220382, z: 0}
+      rotation: {x: 0.17495193, y: 0.0069432505, z: -0.0007829167, w: 0.9845522}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftFoot
+      parentName: boyjump:boy_Ctrl_LeftLeg
+      position: {x: 0.004648764, y: -0.07161862, z: 0}
+      rotation: {x: -0.000289257, y: 0.0044628275, z: -0.00000003910803, w: 0.99999005}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightUpLeg
+      parentName: boyjump:boy_Ctrl_Hips
+      position: {x: 0.022275, y: -0.015675, z: 0}
+      rotation: {x: -0.007312648, y: -0.0074786707, z: 0.07538548, w: 0.99709964}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightLeg
+      parentName: boyjump:boy_Ctrl_RightUpLeg
+      position: {x: -0.0050331852, y: -0.07125884, z: 0.0000010979176}
+      rotation: {x: 0.20671786, y: -0.008994842, z: 0.0011824274, w: 0.97835857}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightFoot
+      parentName: boyjump:boy_Ctrl_RightLeg
+      position: {x: -0.0051523997, y: -0.07294651, z: 0}
+      rotation: {x: -0.00040286776, y: -0.005701721, z: -0.00000006344985, w: 0.99998367}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_Spine
+      parentName: boyjump:boy_Ctrl_Hips
+      position: {x: -0, y: 0.0175, z: 0}
+      rotation: {x: -0.013612761, y: -0.0006826978, z: 0.00007191963, w: 0.99990714}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_Spine1
+      parentName: boyjump:boy_Ctrl_Spine
+      position: {x: -0, y: 0.03166666, z: 0}
+      rotation: {x: -0.028701551, y: 0.00022022889, z: 0.00001935206, w: 0.999588}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_Spine2
+      parentName: boyjump:boy_Ctrl_Spine1
+      position: {x: -0, y: 0.031666677, z: 0}
+      rotation: {x: -0.028701244, y: 0.00023132266, z: 0.00010260446, w: 0.999588}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftShoulder
+      parentName: boyjump:boy_Ctrl_Spine2
+      position: {x: -0.0175, y: 0.035638027, z: 2.220446e-18}
+      rotation: {x: 6.071532e-18, y: -4.1633363e-17, z: 3.1116602e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftArm
+      parentName: boyjump:boy_Ctrl_LeftShoulder
+      position: {x: -0.026446108, y: -0.002305355, z: -0.0034382045}
+      rotation: {x: -0.1895098, y: 0.26163068, z: 0.18029313, w: 0.9290478}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftForeArm
+      parentName: boyjump:boy_Ctrl_LeftArm
+      position: {x: -0.031888623, y: -0.028699111, z: -0.008025203}
+      rotation: {x: -0.023040885, y: 0.4404541, z: -0.10213411, w: 0.891649}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftHand
+      parentName: boyjump:boy_Ctrl_LeftForeArm
+      position: {x: -0.04275288, y: -0.031145325, z: -0.01032372}
+      rotation: {x: -0.18734491, y: -0.13648017, z: -0.04523901, w: 0.9717142}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftHandMiddle1
+      parentName: boyjump:boy_Ctrl_LeftHand
+      position: {x: -0.0115907, y: -0.007325115, z: -0.00068189204}
+      rotation: {x: 0.00000015408864, y: -2.7755675e-17, z: -6.4705186e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_LeftHandMiddle2
+      parentName: boyjump:boy_Ctrl_LeftHandMiddle1
+      position: {x: -0.009645147, y: -0.007026386, z: -0.0023282808}
+      rotation: {x: -0.00000015408864, y: -8.0491164e-16, z: -3.5041425e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightShoulder
+      parentName: boyjump:boy_Ctrl_Spine2
+      position: {x: 0.017499998, y: 0.035638027, z: 2.220446e-18}
+      rotation: {x: -2.4286129e-17, y: 4.2129718e-35, z: -1.7347235e-18, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightArm
+      parentName: boyjump:boy_Ctrl_RightShoulder
+      position: {x: 0.026228918, y: -0.0029431342, z: -0.004462937}
+      rotation: {x: -0.264295, y: -0.32258433, z: -0.22233588, w: 0.88127995}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightForeArm
+      parentName: boyjump:boy_Ctrl_RightArm
+      position: {x: 0.037489645, y: -0.032718334, z: -0.0096295085}
+      rotation: {x: -0.009912732, y: -0.3352056, z: 0.0578502, w: 0.940315}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightHand
+      parentName: boyjump:boy_Ctrl_RightForeArm
+      position: {x: 0.035821185, y: -0.027092818, z: -0.006100708}
+      rotation: {x: -0.15226674, y: 0.115164965, z: 0.025932655, w: 0.98126423}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightHandMiddle1
+      parentName: boyjump:boy_Ctrl_RightHand
+      position: {x: 0.020247612, y: -0.009344463, z: -0.00009780019}
+      rotation: {x: 0.00000015384211, y: -1.9151347e-15, z: -4.3628266e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_RightHandMiddle2
+      parentName: boyjump:boy_Ctrl_RightHandMiddle1
+      position: {x: 0.010485238, y: -0.0057481, z: -0.0021998375}
+      rotation: {x: -0.00000015384211, y: 2.4563684e-15, z: -5.42968e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_Neck
+      parentName: boyjump:boy_Ctrl_Spine2
+      position: {x: -0, y: 0.03166666, z: 2.220446e-18}
+      rotation: {x: 0.080243334, y: -0.00015496566, z: -0.00025283083, w: 0.9967753}
+      scale: {x: 1, y: 1, z: 1}
+    - name: boyjump:boy_Ctrl_Head
+      parentName: boyjump:boy_Ctrl_Neck
+      position: {x: -0, y: 0.0764458, z: 0}
+      rotation: {x: -0.30634588, y: -0.00015496857, z: 0.0009303701, w: 0.95191985}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone001
+      parentName: boy+ika_qte(Clone)
+      position: {x: -0.0000023912937, y: -0.045501575, z: 0.14572562}
+      rotation: {x: 0.4880286, y: -0.49133307, z: 0.5172563, w: 0.5028576}
+      scale: {x: 11.4932995, y: 11.4932995, z: 11.4932995}
+    - name: ika_qte:Bone021
+      parentName: ika_qte:Bone001
+      position: {x: 0.0011411762, y: 0.00004740238, z: 0}
+      rotation: {x: 0, y: 0, z: 0.9999598, w: 0.008963015}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone002
+      parentName: ika_qte:Bone001
+      position: {x: -0.0035383843, y: -4.4703483e-10, z: 0}
+      rotation: {x: 0, y: 0, z: -0.01709156, w: 0.99985397}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone003
+      parentName: ika_qte:Bone002
+      position: {x: -0.017348988, y: 0.0000000015087426, z: 0}
+      rotation: {x: 1.4462162e-18, y: -5.549231e-17, z: 0.00812903, w: 0.999967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone004
+      parentName: ika_qte:Bone003
+      position: {x: -0.018756734, y: -0.000000003259629, z: 0}
+      rotation: {x: 0, y: 0, z: -0.45659328, w: 0.88967556}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone005
+      parentName: ika_qte:Bone004
+      position: {x: -0.014754866, y: -0.0000000035762786, z: 0}
+      rotation: {x: 0, y: 0, z: 0.31101653, w: 0.9504045}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone006
+      parentName: ika_qte:Bone005
+      position: {x: -0.014984967, y: 0.0000000017881393, z: 0}
+      rotation: {x: 0, y: -0, z: -0.0017347365, w: 0.9999985}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: ika_qte:Bone017
+      parentName: ika_qte:Bone003
+      position: {x: -0.01875673, y: 0.000000001117587, z: 0}
+      rotation: {x: 0, y: 0, z: 0.4860213, w: 0.87394696}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone018
+      parentName: ika_qte:Bone017
+      position: {x: -0.01425755, y: 0.00000000834465, z: 0}
+      rotation: {x: 0, y: -0, z: -0.33859882, w: 0.9409309}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone019
+      parentName: ika_qte:Bone018
+      position: {x: -0.018151145, y: 0.0000000017881393, z: 0}
+      rotation: {x: 0, y: -0, z: -0.021216678, w: 0.99977493}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: ika_qte:Bone012
+      parentName: ika_qte:Bone003
+      position: {x: -0.01875673, y: -7.4505804e-11, z: 0}
+      rotation: {x: 0, y: 0, z: 0.23567043, w: 0.97183305}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone013
+      parentName: ika_qte:Bone012
+      position: {x: -0.011248822, y: -5.9604643e-10, z: 0}
+      rotation: {x: 0, y: -0, z: -0.16782925, w: 0.9858161}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: ika_qte:Bone028
+      parentName: ika_qte:Bone013
+      position: {x: -0.014801056, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.0043397797, w: 0.9999906}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: ika_qte:Bone008
+      parentName: ika_qte:Bone003
+      position: {x: -0.01875673, y: -7.4505804e-11, z: 0}
+      rotation: {x: 0, y: 0, z: -0.21761873, w: 0.97603387}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone009
+      parentName: ika_qte:Bone008
+      position: {x: -0.010815526, y: -0.0000000011920929, z: 0}
+      rotation: {x: 0, y: 0, z: 0.15050747, w: 0.9886089}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone010
+      parentName: ika_qte:Bone009
+      position: {x: -0.015018436, y: 0.0000000062584875, z: 0}
+      rotation: {x: 0, y: -0, z: -0.017345497, w: 0.99984956}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ika_qte:Bone023
+      parentName: ika_qte:Bone001
+      position: {x: -0.0035383843, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: -0.74927044, w: 0.66226417}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: ika_qte:Bone024
+      parentName: ika_qte:Bone023
+      position: {x: -0.019689549, y: -0.00000010728836, z: 0}
+      rotation: {x: 0, y: 0, z: 0.27197978, w: 0.962303}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1}
+    - name: ika_qte:Bone026
+      parentName: ika_qte:Bone001
+      position: {x: -0.0035383843, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.7403602, w: 0.67221045}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: ika_qte:Bone027
+      parentName: ika_qte:Bone026
+      position: {x: -0.02074292, y: -0.00000009298324, z: 0}
+      rotation: {x: 0, y: -0, z: -0.2956235, w: 0.9553045}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -24,15 +24,17 @@ public class VanishTrigger : MonoBehaviour
             growIndex = Mathf.Lerp(growIndex, 0, Time.deltaTime * showSpeed);
             creeperRenderer.material.SetFloat("_dissolveAmount", growIndex);
         }
-        if (creeperRenderer.material.GetFloat("_dissolveAmount") > 0.99f)
+        if (creeperRenderer.material.GetFloat("_dissolveAmount") < 0.01f)
         {
             startVanish = false;
+            creeperRenderer.gameObject.SetActive(false);
         }
     }
     private void OnTriggerEnter(Collider col)
     {
         if (col.tag.Equals("Player"))
         {
+            print("该消失咯");
             //路消失
             startVanish = true;
             //光柱消失

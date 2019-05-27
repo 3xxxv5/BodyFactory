@@ -59,12 +59,14 @@ public class FirstPersonAIO : MonoBehaviour {
     [HideInInspector] public bool qteWin = false;
     int endIndex = -1;
     //Camera Movement
-    public Camera fpsCamera;
-    public Camera tpsCamera;
-    public Transform[] camTargets;
+    public Transform nearPos;
+    public Transform farPos;
     public float camMoveSpeed = 2;
-    int index = 0;
-
+    bool goFar = false;
+    bool goNear = false;
+    bool turnAround = false;
+    float degree = 0;
+    public float rotateSpeed;
     public float distance = 20f;
     public  bool attackDragon = false;
     #endregion
@@ -87,10 +89,7 @@ public class FirstPersonAIO : MonoBehaviour {
         monsterClip = Resources.Load<AudioClip>("Sound/Effect/refract");
         flyClip = Resources.Load<AudioClip>("Sound/Effect/fly");
         imageEffectCube.gameObject.SetActive(false);
-        tictock = timer;
-        tpsCamera.enabled = false; 
-        tpsCamera.transform.localPosition=camTargets[0].transform.localPosition;
-        fpsCamera.enabled = true;       
+        tictock = timer;  
     }
 
     private void Update()
@@ -138,24 +137,16 @@ public class FirstPersonAIO : MonoBehaviour {
             if (canTransfer)
             {
                 Transfer();//因为是持续运动，所以需要在Update里执行
-                if (hasQte) CameraTransfer();//第三人称的相机运动
+                CameraTransfer();
             }
-        }     
+        }
+
+        //playerCamera.rotation = Quaternion.Lerp(playerCamera.rotation, Quaternion.Euler(0,360,0),Time.deltaTime*rotateSpeed);
+      
 
         #endregion
     }
-    void CameraTransfer()
-    {
-        while(index<camTargets.Length)//0,1
-        {
 
-            tpsCamera.transform.localPosition = Vector3.Lerp(tpsCamera.transform.localPosition, camTargets[index].localPosition, camMoveSpeed*Time.deltaTime);          
-            if (Vector3.Distance(tpsCamera.transform.localPosition, camTargets[index].localPosition) < 0.01f)
-            {
-                index++;
-            }
-        } 
-    }
     void Transfer()//持续改变玩家位置，把玩家送到end
     {
         if (hasQte) moveSpeed = qteTransferSpeed;
@@ -164,12 +155,45 @@ public class FirstPersonAIO : MonoBehaviour {
         transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * moveSpeed);
         if (Vector3.Distance(transform.position, targetPos) < maxDistanceToWall)
         {
-            index = 0;           
             imageEffectCube.gameObject.SetActive(false);
             ShootCleanUp();
-            ChangeFpsCamera();//切换到第一人称相机
             enableCameraMovement = true;
+            playerCamera.localPosition = nearPos.localPosition;
+            playerCamera.rotation = nearPos.rotation;
             canTransfer = false;
+        }       
+    }
+    void CameraTransfer()
+    {
+       
+        if (goFar)
+        {
+            playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, farPos.localPosition, Time.deltaTime * camMoveSpeed);
+            if (Vector3.Distance(playerCamera.localPosition, farPos.localPosition) < 0.1f)
+            {
+                goFar = false;
+                goNear = true;
+                //turnAround = true;
+            }
+        }
+        //if (turnAround)
+        //{
+        //    playerCamera.RotateAround(transform.localPosition, transform.up, Time.deltaTime * rotateSpeed);
+        //    degree += Time.deltaTime * rotateSpeed;
+        //    if (degree >= 360)
+        //    {
+        //        turnAround = false;
+        //        goNear = true;
+        //        degree = 0;
+        //    }
+        //}
+        if (goNear)
+        {
+            playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, nearPos.localPosition, Time.deltaTime * camMoveSpeed);
+            if (Vector3.Distance(playerCamera.localPosition, nearPos.localPosition) < 0.1f)
+            {             
+                goNear = false;
+            }
         }
     }
     void ShootCleanUp()
@@ -224,22 +248,10 @@ public class FirstPersonAIO : MonoBehaviour {
         canTransfer = true;        //开启移动开关
         targetPos = wallHit.point - distance*transform.forward;//设置落地地点
         imageEffectCube.gameObject.SetActive(true);//设置屏幕特效
-        ChangeTpsCamera();//切换到第三人称相机
-    }
-    void ChangeTpsCamera()
-    {
+
         enableCameraMovement = false;//禁止相机运动
-        fpsCamera.enabled = false;
+        goFar = true;
 
-        tpsCamera.enabled = true;
-
-    }
-    void ChangeFpsCamera()
-    {
-        enableCameraMovement = true;//禁止相机运动
-        fpsCamera.enabled = true;
-        tpsCamera.enabled = false;
-        tpsCamera.transform.localPosition =camTargets[0].transform.localPosition;
     }
     public void GameOver()
     {
