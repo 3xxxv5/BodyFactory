@@ -102,12 +102,13 @@ public class WuZei : MonoBehaviour
             print("被电击了");
             GameManager2._instance.SpawnSpecialEffects("lightning", transform.position + transform.forward * 3, 5f);
             StartCoroutine(GameManager2._instance.SeaDead(3f, 1f, 1f,seaReviveTrans));
+            Dragon._instance.SpawnLightning();
         }
         if (col.gameObject.tag.Equals("dragon"))
         {
-            AudioManager._instance.PlayEffect("dianliu");
+            AudioManager._instance.PlayEffect("blood");
             GameManager2._instance.SpawnSpecialEffects("fire", transform.position, 5f);
-            Dragon._instance.BeAttacked(transform.position);
+            Dragon._instance.ReduceLife(1);
         }
     }
 
