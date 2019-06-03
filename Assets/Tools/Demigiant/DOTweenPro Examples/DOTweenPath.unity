@@ -250,7 +250,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   loops: 1
   loopType: 0
-  orientType: 0
+  orientType: 1
   lookAtTransform: {fileID: 0}
   lookAtPosition: {x: 0, y: 0, z: 0}
   lookAhead: 0.01

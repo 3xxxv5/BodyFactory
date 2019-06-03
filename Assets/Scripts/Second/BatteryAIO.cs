@@ -4,6 +4,7 @@ using System.Collections;
 
 public class BatteryAIO : MonoBehaviour
 {
+    #region 变量
     public static BatteryAIO _instance { get; private set; }
 
     //Look Settings
@@ -46,6 +47,7 @@ public class BatteryAIO : MonoBehaviour
     Quaternion cameraInitRotation;
 
     public  Pearl pearl;
+    #endregion
 
     private void Awake()
     {
@@ -53,10 +55,10 @@ public class BatteryAIO : MonoBehaviour
         //Look Settings - Awake
         originalRotation = transform.localRotation.eulerAngles;
         puffer = transform.Find("BatteryCamera/puffer");
-        pufferInitPosition = puffer.transform.position;
-        pufferInitRotation = puffer.transform.rotation;
-        cameraInitPosition = playerCamera.position;
-        cameraInitRotation = playerCamera.rotation;
+        pufferInitPosition = puffer.transform.localPosition;
+        pufferInitRotation = puffer.transform.localRotation;
+        cameraInitPosition = playerCamera.localPosition;
+        cameraInitRotation = playerCamera.localRotation;
 
         //shell settings-Awake
         //shoot settings- Awake
@@ -65,12 +67,12 @@ public class BatteryAIO : MonoBehaviour
     }
     public  void ResetBatteryPos()
     {
-        playerCamera.position = cameraInitPosition;
-        playerCamera.rotation = cameraInitRotation;
+        playerCamera.localPosition = cameraInitPosition;
+        playerCamera.localRotation = cameraInitRotation;
         if (puffer != null)
         {
-            puffer.position = pufferInitPosition;
-            puffer.rotation = pufferInitRotation;
+            puffer.localPosition = pufferInitPosition;
+            puffer.localRotation = pufferInitRotation;
         }
     }
 
@@ -100,10 +102,11 @@ public class BatteryAIO : MonoBehaviour
                 targetAngles.y = Mathf.Lerp(rotationRange.y * -0.5f, rotationRange.y * 0.5f, mouseXInput / Screen.width);
                 targetAngles.x = Mathf.Lerp(rotationRange.x * -0.5f, rotationRange.x * 0.5f, mouseXInput / Screen.height);
             }
+            followAngles = Vector3.SmoothDamp(followAngles, targetAngles, ref followVelocity, dampingTime);
+            playerCamera.localRotation = Quaternion.Euler(-followAngles.x + originalRotation.x + cameraInitRotation.eulerAngles.x, 0, 0);
+            transform.localRotation = Quaternion.Euler(0, followAngles.y + originalRotation.y, 0);
         }
-        followAngles = Vector3.SmoothDamp(followAngles, targetAngles, ref followVelocity, dampingTime);
-        playerCamera.localRotation = Quaternion.Euler(-followAngles.x + originalRotation.x, 0, 0);
-        transform.localRotation = Quaternion.Euler(0, followAngles.y + originalRotation.y, 0);
+      
         #endregion
 
         #region Shoot Settings - Update        
@@ -126,6 +129,7 @@ public class BatteryAIO : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.E))
         {
             GameManager2._instance.Change2PlayerView();
+
         }
     }   
     void SetShotCount()
