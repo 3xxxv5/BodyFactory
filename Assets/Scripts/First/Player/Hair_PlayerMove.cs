@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Hair_PlayerMove : MonoBehaviour
 {
-    Animator anim;
+    public  Animator anim;
     Rigidbody rb;
     public float forwardSpeed = 7.0f;
     public float backwardSpeed =2.0f;
@@ -21,14 +21,14 @@ public class Hair_PlayerMove : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         freeCamera = Camera.main.GetComponent<FreeCamera>();
         
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         ClimbManager();
        
@@ -59,11 +59,36 @@ public class Hair_PlayerMove : MonoBehaviour
                 rb.AddForce(Vector3.up*jumpSpeed);
             }
         }
+        print("velocityY: " + rb.velocity.y);
+
+        /*
+         * if(Input.GetButton("Jump")){
+         *    anim.SetBool("is_in_air",true);
+         *    moveDirection.y=jumpSpeed;
+         * }else{
+         * anim.SetBool("is_in_air",false);
+         * }
+         
+         */
+        float v;
+        if (Input.GetKey(KeyCode.W))
+        {
+            v = 1;
+        }
+        else if(Input.GetKey(KeyCode.S))
+        {
+            v = -1;
+        }
+        else
+        {
+            v = 0;
+        }
         float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        //float v = Input.GetAxis("Vertical");
         //动画
         anim.SetFloat("Speed", v);//speed>0.1前进，<-0.1后退       
         anim.SetFloat("Direction", h);
+       
         //前进速度
         Vector3 vertical_velocity = transform.forward * v * forwardSpeed;
         Vector3 horizontal_velocity = transform.right * h * backwardSpeed;

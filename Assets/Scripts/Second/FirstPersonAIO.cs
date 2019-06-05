@@ -31,7 +31,7 @@ public class FirstPersonAIO : MonoBehaviour {
     [Space(8)]
     [HideInInspector] public bool canShoot = true;
     //input time constriant
-    public float timer=2f;
+    private float timer=2f;
     float tictock = 0;
     //clip
     AudioClip wallClip;
@@ -121,10 +121,11 @@ public class FirstPersonAIO : MonoBehaviour {
             p1 = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 2));
             Ray monsterRay = new Ray(p1, Camera.main.transform.forward);
             Debug.DrawRay(p1, Camera.main.transform.forward, Color.green);
-            wallMask = 1 << LayerMask.NameToLayer("monster") | 1 << LayerMask.NameToLayer("wall") | 1 << LayerMask.NameToLayer("centerBall") | 1 << LayerMask.NameToLayer("battery");//开启monster和wall
-            //计时器限制，2s后才能发射下一次
+            //开启monster和wall
+            wallMask = 1 << LayerMask.NameToLayer("monster") | 1 << LayerMask.NameToLayer("wall") | 1 << LayerMask.NameToLayer("centerBall") | 1 << LayerMask.NameToLayer("battery");
+          
             tictock += Time.deltaTime;
-            if (tictock > timer)
+            if (tictock > timer)  //计时器限制，2s后才能发射下一次
             {
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -139,11 +140,7 @@ public class FirstPersonAIO : MonoBehaviour {
                 Transfer();//因为是持续运动，所以需要在Update里执行
                 CameraTransfer();
             }
-        }
-
-        //playerCamera.rotation = Quaternion.Lerp(playerCamera.rotation, Quaternion.Euler(0,360,0),Time.deltaTime*rotateSpeed);
-      
-
+        }    
         #endregion
     }
 
@@ -172,21 +169,10 @@ public class FirstPersonAIO : MonoBehaviour {
             if (Vector3.Distance(playerCamera.localPosition, farPos.localPosition) < 0.1f)
             {
                 goFar = false;
-                goNear = true;
-                //turnAround = true;
+                goNear = true;               
             }
         }
-        //if (turnAround)
-        //{
-        //    playerCamera.RotateAround(transform.localPosition, transform.up, Time.deltaTime * rotateSpeed);
-        //    degree += Time.deltaTime * rotateSpeed;
-        //    if (degree >= 360)
-        //    {
-        //        turnAround = false;
-        //        goNear = true;
-        //        degree = 0;
-        //    }
-        //}
+      
         if (goNear)
         {
             playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition, nearPos.localPosition, Time.deltaTime * camMoveSpeed);

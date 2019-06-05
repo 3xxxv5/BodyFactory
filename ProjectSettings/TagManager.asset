@@ -26,6 +26,7 @@ TagManager:
   - Sea
   - rotateBtn
   - turnBtn
+  - coin
   layers:
   - Default
   - TransparentFX

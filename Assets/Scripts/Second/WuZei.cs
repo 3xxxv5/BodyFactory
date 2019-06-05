@@ -107,6 +107,13 @@ public class WuZei : MonoBehaviour
                 GameManager2._instance.SpawnSpecialEffects("fire", transform.position, 5f);
                 Dragon._instance.ReduceLife(1);
                 break;
+            case "coin":
+                //随机播放几种音效
+                int index = Random.Range(0,4);//0 1 2 3
+                AudioManager._instance.PlayEffect("tower");
+                GameManager2._instance.SpawnSpecialEffects("fire", transform.position, 5f);
+                Destroy(col.gameObject);
+                break;
         }
     }
 

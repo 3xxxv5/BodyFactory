@@ -57,7 +57,6 @@ public class Utility : MonoBehaviour
         if (AudioManager._instance.increaseVol)
         {
             AudioManager._instance.bgmPlayer.volume = Mathf.Lerp(AudioManager._instance.bgmPlayer.volume, AudioManager._instance.saveVolume, Time.deltaTime * 2);
-            print(AudioManager._instance.bgmPlayer.volume);
             if ((AudioManager._instance.saveVolume-AudioManager._instance.bgmPlayer.volume) < 0.05f)
             {
                 AudioManager._instance.increaseVol = false;
