@@ -1,30 +1,22 @@
 fileFormatVersion: 2
-guid: cf1d9d127d77c534aae54274f225b7aa
+guid: 232c2eeb3c371cc49a1d6d5359461429
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: lower
-    100002: lower_end
-    100004: //RootNode
-    100006: shell
-    100008: Sphere_007
-    100010: upper
-    100012: upper_end
-    400000: lower
-    400002: lower_end
-    400004: //RootNode
-    400006: shell
-    400008: Sphere_007
-    400010: upper
-    400012: upper_end
-    2100000: shell
-    2100002: shell_mouth
-    4300000: Sphere_007
-    7400000: Default Take
-    7400002: Armature_Armature_open_Armature_open
-    7400004: open
-    9500000: //RootNode
-    13700000: Sphere_007
+    100000: //RootNode
+    400000: //RootNode
+    2100000: fin
+    2100002: blue
+    2100004: body
+    2100006: metal01
+    2100008: plane
+    2100010: white
+    2100012: red
+    2100014: mouth
+    2100016: eye
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cube.003
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -78,7 +70,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -105,7 +97,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

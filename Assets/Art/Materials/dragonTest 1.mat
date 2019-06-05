@@ -54,6 +54,6 @@ Material:
     - _head_intensity: 1
     - _ht_intensity: 1
     - _tail_intensity: 1
-    - _total_intensity: 0.66
+    - _total_intensity: 1.21
     m_Colors:
-    - _emission_color: {r: 0, g: 0.16342616, b: 1, a: 1}
+    - _emission_color: {r: 0.21226418, g: 0.34100083, b: 1, a: 1}
