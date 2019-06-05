@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8006312084432602019}
   - component: {fileID: 6942135679030398926}
   - component: {fileID: 8443534321107744871}
+  - component: {fileID: 9160523298840454492}
   m_Layer: 0
   m_Name: Grass4
   m_TagString: Untagged
@@ -77,6 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!135 &9160523298840454492
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5361665526905342146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.007047429
+  m_Center: {x: -0.0070628864, y: 0.0023340972, z: -0.002614118}
 --- !u!1 &6112093983218148168
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +135,7 @@ GameObject:
   - component: {fileID: 4920986336729875271}
   - component: {fileID: 3292182238834087699}
   - component: {fileID: 2561995106720593972}
+  - component: {fileID: 8535944433130350187}
   m_Layer: 0
   m_Name: Grass1 (1)
   m_TagString: Untagged
@@ -187,6 +202,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!135 &8535944433130350187
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6406513621325803062}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.006229786
+  m_Center: {x: -0.0059870826, y: 0.0030287749, z: -0.0025950868}
 --- !u!1 &7575826623445569209
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +226,7 @@ GameObject:
   - component: {fileID: 7851381549791910162}
   - component: {fileID: 3695217842098557850}
   - component: {fileID: 6693465201632332324}
+  - component: {fileID: 2658146072762044758}
   m_Layer: 0
   m_Name: Grass2 (1)
   m_TagString: Untagged
@@ -264,3 +293,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!135 &2658146072762044758
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7575826623445569209}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.007178603
+  m_Center: {x: -0.0071992218, y: -0.0023436102, z: -0.0026141622}

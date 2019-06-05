@@ -12,6 +12,7 @@ public class LevelAnim : MonoBehaviour
     public Image fadeImage;
     public CanvasGroup skipPanel;
     public Slider skipSlider;
+    public Image skipImage;
     float time = 0;
     public  float timer = 2f;//需要按压的时间
     bool canSkip = true;
@@ -21,6 +22,7 @@ public class LevelAnim : MonoBehaviour
         fadeImage.color = Color.black;
         fadeImage.DOFade(0f, 1f);
         skipSlider.value = 0;
+        skipImage.fillAmount = 0;
         Utility.DisableCanvas(skipPanel,0f);
         AudioManager._instance.PlayeBGM("");
         StartCoroutine(PlayVideo());
@@ -43,6 +45,7 @@ public class LevelAnim : MonoBehaviour
                 Utility.EnableCanvas(skipPanel,0f);
                 time += Time.deltaTime;
                 skipSlider.value = time / timer;
+                skipImage.fillAmount = time / timer;
                 if (time >= timer)
                 {
                     time = 0;

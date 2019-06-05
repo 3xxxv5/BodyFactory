@@ -41,12 +41,12 @@ public class AudioManager : MonoBehaviour {
     }
     private void Update()
     {
-        sceneName = SceneManager.GetActiveScene().name;
-        string bgmName;
-        if (bgmDic.TryGetValue(sceneName, out bgmName))
-        {
-            PlayeBGM(bgmName);
-        }
+        //sceneName = SceneManager.GetActiveScene().name;
+        //string bgmName;
+        //if (bgmDic.TryGetValue(sceneName, out bgmName))
+        //{
+        //    PlayeBGM(bgmName);
+        //}
     }
 
     void InitPlayer()

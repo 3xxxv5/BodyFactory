@@ -5,6 +5,7 @@ TextureImporter:
     21300000: skip_5
     21300002: skip_6
     21300004: skip_24
+    21300006: skip_0
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -95,7 +96,7 @@ TextureImporter:
         width: 760
         height: 117
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -115,7 +116,7 @@ TextureImporter:
         width: 760
         height: 117
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -135,13 +136,33 @@ TextureImporter:
         width: 745
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: b85d8d952d141dc4d80f194528f37478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skip_0
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 482
+        width: 717
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef18616fe0eb074d9536ebf696bda19
       vertices: []
       indices: 
       edges: []

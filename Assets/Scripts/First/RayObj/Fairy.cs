@@ -39,12 +39,8 @@ public class Fairy : MonoBehaviour {
 
     protected virtual void Init()
     {
-        tipBoard = transform.Find("tipBoard");
-        rotateTip = tipBoard.Find("RotateTip");
         rotateButton = GameObject.FindWithTag("rotateBtn").GetComponent<Button>();
         rotateButton.onClick.AddListener(RotateFairy);
-        tipBoard.gameObject.SetActive(false);    
-        rotateTip.gameObject.SetActive(false);
         anim = transform.Find("elf").GetComponent<Animator>();
         movePoint = Resources.Load<GameObject>("Prefabs/movePoint");
         pointsObjects = new List<GameObject>();
@@ -66,23 +62,20 @@ public class Fairy : MonoBehaviour {
     {
         if (truePicked)
         {
-            tipBoard.gameObject.SetActive(true);
+            //tipBoard.gameObject.SetActive(true);
             if (rayHited)
-            {
-                //rotateTip.gameObject.SetActive(true);
+            {               
                 Level1UIManager._instance.ShowTip(fairySorts);
             }
             else
-            {
-                //rotateTip.gameObject.SetActive(false);               
+            {              
                 Level1UIManager._instance.DisableTip();
             }
 
         }
         else
         {
-            Level1UIManager._instance.DisableTip();
-            //tipBoard.gameObject.SetActive(false);     
+            Level1UIManager._instance.DisableTip();          
         }       
     }
 

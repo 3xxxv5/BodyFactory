@@ -29,7 +29,8 @@ public class RayEmitter : MonoBehaviour {
         towerGlow = transform.Find("towerGlow");
         towerGlow.gameObject.SetActive(false);
 
-        layerMask = LayerMask.GetMask("tower", "reflectObj", "refractObj", "bud","sphereBoard");
+        layerMask = LayerMask.GetMask("tower", "reflectObj", "refractObj", "bud", "sphereBoard");
+        //layerMask = -1;
         lastHit = null;
         gameObject.AddComponent<TextureAnim>();    
     }

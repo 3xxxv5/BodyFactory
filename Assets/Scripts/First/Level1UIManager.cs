@@ -12,8 +12,9 @@ public class Level1UIManager : MonoBehaviour
     [HideInInspector] public CanvasGroup pauseCanvas;
     Image fadeImage;
     //tip panel
-    Button rotateButton;
-    Button overTurnButton;    
+    public  Button rotateButton;
+    public  Button overTurnButton;
+    public Text coinText;
     private void Awake()
     {
         _instance = this;
@@ -24,12 +25,11 @@ public class Level1UIManager : MonoBehaviour
 
         AudioManager._instance.PlayeBGM("first");
         //pause panel
-        pauseCanvas = transform.Find("PausePanel").GetComponent<CanvasGroup>();
-        rotateButton = transform.Find("RoateButton").GetComponent<Button>();
-        overTurnButton = transform.Find("TurnButton").GetComponent<Button>();
+        pauseCanvas = transform.Find("PausePanel").GetComponent<CanvasGroup>();  
         Utility.DisableCanvas(pauseCanvas, 0f);
         rotateButton.interactable = false;
         overTurnButton.interactable = false;
+        coinText.text = Utility.getThreeNum(0);
     }
     void Start()
     {

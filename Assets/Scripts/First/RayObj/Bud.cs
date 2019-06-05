@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.Playables;
 public class Bud : MonoBehaviour {
     public int nowRayNum;
-    [HideInInspector]
-    public int needRayNum;//需要点亮几片叶子，才会长出藤蔓
-    public  bool hasGrowrn = false;
+    [HideInInspector]    public int needRayNum;//需要点亮几片叶子，才会长出藤蔓
+    [HideInInspector]   public  bool hasGrowrn = false;
     TagLeave[] leaves;
     Material blackBud;
     Material glowBud;

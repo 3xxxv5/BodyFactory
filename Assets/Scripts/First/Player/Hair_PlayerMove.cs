@@ -17,7 +17,7 @@ public class Hair_PlayerMove : MonoBehaviour
     public bool isClimbing = false;
     public bool isGrounded = true;
     public bool animPaused = false;
-    
+    [HideInInspector] public int fairyCoinCount = 0;
 
     void Start()
     {
@@ -51,25 +51,11 @@ public class Hair_PlayerMove : MonoBehaviour
     void MoveManager()
 {
         if (!canMove || anim.GetBool("Climb") || animPaused) return;
-        if (Input.GetButtonUp("Jump"))
+        if (isGrounded&& Input.GetButtonDown("Jump"))
         {
-            if (isGrounded)//只有在地面上才能跳
-            {
-                rb.velocity += new Vector3(0, jumpSpeed, 0);
-                rb.AddForce(Vector3.up*jumpSpeed);
-            }
+            rb.velocity = new Vector3(rb.velocity.x, jumpSpeed, rb.velocity.z);      
         }
-        print("velocityY: " + rb.velocity.y);
-
-        /*
-         * if(Input.GetButton("Jump")){
-         *    anim.SetBool("is_in_air",true);
-         *    moveDirection.y=jumpSpeed;
-         * }else{
-         * anim.SetBool("is_in_air",false);
-         * }
-         
-         */
+        anim.SetFloat("vy", rb.velocity.y);
         float v;
         if (Input.GetKey(KeyCode.W))
         {
@@ -84,7 +70,6 @@ public class Hair_PlayerMove : MonoBehaviour
             v = 0;
         }
         float h = Input.GetAxis("Horizontal");
-        //float v = Input.GetAxis("Vertical");
         //动画
         anim.SetFloat("Speed", v);//speed>0.1前进，<-0.1后退       
         anim.SetFloat("Direction", h);
@@ -93,22 +78,20 @@ public class Hair_PlayerMove : MonoBehaviour
         Vector3 vertical_velocity = transform.forward * v * forwardSpeed;
         Vector3 horizontal_velocity = transform.right * h * backwardSpeed;
         Vector3 moveVelocity = vertical_velocity + horizontal_velocity;
-        Vector3 velocity = rb.velocity;
-        rb.velocity = new Vector3(moveVelocity.x,rb.velocity.y,moveVelocity.z);
-}
+        rb.velocity = new Vector3(moveVelocity.x,rb.velocity.y,moveVelocity.z);      
+    }
 
     void ClimbManager()
     {
-            if (canClimb && Input.GetKeyUp(KeyCode.E))//在爬行区域内，且按下爬行建
+            if (canClimb && Input.GetKeyDown(KeyCode.E))//在爬行区域内，且按下爬行建
             {
                 anim.SetBool("Climb", true);
                 isClimbing = true;
                 AudioManager._instance.PlayEffect("climb");
-        }
+            }
             else
             {
                 MoveManager();
-                anim.SetBool("Climb", false);
             }
             if (isClimbing)//爬行中，设置向上的速度
             {
@@ -123,10 +106,32 @@ public class Hair_PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag.Equals("ground")) isGrounded = true;
+        if (col.gameObject.tag.Equals("ground"))
+        {
+            isGrounded = true;
+        }
+        anim.SetBool("isGround", isGrounded);
+
     }
     private void OnCollisionExit(Collision col)
     {
-        if(col.gameObject.tag.Equals("ground")) isGrounded = false;
+        if (col.gameObject.tag.Equals("ground"))
+        {
+            isGrounded = false;
+        }
+        anim.SetBool("isGround", isGrounded);
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag.Equals("coin"))
+        {
+            int index = Random.Range(1,3);
+            AudioManager._instance.PlayEffect("coin"+index.ToString());
+            fairyCoinCount++;
+            Level1UIManager._instance.coinText.text =Utility.getThreeNum(fairyCoinCount);
+            Destroy(Instantiate(Resources.Load<GameObject>("Prefabs/" + "coinEffect"), col.transform.position, Quaternion.identity), 3f);
+            Destroy(col.gameObject);
+        }
     }
 }

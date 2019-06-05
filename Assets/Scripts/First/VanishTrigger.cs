@@ -34,7 +34,6 @@ public class VanishTrigger : MonoBehaviour
     {
         if (col.tag.Equals("Player"))
         {
-            print("该消失咯");
             //路消失
             startVanish = true;
             //光柱消失

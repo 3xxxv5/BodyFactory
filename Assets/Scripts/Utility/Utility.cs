@@ -63,5 +63,18 @@ public class Utility : MonoBehaviour
             }
         }
     }         
+    public static string getThreeNum(int num)
+    {
+        if (num< 10) {
+            return "00" + num.ToString();
+        }else if (num < 100)
+        {
+            return "0" + num.ToString();
+        }
+        else
+        {
+            return num.ToString();
+        }
+    }
 
 }
