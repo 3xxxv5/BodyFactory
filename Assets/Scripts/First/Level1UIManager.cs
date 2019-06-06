@@ -12,8 +12,8 @@ public class Level1UIManager : MonoBehaviour
     [HideInInspector] public CanvasGroup pauseCanvas;
     Image fadeImage;
     //tip panel
-    public  Button rotateButton;
-    public  Button overTurnButton;
+    public  GameObject reflectPanel;
+    public GameObject refractPanel;
     public Text coinText;
     private void Awake()
     {
@@ -27,9 +27,9 @@ public class Level1UIManager : MonoBehaviour
         //pause panel
         pauseCanvas = transform.Find("PausePanel").GetComponent<CanvasGroup>();  
         Utility.DisableCanvas(pauseCanvas, 0f);
-        rotateButton.interactable = false;
-        overTurnButton.interactable = false;
         coinText.text = Utility.getThreeNum(0);
+        reflectPanel.SetActive(false);
+        refractPanel.SetActive(false);
     }
     void Start()
     {
@@ -79,21 +79,27 @@ public class Level1UIManager : MonoBehaviour
 
     public void ShowTip(FairySorts fairySorts)
     {
-        rotateButton.interactable = true;
-
-        if (fairySorts == FairySorts.Refract)
+        if (fairySorts == FairySorts.Reflect)
         {
-            overTurnButton.interactable = false;
+            reflectPanel.SetActive(true);
         }
         else
         {
-            overTurnButton.interactable = true;
+            refractPanel.SetActive(true);
         }
+        
     }
-    public void DisableTip()
+
+    public void DisableTip(FairySorts fairySorts)
     {
-        rotateButton.interactable = false;
-        overTurnButton.interactable = false;
+        if (fairySorts == FairySorts.Reflect)
+        {
+            reflectPanel.SetActive(false);
+        }
+        else
+        {
+            refractPanel.SetActive(false);
+        }              
     }
 }
 

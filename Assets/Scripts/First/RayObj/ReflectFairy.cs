@@ -8,17 +8,21 @@ public class ReflectFairy : Fairy
     ReflectRayEmitter reflectRay;
     const int dirNum = 8;
     Vector3 disToTarget;
-    Button overTurnButton;
+    protected Button rotateButton;
+    protected Button overTurnButton;
     
     void Awake () {
         fairySorts = FairySorts.Reflect;
         base.Init();
-        playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<Hair_PlayerMove>();
+        playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<Hair_PlayerMove>();     
+        InitReflectRay();
+
+        rotateButton = GameObject.FindWithTag("rotateBtn").GetComponent<Button>();
+        rotateButton.onClick.AddListener(RotateFairy);
         overTurnButton = GameObject.FindWithTag("turnBtn").GetComponent<Button>();
         overTurnButton.onClick.AddListener(OverTurnFairy);
-        InitReflectRay();
     }
- 
+    
     protected virtual  void InitReflectRay()
     {
         reflectRay = GetComponentInChildren<ReflectRayEmitter>();
@@ -43,7 +47,7 @@ public class ReflectFairy : Fairy
         }
     }
 
-    protected override void RotateFairy()
+    protected  void RotateFairy()
     {
         if (truePicked)
         {
@@ -54,7 +58,7 @@ public class ReflectFairy : Fairy
             reflectRay.index %= 8;
         }        
     }
-    protected override void OverTurnFairy()
+    protected void OverTurnFairy()
     {
         if (truePicked)
         {
@@ -98,8 +102,8 @@ public class ReflectFairy : Fairy
         else
         {
             //移动
-            if (Input.GetKeyUp(KeyCode.Q))       InputResponse(Vector3.up);
-            if (Input.GetKeyUp(KeyCode.E))        InputResponse(Vector3.up * (-1));
+            if (Input.GetKeyUp(KeyCode.E))       InputResponse(Vector3.up);
+            if (Input.GetKeyUp(KeyCode.Q))        InputResponse(Vector3.up * (-1));
             if (Input.GetKeyUp(KeyCode.A))        InputResponse(Vector3.right * (-1));
             if (Input.GetKeyUp(KeyCode.D))       InputResponse(Vector3.right);
             if (Input.GetKeyUp(KeyCode.S))       InputResponse(Vector3.forward * (-1));

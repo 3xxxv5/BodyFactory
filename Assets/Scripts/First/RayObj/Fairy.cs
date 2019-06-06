@@ -4,10 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Fairy : MonoBehaviour {
-
-    protected Transform tipBoard;
-    protected Transform rotateTip;
-    Button rotateButton;
+    protected Transform moveTip;
     public  GameObject movePoint;
     public bool rayHited = false;
     public bool isPicked = false;//已经被选中过，但可能不是当前正在处理的
@@ -27,7 +24,8 @@ public class Fairy : MonoBehaviour {
     protected float moveSpeed = 5f;
     protected bool canMove = false;
     protected Vector3 targetPos;
-    public FairySorts fairySorts;  
+    [HideInInspector] public FairySorts fairySorts;  
+
     [HideInInspector]
     public  enum FairyState
     {
@@ -38,16 +36,20 @@ public class Fairy : MonoBehaviour {
     public FairyState fairyState = FairyState.Idle;
 
     protected virtual void Init()
-    {
-        rotateButton = GameObject.FindWithTag("rotateBtn").GetComponent<Button>();
-        rotateButton.onClick.AddListener(RotateFairy);
+    {       
         anim = transform.Find("elf").GetComponent<Animator>();
         movePoint = Resources.Load<GameObject>("Prefabs/movePoint");
         pointsObjects = new List<GameObject>();
         canFollow = false;
+        try{
+            moveTip = transform.Find("moveTip");
+        }catch
+        {
+            
+        }
+
     }
-    protected 
-    void Update () {
+    protected   void Update () {
         //显示提示板
         ShowTipBoard();
         //跟随主角
@@ -62,20 +64,28 @@ public class Fairy : MonoBehaviour {
     {
         if (truePicked)
         {
-            //tipBoard.gameObject.SetActive(true);
+            if (moveTip != null)
+            {
+                moveTip.gameObject.SetActive(true);
+                moveTip.forward = -Vector3.forward;
+            }
+        
             if (rayHited)
-            {               
-                Level1UIManager._instance.ShowTip(fairySorts);
+            {
+                 Level1UIManager._instance.ShowTip(fairySorts);
             }
             else
             {              
-                Level1UIManager._instance.DisableTip();
+                 Level1UIManager._instance.DisableTip(fairySorts);
             }
-
         }
         else
         {
-            Level1UIManager._instance.DisableTip();          
+            Level1UIManager._instance.DisableTip(fairySorts);
+            if (moveTip != null)
+            {
+                moveTip.gameObject.SetActive(false);
+            }
         }       
     }
 
@@ -128,21 +138,14 @@ public class Fairy : MonoBehaviour {
         for (int i = 0; i < yShow.Length; i++) yShow[i] = false;
         for (int i = 0; i < xShow.Length; i++) xShow[i] = false;
         for (int i = 0; i < zShow.Length; i++) zShow[i] = false;
-    }
-    protected virtual void RotateFairy()
-    {
+    }  
 
-    }
-    protected virtual void OverTurnFairy()
-    {
-
-    }
     protected virtual void RenderRay()
     {
         if (hitRay > 0)
         {
             rayHited = true;
-            fairyState = FairyState.Blossom;            
+            fairyState = FairyState.Blossom;
         }
         else
         {

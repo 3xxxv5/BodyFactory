@@ -18,7 +18,7 @@ public class RayEmitter : MonoBehaviour {
     protected Transform lastHit;
 
     protected Transform towerGlow;
-
+    protected  GameObject shootPoint;
     void Awake () {        
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
@@ -27,7 +27,7 @@ public class RayEmitter : MonoBehaviour {
         lineRenderer.material = Resources.Load<Material>("Materials/TexAnim");
 
         towerGlow = transform.Find("towerGlow");
-        towerGlow.gameObject.SetActive(false);
+        towerGlow.gameObject.SetActive(false);       
 
         layerMask = LayerMask.GetMask("tower", "reflectObj", "refractObj", "bud", "sphereBoard");
         //layerMask = -1;
@@ -43,6 +43,10 @@ public class RayEmitter : MonoBehaviour {
         }
         else
         {
+            if (shootPoint != null)
+            {
+                shootPoint.gameObject.SetActive(false);
+            }
             if (lastHit != null)
             {
                 TellHitedObj(lastHit, false);
@@ -66,7 +70,8 @@ public class RayEmitter : MonoBehaviour {
         {
             // && hitInfo.collider.gameObject.GetComponent<Fairy>() != null && hitInfo.collider.gameObject.GetComponent<Fairy>().isPicked)
             //射中了某个物体
-            endY = hitInfo.transform.position.y;
+            //endY = hitInfo.transform.position.y;
+            endY = hitInfo.point.y;
             UpdateLastHit(hitInfo);
         }
         else

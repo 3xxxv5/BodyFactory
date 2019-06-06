@@ -13,6 +13,8 @@ public class RefractRayEmitter : RayEmitter
 
     void Start () {
         endPoints = new Vector3[4];
+        shootPoint = Instantiate(Resources.Load<GameObject>("Prefabs/shootPoint"));
+        shootPoint.gameObject.SetActive(false);
     }	
 
     protected override void CreateRay()
@@ -30,12 +32,18 @@ public class RefractRayEmitter : RayEmitter
         {
             lineRenderer.SetPosition(1, endPoints[index]);
             EmptyLastHit();
+            shootPoint.gameObject.SetActive(false);
         }
         else
         {
-            endPoints[index] = hit.transform.position;
+            endPoints[index] = hit.point;       
             lineRenderer.SetPosition(1, endPoints[index]);
             UpdateLastHit(hit);
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("sphereBoard"))
+            {
+                shootPoint.gameObject.SetActive(true);
+                shootPoint.transform.position = hit.point;
+            }
         }
     }
 }

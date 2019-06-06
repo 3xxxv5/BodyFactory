@@ -27,6 +27,7 @@ TagManager:
   - rotateBtn
   - turnBtn
   - coin
+  - refractRotateBtn
   layers:
   - Default
   - TransparentFX

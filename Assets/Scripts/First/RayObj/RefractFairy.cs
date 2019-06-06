@@ -7,12 +7,16 @@ public class RefractFairy : Fairy
 {
     protected Hair_PlayerMove playerMove;
     RefractRayEmitter[] refractRays;
+    protected Button rotateButton;
 
-    void Awake () {
+    void Awake() {
         fairySorts = FairySorts.Refract;
-        base.Init();
+        base.Init(); 
         playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<Hair_PlayerMove>();
-        InitRefractRays();     
+        InitRefractRays();
+
+        rotateButton = GameObject.FindWithTag("refractRotateBtn").GetComponent<Button>();
+        rotateButton.onClick.AddListener(RotateFairy);
     }
     void InitRefractRays()
     {
@@ -46,7 +50,7 @@ public class RefractFairy : Fairy
             transform.forward = Vector3.Lerp(transform.forward, playerMove.transform.forward, Time.deltaTime);
         }
     }
-    protected override void RotateFairy()
+    protected void RotateFairy()
     {
         if (truePicked)
         {
@@ -93,8 +97,8 @@ public class RefractFairy : Fairy
         else
         {
             //移动
-            if (Input.GetKeyUp(KeyCode.Q)) InputResponse(Vector3.up);
-            if (Input.GetKeyUp(KeyCode.E)) InputResponse(Vector3.up * (-1));
+            if (Input.GetKeyUp(KeyCode.E)) InputResponse(Vector3.up);
+            if (Input.GetKeyUp(KeyCode.Q)) InputResponse(Vector3.up * (-1));
             if (Input.GetKeyUp(KeyCode.A)) InputResponse(Vector3.right * (-1));
             if (Input.GetKeyUp(KeyCode.D)) InputResponse(Vector3.right);
             if (Input.GetKeyUp(KeyCode.S)) InputResponse(Vector3.forward * (-1));

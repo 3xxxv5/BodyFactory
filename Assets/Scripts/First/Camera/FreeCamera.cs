@@ -25,7 +25,7 @@ public class FreeCamera : MonoBehaviour {
     //遮挡住主角的物体
     public  List<Transform> lastHitObjs;
     public  List<Transform> hitObjs;
-    public  LayerMask layermasks = -1;
+    public  LayerMask layermasks;
 
     void Start () {
         mX = transform.eulerAngles.x;
