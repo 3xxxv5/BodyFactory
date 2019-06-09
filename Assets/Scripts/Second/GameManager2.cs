@@ -60,6 +60,7 @@ public class GameManager2 : MonoBehaviour
     //MonsterColor
     public Color once;
     public Color twice;
+    public Color thirdTimes;
     public int dragonHp = 3;
     #endregion
 

@@ -4,16 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
+using taecg.tools;
 
 public class Level1UIManager : MonoBehaviour
 {
     public static Level1UIManager _instance { get; private set; }
     //pause panel
     [HideInInspector] public CanvasGroup pauseCanvas;
-    Image fadeImage;
+    public  Text coin_fairyAmountText;
+    public  Text coin_ikaAmountText;
+    public  Text gameTimeText;
+    public Transform coins;
     //tip panel
     public  GameObject reflectPanel;
     public GameObject refractPanel;
+    //进场
+    Image fadeImage;
+    public CircleWipe circleWipe;
+    CanvasGroup mainCanvas;
+    bool canWipeIn = false;
+    bool canWipeOut = false;
+
     public Text coinText;
     private void Awake()
     {
@@ -30,18 +41,52 @@ public class Level1UIManager : MonoBehaviour
         coinText.text = Utility.getThreeNum(0);
         reflectPanel.SetActive(false);
         refractPanel.SetActive(false);
+        print("coinFariy的总数："+(coins.childCount).ToString());
+    
     }
     void Start()
     {
         fadeImage = transform.Find("fadeImage").GetComponent<Image>();
-        fadeImage.color = Color.black;
-        fadeImage.DOFade(0f, 1f);
+        //fadeImage.color = Color.black;
+        //fadeImage.DOFade(0f, 1f);
+        mainCanvas = transform.GetComponent<CanvasGroup>();
+        mainCanvas.alpha = 0;
+        circleWipe.Value = 0;
+        canWipeIn = true;
+    }
+    void wipeIn()
+    {
+        if (canWipeIn)
+        {
+            circleWipe.Value = Mathf.Lerp(circleWipe.Value, 1, Time.deltaTime);
+            if (circleWipe.Value > 0.85)
+            {
+                canWipeIn = false;
+                circleWipe.Value = 1;
+                mainCanvas.alpha = 1;
+            }
+        }
+    }
+    void wipeOut()
+    {
+        if (canWipeOut)
+        {
+            mainCanvas.alpha = 0;
+            circleWipe.Value = Mathf.Lerp(circleWipe.Value, 0, Time.deltaTime);
+            if (circleWipe.Value < 0.1)
+            {
+                canWipeOut = false;
+                circleWipe.Value = 0;
+            }
+        }
     }
 
     // Update is called once per frame
 
     void Update()
     {
+        wipeIn();
+        wipeOut();
         Utility.ChangeVolume();
         if (Input.GetKeyUp(KeyCode.Escape))
         {

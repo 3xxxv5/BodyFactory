@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 using DG.Tweening;
+using taecg.tools;
 
 public class Level2UIManager : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class Level2UIManager : MonoBehaviour
     public float toClearTime = 1f;
     //pause panel
     [HideInInspector] public CanvasGroup pauseCanvas;
+    //转场动画
+    public CircleWipe circleWipe;
+    CanvasGroup mainCanvas;
+    bool canWipeIn = false;
+    bool canWipeOut = false;//当赢了要进入下一关时，设置为true
 
     private void Awake()
     {
@@ -35,8 +41,34 @@ public class Level2UIManager : MonoBehaviour
     void Start()
     {
         fadeImage = transform.Find("fadeImage").GetComponent<Image>();
-        fadeImage.color = Color.black;
-        fadeImage.DOFade(0f, 1f);
+        //fadeimage.color = color.black;
+        //fadeimage.dofade(0f, 1f);
+    }
+    void wipeIn()
+    {
+        if (canWipeIn)
+        {
+            circleWipe.Value = Mathf.Lerp(circleWipe.Value, 1, Time.deltaTime);
+            if (circleWipe.Value > 0.85)
+            {
+                canWipeIn = false;
+                circleWipe.Value = 1;
+                mainCanvas.alpha = 1;
+            }
+        }
+    }
+    void wipeOut()
+    {
+        if (canWipeOut)
+        {
+            mainCanvas.alpha = 0;
+            circleWipe.Value = Mathf.Lerp(circleWipe.Value, 0, Time.deltaTime);
+            if (circleWipe.Value <0.1)
+            {
+                canWipeOut = false;
+                circleWipe.Value = 0;
+            }
+        }
     }
     void Init()
     {
@@ -55,6 +87,11 @@ public class Level2UIManager : MonoBehaviour
         //over panel
         overCanvas = transform.Find("GameOverPanel").GetComponent<CanvasGroup>();
         Utility.DisableCanvas(overCanvas, 0f);
+        //转场：
+        mainCanvas = transform.GetComponent<CanvasGroup>();
+        mainCanvas.alpha = 0;
+        circleWipe.Value = 0;
+        canWipeIn = true;
 
         //cross Panel
         crossCanvas = transform.Find("CrossPanel").GetComponent<CanvasGroup>();
@@ -69,6 +106,8 @@ public class Level2UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        wipeIn();
+        wipeOut();
         Utility.ChangeVolume();
         if (!GameManager2._instance.hasOver)
         {

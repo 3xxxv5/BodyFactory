@@ -10,8 +10,4 @@ public class MyQueue
     public int count = 0;
     public float rate;
 }
-[System.Serializable]
-public class BigWave
-{
-    public MyQueue[] myQueues;
-}
+

@@ -58,7 +58,6 @@ public class WuZei : MonoBehaviour
                 //animIndex = Random.Range(1, 4);
                 animIndex = 2;
                 animator.SetInteger("qteAnim", animIndex);
-                print("animIndex:"+animator.GetInteger("qteAnim"));
                 AnimatorStateInfo a = animator.GetCurrentAnimatorStateInfo(0);
                 StartCoroutine(ChangeAnimState(a.length));
                 //关闭qte面板
