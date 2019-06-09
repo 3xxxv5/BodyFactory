@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 114077895}
   - component: {fileID: 114077894}
   - component: {fileID: 114077896}
+  - component: {fileID: 114077897}
   m_Layer: 5
   m_Name: fairyCoinText
   m_TagString: Untagged
@@ -459,6 +460,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!95 &114077897
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114077892}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6fc8fda0dc58492498de4d95e2df4693, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &433416645
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +490,7 @@ GameObject:
   - component: {fileID: 433416646}
   - component: {fileID: 433416648}
   - component: {fileID: 433416647}
+  - component: {fileID: 433416649}
   m_Layer: 5
   m_Name: ikaCoin
   m_TagString: Untagged
@@ -533,6 +554,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433416645}
   m_CullTransparentMesh: 0
+--- !u!95 &433416649
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433416645}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9456220136349044fb82377b84900622, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &542310422
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +828,7 @@ GameObject:
   - component: {fileID: 596167483}
   - component: {fileID: 596167485}
   - component: {fileID: 596167484}
+  - component: {fileID: 596167486}
   m_Layer: 5
   m_Name: "\u65F6\u949F"
   m_TagString: Untagged
@@ -851,6 +892,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596167482}
   m_CullTransparentMesh: 0
+--- !u!95 &596167486
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596167482}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 284626221a6ea454a8dafe6213825a3d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &773289452
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +922,7 @@ GameObject:
   - component: {fileID: 773289453}
   - component: {fileID: 773289455}
   - component: {fileID: 773289454}
+  - component: {fileID: 773289456}
   m_Layer: 5
   m_Name: stageClear
   m_TagString: Untagged
@@ -885,7 +946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 841.6, y: 434.4}
+  m_AnchoredPosition: {x: 904.85, y: 1301}
   m_SizeDelta: {x: 624.6, y: 363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &773289454
@@ -925,6 +986,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773289452}
   m_CullTransparentMesh: 0
+--- !u!95 &773289456
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773289452}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e3f41c589eaa694e8abc476a613f5a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &776296544
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,6 +1017,7 @@ GameObject:
   - component: {fileID: 776296548}
   - component: {fileID: 776296547}
   - component: {fileID: 776296546}
+  - component: {fileID: 776296549}
   m_Layer: 5
   m_Name: ikaCoinText
   m_TagString: Untagged
@@ -1019,6 +1100,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776296544}
   m_CullTransparentMesh: 0
+--- !u!95 &776296549
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776296544}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 970f0ac4c0eae174cba66d809d3b04d4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1040458436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,6 +1130,7 @@ GameObject:
   - component: {fileID: 1040458437}
   - component: {fileID: 1040458439}
   - component: {fileID: 1040458438}
+  - component: {fileID: 1040458440}
   m_Layer: 5
   m_Name: "\u6C14\u6CE11"
   m_TagString: Untagged
@@ -1053,7 +1154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 645, y: 376}
+  m_AnchoredPosition: {x: 803, y: 1035.8}
   m_SizeDelta: {x: 1099.4, y: 631.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040458438
@@ -1093,6 +1194,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040458436}
   m_CullTransparentMesh: 0
+--- !u!95 &1040458440
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040458436}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a63a17f9d7a327c48b44211c1b23665b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1590091696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1290,7 @@ GameObject:
   - component: {fileID: 1718782214}
   - component: {fileID: 1718782216}
   - component: {fileID: 1718782215}
+  - component: {fileID: 1718782217}
   m_Layer: 5
   m_Name: fairyCoin
   m_TagString: Untagged
@@ -1233,6 +1354,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718782213}
   m_CullTransparentMesh: 0
+--- !u!95 &1718782217
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718782213}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ee65c86ac8a3f545907fad9a3b63670, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1723348787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,6 +1385,7 @@ GameObject:
   - component: {fileID: 1723348791}
   - component: {fileID: 1723348790}
   - component: {fileID: 1723348789}
+  - component: {fileID: 1723348792}
   m_Layer: 5
   m_Name: timeText
   m_TagString: Untagged
@@ -1327,6 +1468,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723348787}
   m_CullTransparentMesh: 0
+--- !u!95 &1723348792
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723348787}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c680be4bba54a9b458cb7963a3057f2c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1739449105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000068665, y: 721.15}
+  m_AnchoredPosition: {x: 0, y: 721.15}
   m_SizeDelta: {x: 1923, y: 1442.3}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1739449107
@@ -1412,6 +1572,7 @@ GameObject:
   - component: {fileID: 1791904918}
   - component: {fileID: 1791904920}
   - component: {fileID: 1791904919}
+  - component: {fileID: 1791904921}
   m_Layer: 5
   m_Name: "\u6C14\u6CE12"
   m_TagString: Untagged
@@ -1475,6 +1636,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791904917}
   m_CullTransparentMesh: 0
+--- !u!95 &1791904921
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791904917}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 56dc996e58154784cbcd69138e574754, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2019327316
 GameObject:
   m_ObjectHideFlags: 0
