@@ -129,7 +129,7 @@ public class Hair_PlayerMove : MonoBehaviour
             int index = Random.Range(1,3);
             AudioManager._instance.PlayEffect("coin"+index.ToString());
             fairyCoinCount++;
-            Level1UIManager._instance.coinText.text =Utility.getThreeNum(fairyCoinCount);
+            Level1UIManager._instance.SetCoinText(fairyCoinCount);
             Destroy(Instantiate(Resources.Load<GameObject>("Prefabs/" + "coinEffect"), col.transform.position, Quaternion.identity), 3f);
             Destroy(col.gameObject);
         }

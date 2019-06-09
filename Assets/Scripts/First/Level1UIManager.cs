@@ -14,6 +14,7 @@ public class Level1UIManager : MonoBehaviour
     public  Text coin_fairyAmountText;
     public  Text coin_ikaAmountText;
     public  Text gameTimeText;
+    float gameTime;
     public Transform coins;
     //tip panel
     public  GameObject reflectPanel;
@@ -26,6 +27,7 @@ public class Level1UIManager : MonoBehaviour
     bool canWipeOut = false;
 
     public Text coinText;
+
     private void Awake()
     {
         _instance = this;
@@ -33,7 +35,7 @@ public class Level1UIManager : MonoBehaviour
     }
     void Init()
     {
-
+        gameTime = 0;
         AudioManager._instance.PlayeBGM("first");
         //pause panel
         pauseCanvas = transform.Find("PausePanel").GetComponent<CanvasGroup>();  
@@ -82,13 +84,24 @@ public class Level1UIManager : MonoBehaviour
     }
 
     // Update is called once per frame
-
+    void showTime()
+    {
+        float allTime = Time.realtimeSinceStartup;//5400s
+        int hour = (int)allTime/3600;//1.5h --1 
+        hour %= 24;      
+        int minute = (int)allTime%3600/60;//30min
+        minute %= 60;
+        int second = (int)allTime % 60;
+        second %= 60;
+        gameTimeText.text = Utility.getTwoNum(hour) + ":" + Utility.getTwoNum(minute) + ":" + Utility.getTwoNum(second);
+    }
     void Update()
     {
+        showTime();      
         wipeIn();
         wipeOut();
         Utility.ChangeVolume();
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (mainCanvas.alpha==1&&Input.GetKeyUp(KeyCode.Escape))
         {
             Pause();
         }
@@ -145,6 +158,21 @@ public class Level1UIManager : MonoBehaviour
         {
             refractPanel.SetActive(false);
         }              
+    }
+
+    public void SetCoinText(int coinCount)
+    {
+        coinText.text = Utility.getThreeNum(coinCount);
+        coin_fairyAmountText.text = coinCount.ToString() + "/18";
+        if (PlayerPrefs.HasKey("ikaCoins"))
+        {
+            coin_ikaAmountText.text = PlayerPrefs.GetInt("ikaCoins") + "/28";
+        }
+        else
+        {
+            coin_ikaAmountText.text = "0/28";
+        }
+
     }
 }
 

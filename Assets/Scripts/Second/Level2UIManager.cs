@@ -15,6 +15,7 @@ public class Level2UIManager : MonoBehaviour
     [HideInInspector] public Slider waveSlider;
     [HideInInspector] public Slider lifeSlider;
     public Image[] circleProgress;
+    public Text coinText;
     //cross panel
     [HideInInspector] public CanvasGroup crossCanvas;
     [HideInInspector] public  Image simpleCross;
@@ -26,6 +27,10 @@ public class Level2UIManager : MonoBehaviour
     public float toClearTime = 1f;
     //pause panel
     [HideInInspector] public CanvasGroup pauseCanvas;
+    public Text coin_fairyAmountText;
+    public Text coin_ikaAmountText;
+    public Text gameTimeText;
+    public Transform coins;
     //转场动画
     public CircleWipe circleWipe;
     CanvasGroup mainCanvas;
@@ -43,6 +48,7 @@ public class Level2UIManager : MonoBehaviour
         fadeImage = transform.Find("fadeImage").GetComponent<Image>();
         //fadeimage.color = color.black;
         //fadeimage.dofade(0f, 1f);
+        print("coinIka的总数：" + (coins.childCount).ToString());
     }
     void wipeIn()
     {
@@ -104,8 +110,20 @@ public class Level2UIManager : MonoBehaviour
     }
 
     // Update is called once per frame
+    void showTime()
+    {
+        float allTime = Time.realtimeSinceStartup;//5400s
+        int hour = (int)allTime / 3600;//1.5h --1 
+        hour %= 24;
+        int minute = (int)allTime % 3600 / 60;//30min
+        minute %= 60;
+        int second = (int)allTime % 60;
+        second %= 60;
+        gameTimeText.text = Utility.getTwoNum(hour) + ":" + Utility.getTwoNum(minute) + ":" + Utility.getTwoNum(second);
+    }
     void Update()
     {
+        showTime();
         wipeIn();
         wipeOut();
         Utility.ChangeVolume();
@@ -156,6 +174,22 @@ public class Level2UIManager : MonoBehaviour
                 Save._instance.SaveLevel();//存一下是新手关的第几关
                 SceneManager.LoadScene("0_start");
                 break;
+        }
+    }
+
+    public void SetCoinText(int coinCount)
+    {
+        //data panel
+        coinText.text = Utility.getThreeNum(coinCount);
+        //pause panel
+        coin_ikaAmountText.text = coinText.ToString() + "/28";
+        if (PlayerPrefs.HasKey("fairyCoins"))
+        {
+            coin_fairyAmountText.text = PlayerPrefs.GetInt("fairyCoins") + "/18";
+        }
+        else
+        {
+            coin_fairyAmountText.text = "0/18";
         }
     }
 }
