@@ -76,5 +76,16 @@ public class Utility : MonoBehaviour
             return num.ToString();
         }
     }
+    public static string getTwoNum(int num)
+    {
+        if (num < 10)
+        {
+            return "0" + num.ToString();
+        }
+        else
+        {
+            return num.ToString();
+        }
+    }
 
 }

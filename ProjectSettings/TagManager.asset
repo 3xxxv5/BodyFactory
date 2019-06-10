@@ -43,8 +43,8 @@ TagManager:
   - refractObj
   - bud
   - checkPoint
-  - FogVolumeShadowCaster
-  - FogVolume
+  - dragon
+  - coin
   - FogVolumeSurrogate
   - FogVolumeUniform
   - monster

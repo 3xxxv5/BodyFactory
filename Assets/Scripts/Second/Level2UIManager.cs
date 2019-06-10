@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 using DG.Tweening;
+using taecg.tools;
 
 public class Level2UIManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Level2UIManager : MonoBehaviour
     [HideInInspector] public Slider waveSlider;
     [HideInInspector] public Slider lifeSlider;
     public Image[] circleProgress;
+    public Text coinText;
     //cross panel
     [HideInInspector] public CanvasGroup crossCanvas;
     [HideInInspector] public  Image simpleCross;
@@ -25,6 +27,21 @@ public class Level2UIManager : MonoBehaviour
     public float toClearTime = 1f;
     //pause panel
     [HideInInspector] public CanvasGroup pauseCanvas;
+    public Text coin_fairyAmountText;
+    public Text coin_ikaAmountText;
+    public Text gameTimeText;
+    public Transform coins;
+    //转场动画
+    public CircleWipe circleWipe;
+    CanvasGroup mainCanvas;
+    bool canWipeIn = false;
+    bool canWipeOut = false;//当赢了要进入下一关时，设置为true
+    float endValue = 0.55f;
+    private float wipeOutSpeed = 0.5f;
+    private float wipeInSpeed = 0.5f;
+
+    [HideInInspector] public int ikaCoinsNum;
+    [HideInInspector] public float gameTime;
 
     private void Awake()
     {
@@ -35,11 +52,39 @@ public class Level2UIManager : MonoBehaviour
     void Start()
     {
         fadeImage = transform.Find("fadeImage").GetComponent<Image>();
-        fadeImage.color = Color.black;
-        fadeImage.DOFade(0f, 1f);
+        //fadeimage.color = color.black;
+        //fadeimage.dofade(0f, 1f);
+        print("coinIka的总数：" + (coins.childCount).ToString());
     }
+    void wipeIn()
+    {
+        if (canWipeIn)
+        {
+            circleWipe.Value += Time.deltaTime * wipeInSpeed;
+            if (circleWipe.Value > endValue)
+            {
+                canWipeIn = false;
+                circleWipe.Value = endValue;
+                mainCanvas.alpha = 1;
+            }
+        }
+    }
+    void wipeOut()
+    {
+        if (canWipeOut)
+        {
+            circleWipe.Value -= Time.deltaTime * wipeOutSpeed;//从1-0，大约需要1s
+            if (circleWipe.Value < 0.01f)
+            {
+                canWipeOut = false;
+                circleWipe.Value = 0;
+            }
+        }
+    }
+
     void Init()
     {
+        Save._instance.DeleteIkaCoinsAndTime();
         for (int i = 0; i < circleProgress.Length; i++) circleProgress[i].fillAmount = 0;
         //pause panel
         pauseCanvas = transform.Find("PausePanel").GetComponent<CanvasGroup>();
@@ -55,6 +100,11 @@ public class Level2UIManager : MonoBehaviour
         //over panel
         overCanvas = transform.Find("GameOverPanel").GetComponent<CanvasGroup>();
         Utility.DisableCanvas(overCanvas, 0f);
+        //转场：
+        mainCanvas = transform.GetComponent<CanvasGroup>();
+        mainCanvas.alpha = 0;
+        circleWipe.Value = 0;
+        canWipeIn = true;
 
         //cross Panel
         crossCanvas = transform.Find("CrossPanel").GetComponent<CanvasGroup>();
@@ -67,12 +117,40 @@ public class Level2UIManager : MonoBehaviour
     }
 
     // Update is called once per frame
+    void showCoins()
+    {
+        coin_ikaAmountText.text = ikaCoinsNum.ToString() + "/28";
+        if (PlayerPrefs.HasKey(MainContainer.fairyCoins))
+        {
+            coin_fairyAmountText.text = PlayerPrefs.GetInt(MainContainer.fairyCoins) + "/18";
+        }
+        else
+        {
+            coin_fairyAmountText.text = "0/18";
+        }
+    }
+    void showTime()
+    {
+        float allTime = Time.timeSinceLevelLoad;//5400s
+        gameTime = allTime;
+        int hour = (int)allTime / 3600;//1.5h --1 
+        hour %= 24;
+        int minute = (int)allTime % 3600 / 60;//30min
+        minute %= 60;
+        int second = (int)allTime % 60;
+        second %= 60;
+        gameTimeText.text = Utility.getTwoNum(hour) + ":" + Utility.getTwoNum(minute) + ":" + Utility.getTwoNum(second);
+    }
     void Update()
     {
+        showTime();
+        showCoins();
+        wipeIn();
+        wipeOut();
         Utility.ChangeVolume();
         if (!GameManager2._instance.hasOver)
         {
-            if (Input.GetKeyUp(KeyCode.Escape))
+            if (mainCanvas.alpha == 1 && Input.GetKeyUp(KeyCode.Escape))
             {
                 Pause();
             }
@@ -112,11 +190,17 @@ public class Level2UIManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false;
                 break;
             case "Quit":               
-                Time.timeScale = 1;
-                PlayerPrefs.SetInt("isFirstIn", 1);//是第一次进来
-                Save._instance.SaveLevel();//存一下是新手关的第几关
-                SceneManager.LoadScene("0_start");
+                Time.timeScale = 1;                
+                SceneManager.LoadScene("0_start_select");
+                Save._instance.SaveIkaCoinsAndTime(ikaCoinsNum, gameTime);
                 break;
         }
+    }
+
+    public void SetCoinText(int coinCount)
+    {
+        ikaCoinsNum = coinCount;
+        //data panel
+        coinText.text = Utility.getThreeNum(coinCount);        
     }
 }

@@ -56,15 +56,6 @@ public class StartSelect : MonoBehaviour
         AudioManager._instance.PlayEffect("click");
         switch (name)
         {
-            case "firstLevel":
-                OpenLevel("1_official");
-                break;
-            case "secondLevel":
-                OpenLevel("2_before_anim");
-                break;
-            case "thirdLevel":
-                OpenLevel("3_official");
-                break;
             case "sliderShow":
                 if (isOpen)
                 {
@@ -88,7 +79,7 @@ public class StartSelect : MonoBehaviour
 
                 break;
             case "home":
-                OpenLevel("0_start");
+                OpenLevel("0_start");                
                 break;
         }
     }

@@ -7,14 +7,12 @@ using UnityEngine.SceneManagement;
 public class FirstEnd : MonoBehaviour
 {
     Transform tipBoard;
-    public Image fadeImage;
     bool toEnd = false;
     // Start is called before the first frame update
     void Start()
     {
         tipBoard = transform.Find("tipBoard");
         tipBoard.gameObject.SetActive(false);
-        fadeImage.color = Color.clear;
     }
 
     // Update is called once per frame
@@ -28,8 +26,9 @@ public class FirstEnd : MonoBehaviour
     }
     IEnumerator toNext()
     {
-        fadeImage.DOFade(1, 1f);
-        yield return new WaitForSeconds(1f);
+        Save._instance.SaveFairyCoinsAndTime(Level1UIManager._instance.fairyCoinsNum,Level1UIManager._instance.gameTime);
+        Level1UIManager._instance.canWipeOut = true;
+        yield return new WaitForSeconds(2.5f);
         SceneManager.LoadScene("4_end");
     }
     private void OnTriggerEnter(Collider col)

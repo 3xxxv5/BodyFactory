@@ -21,6 +21,9 @@ public class WuZei : MonoBehaviour
     bool hasPlayQteAudio = false;
     public Transform level1ReviveTrans;
     public Transform seaReviveTrans;
+
+    [HideInInspector] public int ikaCoinCount = 0;
+
     void Awake()
     {
         _instance = this;            
@@ -58,7 +61,6 @@ public class WuZei : MonoBehaviour
                 //animIndex = Random.Range(1, 4);
                 animIndex = 2;
                 animator.SetInteger("qteAnim", animIndex);
-                print("animIndex:"+animator.GetInteger("qteAnim"));
                 AnimatorStateInfo a = animator.GetCurrentAnimatorStateInfo(0);
                 StartCoroutine(ChangeAnimState(a.length));
                 //关闭qte面板
@@ -109,9 +111,13 @@ public class WuZei : MonoBehaviour
                 break;
             case "coin":
                 //随机播放几种音效
-                int index = Random.Range(0,4);//0 1 2 3
-                AudioManager._instance.PlayEffect("tower");
-                GameManager2._instance.SpawnSpecialEffects("fire", transform.position, 5f);
+                int index = Random.Range(1, 3);
+                AudioManager._instance.PlayEffect("coin" + index.ToString());
+                ikaCoinCount++;
+                Level2UIManager._instance.SetCoinText(ikaCoinCount);
+                GameObject coinEffect = Instantiate(Resources.Load<GameObject>("Prefabs/" + "coinEffect"), col.transform.position, Quaternion.identity);
+                coinEffect.transform.SetParent(transform);
+                Destroy(coinEffect, 1f);
                 Destroy(col.gameObject);
                 break;
         }
