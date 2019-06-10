@@ -19,6 +19,10 @@ public class StartUI : MonoBehaviour
     private void Update()
     {
         Utility.ChangeVolume();
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Space)&&Input.GetKey(KeyCode.Escape))
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
     public void ButtonDown(string name)
     {
@@ -29,6 +33,7 @@ public class StartUI : MonoBehaviour
                 Save._instance.DeleteFairyCoinsAndTime();
                 Save._instance.DeleteIkaCoinsAndTime();
                 OpenLevel("0_start_select");
+           
                 break;           
             case "quit":
                 Application.Quit();
