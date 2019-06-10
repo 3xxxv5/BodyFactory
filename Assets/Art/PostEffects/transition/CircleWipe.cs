@@ -7,7 +7,6 @@ using System.Collections;
 
 namespace taecg.tools
 {
-    [AddComponentMenu("Taecg/Transition/CircleWipe")]
     public class CircleWipe : PostEffectsBase
     {
         [Header("混合度")]

@@ -14,7 +14,7 @@ public class Level1UIManager : MonoBehaviour
     public  Text coin_fairyAmountText;
     public  Text coin_ikaAmountText;
     public  Text gameTimeText;
-    float gameTime;
+    [HideInInspector]public  float gameTime;
     public Transform coins;
     //tip panel
     public  GameObject reflectPanel;
@@ -23,10 +23,14 @@ public class Level1UIManager : MonoBehaviour
     Image fadeImage;
     public CircleWipe circleWipe;
     CanvasGroup mainCanvas;
-    bool canWipeIn = false;
-    bool canWipeOut = false;
+    [HideInInspector]public  bool canWipeIn = false;
+    [HideInInspector]public  bool canWipeOut = false;
+    float endValue = 0.55f;
+    private float wipeOutSpeed = 0.5f;
+    private float wipeInSpeed = 0.5f;
 
     public Text coinText;
+    [HideInInspector] public int fairyCoinsNum;
 
     private void Awake()
     {
@@ -35,6 +39,7 @@ public class Level1UIManager : MonoBehaviour
     }
     void Init()
     {
+        Save._instance.DeleteFairyCoinsAndTime();
         gameTime = 0;
         AudioManager._instance.PlayeBGM("first");
         //pause panel
@@ -49,8 +54,6 @@ public class Level1UIManager : MonoBehaviour
     void Start()
     {
         fadeImage = transform.Find("fadeImage").GetComponent<Image>();
-        //fadeImage.color = Color.black;
-        //fadeImage.DOFade(0f, 1f);
         mainCanvas = transform.GetComponent<CanvasGroup>();
         mainCanvas.alpha = 0;
         circleWipe.Value = 0;
@@ -60,11 +63,11 @@ public class Level1UIManager : MonoBehaviour
     {
         if (canWipeIn)
         {
-            circleWipe.Value = Mathf.Lerp(circleWipe.Value, 1, Time.deltaTime);
-            if (circleWipe.Value > 0.85)
+            circleWipe.Value += Time.deltaTime * wipeInSpeed;
+            if (circleWipe.Value > endValue)
             {
                 canWipeIn = false;
-                circleWipe.Value = 1;
+                circleWipe.Value = endValue;
                 mainCanvas.alpha = 1;
             }
         }
@@ -73,9 +76,8 @@ public class Level1UIManager : MonoBehaviour
     {
         if (canWipeOut)
         {
-            mainCanvas.alpha = 0;
-            circleWipe.Value = Mathf.Lerp(circleWipe.Value, 0, Time.deltaTime);
-            if (circleWipe.Value < 0.1)
+            circleWipe.Value -= Time.deltaTime * wipeOutSpeed;//从1-0，大约需要1s
+            if (circleWipe.Value < 0.01f)
             {
                 canWipeOut = false;
                 circleWipe.Value = 0;
@@ -84,9 +86,22 @@ public class Level1UIManager : MonoBehaviour
     }
 
     // Update is called once per frame
+    void showCoins()
+    {
+        coin_fairyAmountText.text = fairyCoinsNum.ToString() + "/18";
+        if (PlayerPrefs.HasKey(MainContainer.ikaCoins))
+        {
+            coin_ikaAmountText.text = PlayerPrefs.GetInt(MainContainer.ikaCoins) + "/28";
+        }
+        else
+        {
+            coin_ikaAmountText.text = "0/28";
+        }
+    }
     void showTime()
     {
-        float allTime = Time.realtimeSinceStartup;//5400s
+        float allTime = Time.timeSinceLevelLoad;//5400s
+        gameTime = allTime;
         int hour = (int)allTime/3600;//1.5h --1 
         hour %= 24;      
         int minute = (int)allTime%3600/60;//30min
@@ -97,6 +112,7 @@ public class Level1UIManager : MonoBehaviour
     }
     void Update()
     {
+        showCoins();
         showTime();      
         wipeIn();
         wipeOut();
@@ -130,7 +146,8 @@ public class Level1UIManager : MonoBehaviour
                 break;
             case "Quit":
                 Time.timeScale = 1;               
-                SceneManager.LoadScene("0_start");
+                SceneManager.LoadScene("0_start_select");
+                Save._instance.SaveFairyCoinsAndTime(fairyCoinsNum,gameTime);
                 break;
         }
     }
@@ -162,17 +179,10 @@ public class Level1UIManager : MonoBehaviour
 
     public void SetCoinText(int coinCount)
     {
+        fairyCoinsNum = coinCount;
         coinText.text = Utility.getThreeNum(coinCount);
-        coin_fairyAmountText.text = coinCount.ToString() + "/18";
-        if (PlayerPrefs.HasKey("ikaCoins"))
-        {
-            coin_ikaAmountText.text = PlayerPrefs.GetInt("ikaCoins") + "/28";
-        }
-        else
-        {
-            coin_ikaAmountText.text = "0/28";
-        }
-
     }
+       
+
 }
 

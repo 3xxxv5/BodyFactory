@@ -1969,7 +1969,7 @@ MonoBehaviour:
   Alpha: 0.1
   fadeImage: {fileID: 2019327318}
   highlightColor: {r: 0.9433962, g: 0.27144888, b: 0.27144888, a: 0.4745098}
-  goLevel: 1_official
+  goLevel: 1_before_anim
 --- !u!1 &1389347993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,4 +2692,4 @@ MonoBehaviour:
   Alpha: 0.1
   fadeImage: {fileID: 2019327318}
   highlightColor: {r: 0.9433962, g: 0.27144888, b: 0.27144888, a: 0.4745098}
-  goLevel: 2_official
+  goLevel: 2_before_anim

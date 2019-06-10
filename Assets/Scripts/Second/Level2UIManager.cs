@@ -36,6 +36,12 @@ public class Level2UIManager : MonoBehaviour
     CanvasGroup mainCanvas;
     bool canWipeIn = false;
     bool canWipeOut = false;//当赢了要进入下一关时，设置为true
+    float endValue = 0.55f;
+    private float wipeOutSpeed = 0.5f;
+    private float wipeInSpeed = 0.5f;
+
+    [HideInInspector] public int ikaCoinsNum;
+    [HideInInspector] public float gameTime;
 
     private void Awake()
     {
@@ -54,11 +60,11 @@ public class Level2UIManager : MonoBehaviour
     {
         if (canWipeIn)
         {
-            circleWipe.Value = Mathf.Lerp(circleWipe.Value, 1, Time.deltaTime);
-            if (circleWipe.Value > 0.85)
+            circleWipe.Value += Time.deltaTime * wipeInSpeed;
+            if (circleWipe.Value > endValue)
             {
                 canWipeIn = false;
-                circleWipe.Value = 1;
+                circleWipe.Value = endValue;
                 mainCanvas.alpha = 1;
             }
         }
@@ -67,17 +73,18 @@ public class Level2UIManager : MonoBehaviour
     {
         if (canWipeOut)
         {
-            mainCanvas.alpha = 0;
-            circleWipe.Value = Mathf.Lerp(circleWipe.Value, 0, Time.deltaTime);
-            if (circleWipe.Value <0.1)
+            circleWipe.Value -= Time.deltaTime * wipeOutSpeed;//从1-0，大约需要1s
+            if (circleWipe.Value < 0.01f)
             {
                 canWipeOut = false;
                 circleWipe.Value = 0;
             }
         }
     }
+
     void Init()
     {
+        Save._instance.DeleteIkaCoinsAndTime();
         for (int i = 0; i < circleProgress.Length; i++) circleProgress[i].fillAmount = 0;
         //pause panel
         pauseCanvas = transform.Find("PausePanel").GetComponent<CanvasGroup>();
@@ -110,9 +117,22 @@ public class Level2UIManager : MonoBehaviour
     }
 
     // Update is called once per frame
+    void showCoins()
+    {
+        coin_ikaAmountText.text = ikaCoinsNum.ToString() + "/28";
+        if (PlayerPrefs.HasKey(MainContainer.fairyCoins))
+        {
+            coin_fairyAmountText.text = PlayerPrefs.GetInt(MainContainer.fairyCoins) + "/18";
+        }
+        else
+        {
+            coin_fairyAmountText.text = "0/18";
+        }
+    }
     void showTime()
     {
-        float allTime = Time.realtimeSinceStartup;//5400s
+        float allTime = Time.timeSinceLevelLoad;//5400s
+        gameTime = allTime;
         int hour = (int)allTime / 3600;//1.5h --1 
         hour %= 24;
         int minute = (int)allTime % 3600 / 60;//30min
@@ -124,12 +144,13 @@ public class Level2UIManager : MonoBehaviour
     void Update()
     {
         showTime();
+        showCoins();
         wipeIn();
         wipeOut();
         Utility.ChangeVolume();
         if (!GameManager2._instance.hasOver)
         {
-            if (Input.GetKeyUp(KeyCode.Escape))
+            if (mainCanvas.alpha == 1 && Input.GetKeyUp(KeyCode.Escape))
             {
                 Pause();
             }
@@ -169,27 +190,17 @@ public class Level2UIManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false;
                 break;
             case "Quit":               
-                Time.timeScale = 1;
-                PlayerPrefs.SetInt("isFirstIn", 1);//是第一次进来
-                Save._instance.SaveLevel();//存一下是新手关的第几关
-                SceneManager.LoadScene("0_start");
+                Time.timeScale = 1;                
+                SceneManager.LoadScene("0_start_select");
+                Save._instance.SaveIkaCoinsAndTime(ikaCoinsNum, gameTime);
                 break;
         }
     }
 
     public void SetCoinText(int coinCount)
     {
+        ikaCoinsNum = coinCount;
         //data panel
-        coinText.text = Utility.getThreeNum(coinCount);
-        //pause panel
-        coin_ikaAmountText.text = coinText.ToString() + "/28";
-        if (PlayerPrefs.HasKey("fairyCoins"))
-        {
-            coin_fairyAmountText.text = PlayerPrefs.GetInt("fairyCoins") + "/18";
-        }
-        else
-        {
-            coin_fairyAmountText.text = "0/18";
-        }
+        coinText.text = Utility.getThreeNum(coinCount);        
     }
 }

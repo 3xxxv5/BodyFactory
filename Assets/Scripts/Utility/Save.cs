@@ -114,8 +114,64 @@ public class Save: MonoBehaviour{
         }
     }
 
-    public void SaveTest(int num)
-    {      
-        PlayerPrefs.SetInt("NoBarrier",num);
+    public void SaveFairyCoinsAndTime(int fairyCoins,float fairyTime)
+    {
+        //coins
+        PlayerPrefs.SetInt(MainContainer.fairyCoins, fairyCoins);
+        if (PlayerPrefs.HasKey(MainContainer.maxFairyCoins))
+        {
+            if (fairyCoins > PlayerPrefs.GetInt(MainContainer.maxFairyCoins))
+            {
+                PlayerPrefs.SetInt(MainContainer.maxFairyCoins, fairyCoins);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt(MainContainer.maxFairyCoins, fairyCoins);
+        }
+        //time
+        PlayerPrefs.SetFloat(MainContainer.fairyTime, fairyTime);
+    }
+    public void SaveIkaCoinsAndTime(int ikaCoins,float ikaTime)
+    {
+        PlayerPrefs.SetInt(MainContainer.ikaCoins, ikaCoins);
+        if (PlayerPrefs.HasKey(MainContainer.maxIkaCoins))
+        {
+            if (ikaCoins > PlayerPrefs.GetInt(MainContainer.maxIkaCoins))
+            {
+                PlayerPrefs.SetInt(MainContainer.maxIkaCoins,ikaCoins);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt(MainContainer.maxIkaCoins, ikaCoins);
+        }
+        //time
+        PlayerPrefs.SetFloat(MainContainer.ikaTime, ikaTime);
+    }
+    public void SaveGameTime(float fairyTime,float ikaTime)
+    {
+        float gameTime = fairyTime + ikaTime;
+        if (PlayerPrefs.HasKey(MainContainer.minGameTime))
+        {
+            if (gameTime < PlayerPrefs.GetFloat(MainContainer.minGameTime))
+            {
+                PlayerPrefs.SetFloat(MainContainer.minGameTime, gameTime);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetFloat(MainContainer.minGameTime, gameTime);
+        }
+    }
+    public void DeleteFairyCoinsAndTime()
+    {
+        PlayerPrefs.DeleteKey(MainContainer.fairyCoins);
+        PlayerPrefs.DeleteKey(MainContainer.fairyTime);
+    }
+    public void DeleteIkaCoinsAndTime()
+    {
+        PlayerPrefs.DeleteKey(MainContainer.ikaCoins);
+        PlayerPrefs.DeleteKey(MainContainer.ikaTime);
     }
 }

@@ -197,13 +197,21 @@ public class GameManager2 : MonoBehaviour
         FirstPersonAIO._instance.enableCameraMovement = true;
     }
 
+    public void ToNextLevel()
+    {
+        SceneManager.LoadScene("3_end_anim");
+        Save._instance.SaveIkaCoinsAndTime(Level2UIManager._instance.ikaCoinsNum,Level2UIManager._instance.gameTime);
+        Cursor.visible = true;Cursor.lockState = CursorLockMode.None;
+    }
+
     public void CheckLevel1Win()
     {
         if (level1Hp >= 0)
         {
             AudioManager._instance.PlayEffect("gameWin");
+            ToNextLevel();
             //过场动画
-           StartCoroutine(WinAnim(level1Clip));
+            //StartCoroutine(WinAnim(level1Clip));
         }
     }
     public void CheckLevel2Win()

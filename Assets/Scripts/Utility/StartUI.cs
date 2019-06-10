@@ -26,7 +26,9 @@ public class StartUI : MonoBehaviour
         switch (name)
         {
             case "start":
-                OpenLevel("0_start_anim");
+                Save._instance.DeleteFairyCoinsAndTime();
+                Save._instance.DeleteIkaCoinsAndTime();
+                OpenLevel("0_start_select");
                 break;           
             case "quit":
                 Application.Quit();
