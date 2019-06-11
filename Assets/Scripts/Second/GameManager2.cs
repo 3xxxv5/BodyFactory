@@ -32,13 +32,13 @@ public class GameManager2 : MonoBehaviour
     public int level2foodAmountBase=0;
     public Animator dragonRoadAnim;
 
-    enum LevelNow
+    public  enum LevelNow
     {
         isLevel1,
         isLevel2,
         isLevel3
     }
-    LevelNow levelNow = LevelNow.isLevel1;
+    [HideInInspector]public  LevelNow levelNow = LevelNow.isLevel1;
     #endregion
 
     [Header("View")]

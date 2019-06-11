@@ -42,45 +42,69 @@ public class WuZei : MonoBehaviour
             animator.enabled = false;
             print("animator被禁用");
         }
-        //在qte时间内，检测组合键的按下
+        //Qte检测
         if (checkQte)
         {
-            //if (!hasPlayQteAudio)
-            //{
-            //    AudioManager._instance.PlayEffect("qteTime");//音效
-            //    hasPlayQteAudio = true;
-            //}
             if (Input.GetMouseButtonUp(1))
             {
                 pressCount++;
             }
+            //Qte成功：
             if (pressCount >= 2) {
-                FirstPersonAIO._instance.qteWin = true;//不再进行失败检测
+                FirstPersonAIO._instance.qteWin = true;//不检测失败
                 AudioManager._instance.PlayEffect("qteWin");//音效
                 //播放打击动画
-                //animIndex = Random.Range(1, 4);
-                animIndex = 2;
-                animator.SetInteger("qteAnim", animIndex);
+                animIndex = 2;     animator.SetInteger("qteAnim", animIndex);
                 AnimatorStateInfo a = animator.GetCurrentAnimatorStateInfo(0);
                 StartCoroutine(ChangeAnimState(a.length));
                 //关闭qte面板
                 DisableQtePanel();
+                //dragon的反应：－hp、替换贴图、飞走
             }
         }
     }
+
+    public  IEnumerator Qte(float qteTime)
+    {
+        //开启Qte检测
+        qteCanvas.gameObject.SetActive(true);
+        checkQte = true;   Time.timeScale = timeScale;//慢动作
+        yield return new WaitForSecondsRealtime(qteTime);
+        //Qte失败：
+        if (!FirstPersonAIO._instance.qteWin)
+        {
+            AudioManager._instance.PlayEffect("qteLose");//音效
+            DisableQtePanel();
+            //dragon的反应：死了
+            //StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, level1ReviveTrans));
+        }
+
+    }
+    void DisableQtePanel()
+    {
+        qteCanvas.gameObject.SetActive(false);
+        checkQte = false; Time.timeScale = 1;//恢复时间
+        hasPlayQteAudio = false;
+        pressCount = 0;
+        checkQteTrigger = true;
+        //此时不应该检测qte呀
+        FirstPersonAIO._instance.hasQte = false;
+    }
+
     IEnumerator ChangeAnimState(float duration)
     {
         yield return new WaitForSecondsRealtime(duration);
         animator.SetInteger("qteAnim", 0);
     }
+
     private void OnCollisionEnter(Collision col)//碰到了monster的碰撞盒
     {
         if (checkQte) return;
-        if (GameManager2._instance.canChange2Battery&& col.gameObject.layer == LayerMask.NameToLayer("battery"))
-        {           
+        if (GameManager2._instance.canChange2Battery && col.gameObject.layer == LayerMask.NameToLayer("battery"))
+        {
             GameManager2._instance.Change2BatteryView();
         }
-        if (col.gameObject.layer==LayerMask.NameToLayer("monster"))
+        if (col.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
             //眩晕特效
             GameObject spark = Instantiate(dizzySpark, sparkTrans.position, dizzySpark.transform.rotation);
@@ -97,18 +121,6 @@ public class WuZei : MonoBehaviour
             case "level2Sea":
                 StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, seaReviveTrans));
                 break;
-           case "electric":
-                AudioManager._instance.PlayEffect("dianliu");
-                print("被电击了");
-                GameManager2._instance.SpawnSpecialEffects("lightning", transform.position + transform.forward * 3, 5f);
-                StartCoroutine(GameManager2._instance.SeaDead(3f, 1f, 1f, seaReviveTrans));
-                Dragon._instance.SpawnLightning();
-                break;
-            case "dragon":
-                AudioManager._instance.PlayEffect("blood");
-                GameManager2._instance.SpawnSpecialEffects("fire", transform.position, 5f);
-                Dragon._instance.ReduceLife(1);
-                break;
             case "coin":
                 //随机播放几种音效
                 int index = Random.Range(1, 3);
@@ -122,31 +134,6 @@ public class WuZei : MonoBehaviour
                 break;
         }
     }
-
-    public  IEnumerator Qte(float qteTime)
-    {
-        qteCanvas.gameObject.SetActive(true);
-        checkQte = true;   Time.timeScale = timeScale;//慢动作
-        yield return new WaitForSecondsRealtime(qteTime);
-        AudioManager._instance.PlayEffect("");//音效
-        if (!FirstPersonAIO._instance.qteWin)
-        {
-            AudioManager._instance.PlayEffect("qteLose");//音效
-            DisableQtePanel();
-        }
-
-    }
-    void DisableQtePanel()
-    {
-        qteCanvas.gameObject.SetActive(false);
-        checkQte = false; Time.timeScale = 1;//恢复时间
-        hasPlayQteAudio = false;
-        pressCount = 0;
-        checkQteTrigger = true;
-        //此时不应该检测qte呀
-        FirstPersonAIO._instance.hasQte = false;
-    }
-
 
 
 }

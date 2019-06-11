@@ -55,6 +55,7 @@ public class FirstPersonAIO : MonoBehaviour {
     bool hitWall = false;
     bool hitBattery = false;
     bool hitCenterBall = false;
+    bool hitDragonBlood = false;
     [HideInInspector] public bool hasQte = false;
     [HideInInspector] public bool qteWin = false;
     int endIndex = -1;
@@ -121,8 +122,12 @@ public class FirstPersonAIO : MonoBehaviour {
             p1 = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 2));
             Ray monsterRay = new Ray(p1, Camera.main.transform.forward);
             Debug.DrawRay(p1, Camera.main.transform.forward, Color.green);
-            //开启monster和wall
-            wallMask = 1 << LayerMask.NameToLayer("monster") | 1 << LayerMask.NameToLayer("wall") | 1 << LayerMask.NameToLayer("centerBall") | 1 << LayerMask.NameToLayer("battery");
+            //开启射线可以射到的层
+            wallMask = 1 << LayerMask.NameToLayer("monster") 
+                | 1 << LayerMask.NameToLayer("wall") 
+                | 1 << LayerMask.NameToLayer("centerBall")
+                | 1 << LayerMask.NameToLayer("dragon")
+                | 1 << LayerMask.NameToLayer("battery");
           
             tictock += Time.deltaTime;
             if (tictock > timer)  //计时器限制，2s后才能发射下一次
@@ -191,40 +196,51 @@ public class FirstPersonAIO : MonoBehaviour {
         qteWin = false;
     }
     void Shoot(Ray monsterRay)
-    {
-        //射线检测--数组
-        RaycastHit[] monsterHits = Physics.RaycastAll(monsterRay, 3000, wallMask);
-        if (monsterHits.Length == 1)
+    {     
+        RaycastHit[] monsterHits = Physics.RaycastAll(monsterRay, 3000, wallMask);  //射到的所有物体的数组
+        if (monsterHits.Length == 1)//只射中了一个物体
         {
             switch (monsterHits[0].collider.gameObject.layer)
             {
-                case 18: AudioManager._instance.PlayEffect("gun"); GameManager2._instance.canChange2Battery = true; break;//hit monster
+                //monster
+                case 18: AudioManager._instance.PlayEffect("gun"); GameManager2._instance.canChange2Battery = true; break;
+               // wall
                 case 19: ShootTransfer(monsterHits[0]); GameManager2._instance.canChange2Battery = true; break;
-                case 25: hitBattery = true; ShootTransfer(monsterHits[0]); break;//射中也是一样移动过去
+                //battery
+                case 25: hitBattery = true; ShootTransfer(monsterHits[0]); break;
             }
         }
-        else if (monsterHits.Length > 1)//打中1个以上的物体：墙和障碍物
+        else if (monsterHits.Length > 1)//射中1个以上的物体，标记是否射中指定物体
         {
             GameManager2._instance.canChange2Battery = true;
-            for (int i = 0; i < monsterHits.Length; i++)//检测射线射中的物体中是否有 指定物体
+            for (int i = 0; i < monsterHits.Length; i++)
             {
                 switch (monsterHits[i].collider.gameObject.layer)
                 {
                     case 25: hitBattery = true; endIndex = i; break;
                     case 19: hitWall = true; endIndex = i; break;                   
                     case 18: hitMonster = true; break;
-                    case 23: hitCenterBall = true; break;                  
+                    case 23: hitCenterBall = true; break;
+                    case 14: hitDragonBlood = true;break;
                 }
             }
             if (hitWall && hitMonster)
             {
                 if (hitCenterBall)
                 {
-                    hasQte = true;//只是告诉乌贼，可以检测qte了
+                    hasQte = true;//用于设置Qte 状态下的移动速度
                     StartCoroutine(WuZei._instance.Qte(WuZei._instance.qteTime));
                 }               
             }
-            if(hitWall||hitBattery)  ShootTransfer(monsterHits[endIndex]);//不管有没有射中，tranfer总是要进行的。player只管移动。移动中发生的事情由乌贼的控制
+            if (hitWall && hitDragonBlood)
+            {
+                hasQte = true;//用于设置Qte 状态下的移动速度
+                StartCoroutine(WuZei._instance.Qte(WuZei._instance.qteTime));
+            }
+            if (hitWall || hitBattery)
+            {
+                ShootTransfer(monsterHits[endIndex]);//不管有没有射中，tranfer总是要进行的。player只管移动。移动中发生的事情由乌贼的控制
+            }
         }
     }
     void ShootTransfer(RaycastHit wallHit)

@@ -20,7 +20,6 @@ TagManager:
   - chocolateFrog
   - sea
   - electric
-  - dragon
   - level1Sea
   - level2Sea
   - Sea
@@ -28,6 +27,7 @@ TagManager:
   - turnBtn
   - coin
   - refractRotateBtn
+  - dragonBlood
   layers:
   - Default
   - TransparentFX

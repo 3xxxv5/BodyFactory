@@ -13156,6 +13156,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186250318}
   m_Mesh: {fileID: 4300550, guid: 3e2b292f2c7638b4bbba00e9757479db, type: 3}
+--- !u!1001 &188557109
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7521311113882278927, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_Name
+      value: dragonTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -199.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 61.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 59.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521311113882278923, guid: 77cee2e13e5cdb447bace9de0c8cef4b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77cee2e13e5cdb447bace9de0c8cef4b, type: 3}
 --- !u!1001 &189156659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25680,7 +25749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 154932, guid: 0627b9e08dee29a438f99b15e0bc452d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 454932, guid: 0627b9e08dee29a438f99b15e0bc452d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28384,7 +28453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &720973662
 Transform:
   m_ObjectHideFlags: 0
@@ -47303,6 +47372,7 @@ MonoBehaviour:
   level2foodAmount: 0
   level2foodAmountBase: 0
   dragonRoadAnim: {fileID: 0}
+  levelNow: 0
   hasOver: 0
   wuzei: {fileID: 985710364}
   battery: {fileID: 419443134}
@@ -79668,7 +79738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1850954434
 GameObject:
   m_ObjectHideFlags: 0
