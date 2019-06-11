@@ -147,11 +147,10 @@ public class Save: MonoBehaviour{
             PlayerPrefs.SetInt(MainContainer.maxIkaCoins, ikaCoins);
         }
         //time
-        PlayerPrefs.SetFloat(MainContainer.ikaTime, ikaTime);
+        PlayerPrefs.SetFloat(MainContainer.ikaTime, ikaTime);       
     }
-    public void SaveGameTime(float fairyTime,float ikaTime)
-    {
-        float gameTime = fairyTime + ikaTime;
+    public void SaveGameTime(float gameTime)
+    {  
         if (PlayerPrefs.HasKey(MainContainer.minGameTime))
         {
             if (gameTime < PlayerPrefs.GetFloat(MainContainer.minGameTime))

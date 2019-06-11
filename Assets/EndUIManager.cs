@@ -22,7 +22,7 @@ public class EndUIManager : MonoBehaviour
         Init();
         ShowCoins();
         ShowTime();
-        //best：
+        ShowBest();
 
     }
     void Init()
@@ -81,6 +81,7 @@ public class EndUIManager : MonoBehaviour
         int second = (int)gameTime % 60;
         second %= 60;
         timeText.text = Utility.getTwoNum(hour) + ":" + Utility.getTwoNum(minute) + ":" + Utility.getTwoNum(second);
+        Save._instance.SaveGameTime(gameTime);
     }
     void ShowBest()
     {
@@ -99,11 +100,11 @@ public class EndUIManager : MonoBehaviour
                 bestIka.gameObject.SetActive(true);
             }
         }
-        if (PlayerPrefs.HasKey(MainContainer.maxIkaCoins))
+        if (PlayerPrefs.HasKey(MainContainer.minGameTime))
         {
-            if (PlayerPrefs.GetInt(MainContainer.ikaCoins) == PlayerPrefs.GetInt(MainContainer.maxIkaCoins))
+            if (gameTime == PlayerPrefs.GetFloat(MainContainer.minGameTime))
             {
-                bestIka.gameObject.SetActive(true);
+                bestTime.gameObject.SetActive(true);
             }
         }
     }
