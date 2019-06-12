@@ -20,10 +20,13 @@ public class ClimbSphere : MonoBehaviour {
     {
         if (col.gameObject.tag.Equals("Player"))
         {
-            if (!creeper.gameObject.activeSelf) return;//向上的藤已经出现，且主角进入可爬行区域，设置状态为可爬行
+            if (creeper.GetComponent<Renderer>().material.GetFloat("_dissolveAmount")<0.9f) return;//向上的藤已经出现，且主角进入可爬行区域，设置状态为可爬行
             playerMove.canClimb = true;
             tipBoard.gameObject.SetActive(true);
-            climbStop.cubeBoard.GetComponent<Collider>().isTrigger = true;
+            for (int i = 0; i < climbStop.cubeColliders.Length; i++)
+            {
+                climbStop.cubeColliders[i].isTrigger = true;
+            }           
         }
     }
     private void OnTriggerExit(Collider col)

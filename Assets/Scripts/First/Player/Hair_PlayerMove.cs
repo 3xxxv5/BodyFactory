@@ -69,7 +69,19 @@ public class Hair_PlayerMove : MonoBehaviour
         {
             v = 0;
         }
-        float h = Input.GetAxis("Horizontal");
+        float h;
+        if (Input.GetKey(KeyCode.A))
+        {
+            h = -1;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            h = 1;
+        }
+        else
+        {
+            h = 0;
+        }
         //动画
         anim.SetFloat("Speed", v);//speed>0.1前进，<-0.1后退       
         anim.SetFloat("Direction", h);

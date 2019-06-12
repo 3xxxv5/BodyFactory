@@ -70,8 +70,15 @@ public class RayEmitter : MonoBehaviour {
         {
             // && hitInfo.collider.gameObject.GetComponent<Fairy>() != null && hitInfo.collider.gameObject.GetComponent<Fairy>().isPicked)
             //射中了某个物体
-            //endY = hitInfo.transform.position.y;
-            endY = hitInfo.point.y;
+            if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("sphereBoard"))
+            {
+                endY = hitInfo.point.y;
+            }
+            else
+            {
+                endY = hitInfo.transform.position.y;
+            }
+         
             UpdateLastHit(hitInfo);
         }
         else

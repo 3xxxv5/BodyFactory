@@ -131,6 +131,7 @@ public class FreeCamera : MonoBehaviour {
     }
     void ActivateGo(Transform trans)
     {
+        if (trans == null) return;
         Renderer[] renderers = trans.GetComponentsInChildren<Renderer>();
         foreach (var i in renderers) i.enabled = true;//好像是因为禁用了之后就打不到了
         //trans.GetComponent<Renderer>().enabled = true;

@@ -21,6 +21,7 @@ public class DragonBlood : MonoBehaviour
         if (col.gameObject.layer == LayerMask.NameToLayer("wuzei"))
         {           
             dragon.CollideBlood(1,dragonBlood);
+            Destroy(gameObject);//销毁碰撞体
         }
     }
 }

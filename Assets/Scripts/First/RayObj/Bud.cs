@@ -18,6 +18,8 @@ public class Bud : MonoBehaviour {
     public Color creeperColor;
     [HideInInspector]public  bool hasLighted = false;
 
+    public GameObject door;
+
     private void Awake()
     {
         leaves = GetComponentsInChildren<TagLeave>();        
@@ -31,10 +33,13 @@ public class Bud : MonoBehaviour {
         }
         creeper = transform.Find("creeper");
         creeper.gameObject.AddComponent<HighlightableObject>();
-        creeperRenderer = creeper.GetComponent<Renderer>();
-        creeperRenderer.material = Resources.Load<Material>(MainContainer.materialFolder + "myDissolve");
-        creeperRenderer.material.SetFloat("_dissolveAmount", growIndex);
-        creeper.gameObject.SetActive(false);
+        creeperRenderer = creeper.GetComponent<MeshRenderer>();
+        creeperRenderer.material.SetFloat("_dissolveAmount", 0);
+
+        if (door != null)
+        {
+            door.gameObject.SetActive(true);
+        }
 
     }	
 
@@ -69,11 +74,14 @@ public class Bud : MonoBehaviour {
     {
         if (nowRayNum >= needRayNum && ! hasGrowrn)
         {
-            AudioManager._instance.PlayEffect("creeper");
-            creeper.gameObject.SetActive(true);
+            AudioManager._instance.PlayEffect("creeper");   
             startShow = true;
             //StartCoroutine(HighlightCreeper());
-            hasGrowrn = true;           
+            hasGrowrn = true;
+            if (door != null)
+            {
+                door.gameObject.SetActive(false);
+            }
         }       
     }
 

@@ -28,6 +28,7 @@ TagManager:
   - coin
   - refractRotateBtn
   - dragonBlood
+  - dragon
   layers:
   - Default
   - TransparentFX
@@ -45,8 +46,8 @@ TagManager:
   - checkPoint
   - dragon
   - coin
-  - FogVolumeSurrogate
-  - FogVolumeUniform
+  - 
+  - 
   - monster
   - wall
   - ImageEffect
