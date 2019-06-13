@@ -64,6 +64,7 @@ public class GameManager2 : MonoBehaviour
     {
         levelNow = LevelNow.isLevel3;
         StartCoroutine(DragonEmitManager._instance.SpawnLightningBall());
+        StartCoroutine(DragonEmitManager._instance.SpawnCircleBall());
     }
     void Update()
     {
@@ -170,7 +171,9 @@ public class GameManager2 : MonoBehaviour
 
         Level2UIManager._instance.fadeImage.DOFade(0f,toClear);
         AudioManager._instance.PlayEffect("revise");//音效
+
         yield return new WaitForSeconds(toClear);       
+
         FirstPersonAIO._instance.enableCameraMovement = true;
     }
 
