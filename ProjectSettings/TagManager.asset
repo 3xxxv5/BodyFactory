@@ -28,6 +28,7 @@ TagManager:
   - dragon
   - fixedTurnBtn
   - fixedRotateBtn
+  - ballVanishTrigger
   layers:
   - Default
   - TransparentFX

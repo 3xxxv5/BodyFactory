@@ -34,11 +34,6 @@ public class DragonManager : MonoBehaviour
         AudioManager._instance.PlayEffect("");//电鳗逃跑的声音
 
         GameManager2._instance.level1foodNum -= 1;
-        //Collider[] colliders = dragon.transform.GetComponentsInChildren<Collider>();
-        //for (int i = 0; i < colliders.Length; i++)
-        //{
-        //    colliders[i].enabled = false;
-        //}
         dragon.gameObject.SetActive(false);//电鳗隐藏
         yield return new WaitForSeconds(toClear);
 
@@ -46,13 +41,7 @@ public class DragonManager : MonoBehaviour
     }
     public void Level2Show()
     {
-        print("电鳗又出现了");
         dragon.gameObject.SetActive(true);
-        //Collider[] colliders = dragon.transform.GetComponentsInChildren<Collider>();
-        //for (int i = 0; i < colliders.Length; i++)
-        //{
-        //    colliders[i].enabled = true;
-        //}     
         dragonRoadAnim.SetBool("collide",true);
     }
 }

@@ -231,7 +231,7 @@ public class FirstPersonAIO : MonoBehaviour {
                     case 19: hitWall = true; endIndex = i; break;
                     case 25: hitBattery = true; endIndex = i; break;
                     case 29: hitDoor = true;endIndex = i;print("射中门了"); break;
-                    case 17: hitSea = true; endIndex = i; print("射中海了"); break;             
+                    case 17: hitSea = true; endIndex = i;break;             
                     case 18: hitMonster = true; break;
                     case 23: hitCenterBall = true; break;
                     case 14: hitDragonBlood = true;break;

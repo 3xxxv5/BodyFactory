@@ -120,7 +120,7 @@ public class WuZei : MonoBehaviour
                         StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, level1ReviveTrans));
                         break;
                     case GameManager2.LevelNow.isLevel3:
-                        StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, seaReviveTrans));
+                        StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, level1ReviveTrans));
                         break;
                 }             
                 break;

@@ -63,6 +63,7 @@ public class GameManager2 : MonoBehaviour
     public void Level3_Init()
     {
         levelNow = LevelNow.isLevel3;
+        StartCoroutine(DragonEmitManager._instance.SpawnLightningBall());
     }
     void Update()
     {
@@ -106,7 +107,6 @@ public class GameManager2 : MonoBehaviour
             if (EmitManager._instance.hasAllSpawned && level1Hp >= 0 && level1foodNum <= 0)
             {
                 AudioManager._instance.PlayEffect("gameWin");
-                print("开始播过场动画了");
                 StartCoroutine(TimelineManager2._instance.Level1WinAnim(TimelineManager2._instance.level1Clip));                //过场动画
                 hasWin1 = true;
             }
@@ -145,14 +145,14 @@ public class GameManager2 : MonoBehaviour
     }
     void CheckLevel3Win()
     {
-        if (!hasWin2)
+        if (DragonManager._instance.dragon.hasDead)
         {
-            if (DragonManager._instance.dragon.hasDead)
+            if (!hasWin3)
             {
                 print("赢了");
                 StartCoroutine(TimelineManager2._instance.level3WinAnim()); //过场动画
-            }
-            hasWin2 = true;
+                hasWin3 = true;
+            }            
         }
     }
     

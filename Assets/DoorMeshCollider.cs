@@ -24,7 +24,6 @@ public class DoorMeshCollider : MonoBehaviour
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("dragon"))
         {
-            print("碰到龙了");
               for (int i = 0; i < doorChips.Length; i++)
             {
                 doorChips[i].isKinematic = false;

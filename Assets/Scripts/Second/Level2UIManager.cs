@@ -34,6 +34,7 @@ public class Level2UIManager : MonoBehaviour
     public Transform coins;
     //转场动画
     public CircleWipe circleWipe;
+    public CircleWipe circleWipeOutMask;
     CanvasGroup mainCanvas;
     [HideInInspector]public  bool canWipeIn = false;
     [HideInInspector]public bool canWipeOut = false;//当赢了要进入下一关时，设置为true
@@ -74,11 +75,11 @@ public class Level2UIManager : MonoBehaviour
     {
         if (canWipeOut)
         {
-            circleWipe.Value -= Time.deltaTime * wipeOutSpeed;//从1-0，大约需要1s
-            if (circleWipe.Value < 0.01f)
+            circleWipeOutMask.Value -= Time.deltaTime * wipeOutSpeed;//从1-0，大约需要1s
+            if (circleWipeOutMask.Value < 0.01f)
             {
                 canWipeOut = false;
-                circleWipe.Value = 0;
+                circleWipeOutMask.Value = 0;
             }
         }
     }
@@ -101,6 +102,7 @@ public class Level2UIManager : MonoBehaviour
         mainCanvas = transform.GetComponent<CanvasGroup>();
         mainCanvas.alpha = 0;
         circleWipe.Value = 0;
+        circleWipeOutMask.Value = 1;
         canWipeIn = true;
 
         //cross Panel

@@ -13,6 +13,7 @@ public class Dragon : MonoBehaviour
     Material[] mats;
     public GameObject attackEffect;
     public GameObject lightningEffect;
+
     enum DargonState
     {
         dargonIdle,
@@ -102,7 +103,8 @@ public class Dragon : MonoBehaviour
         }
         //死了
         else
-        {
+        {   //播放音效
+            AudioManager._instance.PlayEffect("blood");
             hasDead = true;            
         }        
     }
@@ -113,10 +115,13 @@ public class Dragon : MonoBehaviour
         SetAllMatParams(0);
         //切换动画
         dragonState = DargonState.dargonDead;
-        animator.SetInteger("dragonState", (int)dragonState);
-        //播放音效
-        AudioManager._instance.PlayEffect("blood");
+        animator.SetInteger("dragonState", (int)dragonState);      
         //生成爆炸特效
+        StartCoroutine(WaitToSpawnEffect());
+    }
+    IEnumerator WaitToSpawnEffect()
+    {
+        yield return new WaitForSeconds(2f);
         dragonExplodeEffect.SetActive(true);
         Destroy(dragonExplodeEffect, 2f);
     }
@@ -139,11 +144,10 @@ public class Dragon : MonoBehaviour
                 StartCoroutine(GameManager2._instance.SeaDead(3f, 1f, 1f, WuZei._instance.level1ReviveTrans));
                 break;
             case GameManager2.LevelNow.isLevel3:
-                StartCoroutine(GameManager2._instance.SeaDead(3f, 1f, 1f, WuZei._instance.seaReviveTrans));
+                StartCoroutine(GameManager2._instance.SeaDead(3f, 1f, 1f, WuZei._instance.level1ReviveTrans));
                 break;
         }       
     }
 
-
-
+   
 }

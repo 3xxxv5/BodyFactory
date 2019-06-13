@@ -50,9 +50,9 @@ Material:
     m_Floats:
     - _back_intensity: 1
     - _ch_intensity: 1
-    - _ct_intensity: 1
+    - _ct_intensity: 0
     - _head_intensity: 1
-    - _ht_intensity: 1
+    - _ht_intensity: 0
     - _tail_intensity: 1
     - _total_intensity: 0.8
     m_Colors:

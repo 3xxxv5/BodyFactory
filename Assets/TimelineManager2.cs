@@ -64,19 +64,19 @@ public class TimelineManager2 : MonoBehaviour
     {
         animPaused = true;
         TurnBlack();
-        yield return new WaitForSeconds(Level2UIManager._instance.toBlackTime);
+        yield return new WaitForSeconds(1);
         OpenAnimCamera(level1Camera);
         clip.Play();
         TurnClear();
-        yield return new WaitForSeconds(Level2UIManager._instance.toClearTime);
-        yield return new WaitForSeconds(((float)clip.duration - Level2UIManager._instance.toClearTime) * 0.9f);
+        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(((float)clip.duration - 1) * 0.9f);
         TurnBlack();
-        yield return new WaitForSeconds(Level2UIManager._instance.toBlackTime);
+        yield return new WaitForSeconds(1);
         OpenPlayerCamera(level1Camera);
         GameManager2._instance.ChangeSea();
         Level2UIManager._instance.ResetSlider();
         TurnClear();
-        yield return new WaitForSeconds(Level2UIManager._instance.toClearTime);
+        yield return new WaitForSeconds(1);
         GameManager2._instance.Level2_Init();
         animPaused = false;
     }
@@ -110,7 +110,7 @@ public class TimelineManager2 : MonoBehaviour
 
         //进入下一关
         Level2UIManager._instance.canWipeOut = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         GameManager2._instance.ToNextLevel();
         animPaused = false;
     }
