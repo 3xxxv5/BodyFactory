@@ -9,11 +9,12 @@ public class DragonElectric : MonoBehaviour
     {
         dragon = transform.parent.GetComponent<Dragon>();
     }
-    private void OnCollisionEnter(Collision col)
+    private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("wuzei"))
-        {          
-            dragon.CollideElectric();        
+        {
+            print("触电了");
+            dragon.CollideElectric(transform.position);        
         }
     }
 }

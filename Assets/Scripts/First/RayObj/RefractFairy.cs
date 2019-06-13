@@ -9,7 +9,7 @@ public class RefractFairy : Fairy
     RefractRayEmitter[] refractRays;
     protected Button rotateButton;
 
-    void Awake() {
+    public void Awake() {
         fairySorts = FairySorts.Refract;
         base.Init(); 
         playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<Hair_PlayerMove>();
@@ -18,7 +18,7 @@ public class RefractFairy : Fairy
         rotateButton = GameObject.FindWithTag("refractRotateBtn").GetComponent<Button>();
         rotateButton.onClick.AddListener(RotateFairy);
     }
-    void InitRefractRays()
+    public void InitRefractRays()
     {
         refractRays = transform.GetComponentsInChildren<RefractRayEmitter>();
 
@@ -40,8 +40,8 @@ public class RefractFairy : Fairy
             refractRays[i].startPoint = transform.position;
         }
     }
-    
-    protected override void FollowTarget()
+
+    public override void FollowTarget()
     {
         if (!canFollow) return;
         if (!isPicked)
@@ -50,7 +50,7 @@ public class RefractFairy : Fairy
             transform.forward = Vector3.Lerp(transform.forward, playerMove.transform.forward, Time.deltaTime);
         }
     }
-    protected void RotateFairy()
+    public void RotateFairy()
     {
         if (truePicked)
         {
@@ -63,7 +63,7 @@ public class RefractFairy : Fairy
         }
     }
 
-    protected override void RenderRay()
+    public override void RenderRay()
     {
         base.RenderRay();
         for (int i = 0; i < 2; i++)
@@ -79,7 +79,7 @@ public class RefractFairy : Fairy
         }
     }
 
-    protected override void MoveFairy()
+    public override void MoveFairy()
     {        
         //显示可移动的点阵
         ShowMovePoint();
@@ -111,7 +111,7 @@ public class RefractFairy : Fairy
         }
     }
 
-    protected override void ShowMovePoint()
+    public override void ShowMovePoint()
     {
         if (truePicked)
         {

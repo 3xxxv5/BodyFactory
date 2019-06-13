@@ -11,23 +11,23 @@ public class EmitManager : MonoBehaviour
     public float waveRate = 5;
     public MyQueue[] FirstLevelWave;
     public MyQueue[] SecondLevelWave;
+    [HideInInspector]public bool hasAllSpawned = false;
 
     private void Awake()
     {
         _instance = this;
-    }
-    void Start()
-    {
-        Init();
-        StartCoroutine(SpawnWave1(FirstLevelWave, 1));
+
+        //获取第一关全部的食物数量，用于UI的wave slider显示
+        CountAmount(FirstLevelWave, ref GameManager2._instance.level1foodBase);
+
+        //开始掉落第一关的食物
+        StartCoroutine(SpawnWave(FirstLevelWave));
+
+        //设置光圈的初始scale为0，隐藏
         lightCircleAnim.transform.localScale = Vector3.zero;
         dragonCircleAnim.transform.localScale = Vector3.zero;
     }
-    void Init()
-    {
-        //获取第一关全部的食物数量
-        CountAmount(FirstLevelWave, ref GameManager2._instance.level1foodAmountBase);
-    }
+
     public void CountAmount(MyQueue[] levelWave, ref int amount)
     {
         for (int v = 0; v < levelWave.Length; v++)  {
@@ -39,98 +39,65 @@ public class EmitManager : MonoBehaviour
         }
     }
 
-    public IEnumerator SpawnWave1(MyQueue[] levelWave, int level)
+    public IEnumerator SpawnWave(MyQueue[] levelWave )
     {
-        for (int v = 0; v < levelWave.Length; v++)
+        hasAllSpawned = false;
+        for (int v = 0; v < levelWave.Length;v++ )
         {         
-            for (int i = 0; i < levelWave[v].count; i++)//小队里怪物的个数
+            for (int i=0; i < levelWave[v].count;i++ )//小队里怪物的个数
             {
-                SpawnOne(levelWave[v].foodPrefab);//直接生成第一个。生成第3个后还要等10s吗？是的
-                yield return new WaitForSeconds(levelWave[v].rate);//等10s           
+                SpawnFood(levelWave[v].foodPrefab);//直接生成第一个。生成最后一个后还要等10s吗？是的
+                switch (GameManager2._instance.levelNow)
+                {
+                    case GameManager2.LevelNow.isLevel1:
+                        GameManager2._instance.level1foodNum++;
+                        break;
+                    case GameManager2.LevelNow.isLevel2:
+                        GameManager2._instance.level2foodNum++;
+                        break;
+                }
+                yield return new WaitForSeconds(levelWave[v].rate);//等10s     
             }
             if (v != levelWave.Length - 1)
             {
-                yield return new WaitForSeconds(waveRate);//每一波之间要等的时间
+                yield return new WaitForSeconds(waveRate);
             }
         }
-        //全部发射完后进行检测
-        GameManager2._instance.CheckWin(level);
-    }
-    public IEnumerator SpawnWave2(MyQueue[] levelWave, int level)
+        hasAllSpawned = true;
+    } 
+
+    void SpawnFood(GameObject prefab)
     {
-        for (int v = 0; v < levelWave.Length; v++)
+        if (!FirstPersonAIO._instance.gameOver)
         {
-            for (int i = 0; i < levelWave[v].count; i++)//小队里怪物的个数
-            {
-                SpawnTwo(levelWave[v].foodPrefab);//直接生成第一个。生成第3个后还要等10s吗？是的
-                yield return new WaitForSeconds(levelWave[v].rate);//等10s           
-            }
-            if (v != levelWave.Length - 1)
-            {
-                yield return new WaitForSeconds(waveRate);//每一波之间要等的时间
-            }
-        }
-        //全部发射完后进行检测
-        GameManager2._instance.CheckWin(level);
-    }
-
-    void SpawnOne(GameObject prefab)
-    {
-        if (!FirstPersonAIO._instance.gameOver)
-        {       
-            if (prefab.tag.Equals("chocolateFrog"))
-            {
-                AudioManager._instance.PlayEffect("frog");
-            }
-            else
-            {
-                AudioManager._instance.PlayEffect("foodDrop");
-            }
-            int random_x = Random.Range(-randomRange, randomRange);
-            int random_z = Random.Range(-randomRange, randomRange);
-            GameManager2._instance.level1foodAmount++;
-            Vector3 spawnPos = transform.position + new Vector3(random_x, 0, random_z);
-            if (prefab.tag.Equals("dragon"))
-            {              
-                dragonCircleAnim.SetTrigger("showCircle");
-                StartCoroutine(WaitSpawn(prefab, spawnPos, 0f));
-            }
-            else
-            {
-                lightCircleAnim.transform.position = spawnPos + Vector3.up;
-                lightCircleAnim.SetTrigger("showCircle");
-                StartCoroutine(WaitSpawn(prefab, spawnPos, 0.5f));
-            }   
-
-        }
-    }
-    void SpawnTwo(GameObject prefab)
-    {
-        if (!FirstPersonAIO._instance.gameOver)
-        { 
-            GameManager2._instance.level2foodAmount++;
-            if (prefab.tag.Equals("chocolateFrog"))
-            {
-                AudioManager._instance.PlayEffect("frog");
-            }
-            else if (prefab.tag.Equals("dragonRoad"))
-            {
-                AudioManager._instance.PlayEffect("skr");
-                FirstPersonAIO._instance.attackDragon = true;
-            }
-            else
-            {
-                AudioManager._instance.PlayEffect("foodDrop");
-            }
-
             int random_x = Random.Range(-randomRange, randomRange);
             int random_z = Random.Range(-randomRange, randomRange);
             Vector3 spawnPos = transform.position + new Vector3(random_x, 0, random_z);
-            lightCircleAnim.transform.position = spawnPos + Vector3.up;
-            lightCircleAnim.SetTrigger("showCircle");
-            StartCoroutine(WaitSpawn(prefab, spawnPos,0.5f));         
-
+            switch (prefab.tag)
+            {
+                case "chocolateFrog":
+                    AudioManager._instance.PlayEffect("frog");
+                    ShowLightCircle(prefab, spawnPos);
+                    break;
+                case "dragon":
+                    AudioManager._instance.PlayEffect("skr");
+                    FirstPersonAIO._instance.attackDragon = true;
+                    dragonCircleAnim.SetTrigger("showCircle");
+                    StartCoroutine(WaitSpawn(prefab, spawnPos, 0f));
+                    break;
+                default:
+                    AudioManager._instance.PlayEffect("foodDrop");
+                    ShowLightCircle(prefab,spawnPos);
+                    break;
+            }
         }
+    }
+
+    void ShowLightCircle(GameObject prefab, Vector3 spawnPos)
+    {
+        lightCircleAnim.transform.position = spawnPos + Vector3.up;
+        lightCircleAnim.SetTrigger("showCircle");
+        StartCoroutine(WaitSpawn(prefab, spawnPos, 0.5f));
     }
 
     IEnumerator WaitSpawn(GameObject prefab,Vector3 spawnPos,float time)
@@ -138,5 +105,6 @@ public class EmitManager : MonoBehaviour
         yield return new WaitForSeconds(time);
         Instantiate(prefab, spawnPos, prefab.transform.rotation);
     }
+
 }
 

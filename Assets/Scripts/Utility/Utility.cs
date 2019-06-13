@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public enum FairySorts
 {
     Reflect,
-    Refract
+    Refract,
+    FixedReflect,
 }
 public class Utility : MonoBehaviour
 {

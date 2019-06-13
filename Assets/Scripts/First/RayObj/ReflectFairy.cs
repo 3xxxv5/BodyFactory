@@ -8,22 +8,27 @@ public class ReflectFairy : Fairy
     ReflectRayEmitter reflectRay;
     const int dirNum = 8;
     Vector3 disToTarget;
-    protected Button rotateButton;
-    protected Button overTurnButton;
+    public  Button rotateButton;
+    public Button overTurnButton;
     
-    void Awake () {
-        fairySorts = FairySorts.Reflect;
+    public  void  Awake () {
+      
         base.Init();
+        InitButtons();
         playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<Hair_PlayerMove>();     
         InitReflectRay();
-
+      
+    }
+    public virtual  void InitButtons()
+    {
+        fairySorts = FairySorts.Reflect;
         rotateButton = GameObject.FindWithTag("rotateBtn").GetComponent<Button>();
         rotateButton.onClick.AddListener(RotateFairy);
         overTurnButton = GameObject.FindWithTag("turnBtn").GetComponent<Button>();
         overTurnButton.onClick.AddListener(OverTurnFairy);
     }
     
-    protected virtual  void InitReflectRay()
+    public  virtual  void InitReflectRay()
     {
         reflectRay = GetComponentInChildren<ReflectRayEmitter>();
         reflectRay.startPoint = transform.position;
@@ -37,7 +42,7 @@ public class ReflectFairy : Fairy
         };
     }
 
-    protected override void FollowTarget()
+    public  override void FollowTarget()
     {
         if (!canFollow) return;
         if (!isPicked)
@@ -47,7 +52,7 @@ public class ReflectFairy : Fairy
         }
     }
 
-    protected  void RotateFairy()
+    public   void RotateFairy()
     {
         if (truePicked)
         {
@@ -58,7 +63,7 @@ public class ReflectFairy : Fairy
             reflectRay.index %= 8;
         }        
     }
-    protected void OverTurnFairy()
+    public  void OverTurnFairy()
     {
         if (truePicked)
         {
@@ -70,7 +75,7 @@ public class ReflectFairy : Fairy
         }
     }
 
-    protected override void RenderRay()
+    public  override void RenderRay()
     {
         base.RenderRay();
         if (rayHited)
@@ -83,7 +88,7 @@ public class ReflectFairy : Fairy
         }
     }
     
-    protected override void MoveFairy()
+    public  override void MoveFairy()
     {
         //显示可移动的点阵
         ShowMovePoint();
@@ -116,7 +121,7 @@ public class ReflectFairy : Fairy
         }
     }
   
-    protected override void ShowMovePoint()
+    public  override void ShowMovePoint()
     {
         if (truePicked)
         {

@@ -12,16 +12,28 @@ public class DragonBlood : MonoBehaviour
 {
     private Dragon dragon;
     public DargonBloodState dragonBlood;//设置自己的属性，被攻击后调整相应的mat参数
+    bool canCollide = true;
+
     private void Awake()
     {
         dragon = transform.parent.GetComponent<Dragon>();
+        print(dragon.gameObject.name);
     }
-    private void OnCollisionEnter(Collision col)
+    private void OnTriggerEnter(Collider col)
     {
+        if (!canCollide) return;
         if (col.gameObject.layer == LayerMask.NameToLayer("wuzei"))
-        {           
-            dragon.CollideBlood(1,dragonBlood);
+        {
+            print("掉血了");
+            dragon.CollideBlood(1,dragonBlood,transform.position);
             Destroy(gameObject);//销毁碰撞体
         }
+        canCollide = false;//碰撞一次之后先禁用1s
+        StartCoroutine(waitToCollide(1));
+    }
+    IEnumerator waitToCollide(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canCollide = true;
     }
 }

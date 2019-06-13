@@ -100,9 +100,9 @@ public class WuZei : MonoBehaviour
     private void OnCollisionEnter(Collision col)//碰到了monster的碰撞盒
     {
         if (checkQte) return;
-        if (GameManager2._instance.canChange2Battery && col.gameObject.layer == LayerMask.NameToLayer("battery"))
+        if (ShootManager._instance.canChange2Battery && col.gameObject.layer == LayerMask.NameToLayer("battery"))
         {
-            GameManager2._instance.Change2BatteryView();
+            ShootManager._instance.Change2BatteryView();
         }
         if (col.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
@@ -112,19 +112,21 @@ public class WuZei : MonoBehaviour
         }
         switch (col.gameObject.tag)
         {
-            case "sea":
-                StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, seaReviveTrans));
-                break;
-            case "level1Sea":
-                StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, level1ReviveTrans));
-                break;
-            case "level2Sea":
-                StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, seaReviveTrans));
+            case "Sea":
+                switch (GameManager2._instance.levelNow)
+                {
+                    case GameManager2.LevelNow.isLevel1:
+                    case GameManager2.LevelNow.isLevel2:
+                        StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, level1ReviveTrans));
+                        break;
+                    case GameManager2.LevelNow.isLevel3:
+                        StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 1f, seaReviveTrans));
+                        break;
+                }             
                 break;
             case "coin":
-                //随机播放几种音效
                 int index = Random.Range(1, 3);
-                AudioManager._instance.PlayEffect("coin" + index.ToString());
+                AudioManager._instance.PlayEffect("coin" + index.ToString());                //随机播放几种音效
                 ikaCoinCount++;
                 Level2UIManager._instance.SetCoinText(ikaCoinCount);
                 GameObject coinEffect = Instantiate(Resources.Load<GameObject>("Prefabs/" + "coinEffect"), col.transform.position, Quaternion.identity);

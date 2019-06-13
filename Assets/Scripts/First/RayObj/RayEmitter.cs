@@ -77,8 +77,7 @@ public class RayEmitter : MonoBehaviour {
             else
             {
                 endY = hitInfo.transform.position.y;
-            }
-         
+            }         
             UpdateLastHit(hitInfo);
         }
         else

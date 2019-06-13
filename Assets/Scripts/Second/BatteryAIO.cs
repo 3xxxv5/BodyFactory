@@ -128,7 +128,7 @@ public class BatteryAIO : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            GameManager2._instance.Change2PlayerView();
+            ShootManager._instance.Change2PlayerView();
 
         }
     }   

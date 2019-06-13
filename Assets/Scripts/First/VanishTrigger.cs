@@ -36,7 +36,6 @@ public class VanishTrigger : MonoBehaviour
     {
         if (col.tag.Equals("Player"))
         {
-            print("主角进入vanishTrigger");
             //路消失
             startVanish = true;
             //光柱消失

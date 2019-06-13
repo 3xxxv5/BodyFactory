@@ -35,7 +35,7 @@ public class Fairy : MonoBehaviour {
     }
     public FairyState fairyState = FairyState.Idle;
 
-    protected virtual void Init()
+    public  virtual void Init()
     {       
         anim = transform.Find("elf").GetComponent<Animator>();
         movePoint = Resources.Load<GameObject>("Prefabs/movePoint");
@@ -49,7 +49,7 @@ public class Fairy : MonoBehaviour {
         }
 
     }
-    protected   void Update () {
+    public    void Update () {
         //显示提示板
         ShowTipBoard();
         //跟随主角
@@ -60,7 +60,7 @@ public class Fairy : MonoBehaviour {
         MoveFairy();       
     }
 
-   protected void ShowTipBoard()
+   public  void ShowTipBoard()
     {
         if (truePicked)
         {
@@ -89,26 +89,26 @@ public class Fairy : MonoBehaviour {
         }       
     }
 
-    protected virtual void FollowTarget()
+    public  virtual void FollowTarget()
     {
         if (!canFollow) return;
     }
-   protected virtual void MoveFairy()
+   public  virtual void MoveFairy()
     {
 
     }
 
-    protected virtual void ShowMovePoint()
+    public  virtual void ShowMovePoint()
     {
 
     }
-    protected virtual void InputResponse(Vector3 dir)
+    public  virtual void InputResponse(Vector3 dir)
     {
         AudioManager._instance.PlayEffect("move");
         targetPos = transform.position + dir;
         canMove = true;
     }
-    protected virtual void SetPointsPos(int maxOffest, int minOffset, float baseAxis, Vector3[] axisArray, bool[] showArray, Vector3 uniform, float oriAxis, Vector3 ori)
+    public  virtual void SetPointsPos(int maxOffest, int minOffset, float baseAxis, Vector3[] axisArray, bool[] showArray, Vector3 uniform, float oriAxis, Vector3 ori)
     {
         int yMax = Mathf.RoundToInt(baseAxis + maxOffest) - Mathf.RoundToInt(oriAxis);
         int yMin = Mathf.RoundToInt(baseAxis - minOffset) - Mathf.RoundToInt(oriAxis);
@@ -133,14 +133,14 @@ public class Fairy : MonoBehaviour {
             oriShow = true;
         }
     }
-    protected virtual void InitPointsArray()
+    public  virtual void InitPointsArray()
     {
         for (int i = 0; i < yShow.Length; i++) yShow[i] = false;
         for (int i = 0; i < xShow.Length; i++) xShow[i] = false;
         for (int i = 0; i < zShow.Length; i++) zShow[i] = false;
     }  
 
-    protected virtual void RenderRay()
+    public  virtual void RenderRay()
     {
         if (hitRay > 0)
         {

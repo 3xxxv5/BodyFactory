@@ -5,33 +5,24 @@ using UnityEngine.Playables;
 public class TimelineManager : MonoBehaviour {
     PlayableDirector BudCameraAnim;
     PlayableDirector BudBlackAnim;
-    PlayableDirector IntroPlayerAnim;
-    PlayableDirector IntroBlackAnim;
     public Bud budTrigger;
     bool hasPlay = false;
-    Hair_PlayerMove playerMove;
+    public static bool animPaused=false;
 	void Start () {
         BudCameraAnim = transform.Find("BudCameraAnim").GetComponent<PlayableDirector>();
-        BudBlackAnim = transform.Find("BudBlackAnim").GetComponent<PlayableDirector>();
-        IntroPlayerAnim = transform.Find("IntroPlayerAnim").GetComponent<PlayableDirector>();
-        IntroBlackAnim = transform.Find("IntroBlackAnim").GetComponent<PlayableDirector>();
-        playerMove = GameObject.FindWithTag("Player").GetComponent<Hair_PlayerMove>();
+        BudBlackAnim = transform.Find("BudBlackAnim").GetComponent<PlayableDirector>();      
 	}
 	
 
 	void Update () {
 
-        if (BudCameraAnim.state == PlayState.Playing||IntroPlayerAnim.state==PlayState.Playing)
+        if (BudCameraAnim.state == PlayState.Playing)
         {
-            playerMove.animPaused = true;
-            if (IntroPlayerAnim.state == PlayState.Playing && playerMove.animPaused)
-            {
-                playerMove.transform.position = new Vector3(playerMove.transform.position.x, 0.25f, playerMove.transform.position.z);
-            }
+           animPaused = true;
         }
         else
         {
-            playerMove.animPaused = false;
+           animPaused = false;
         }
 
         if (budTrigger != null)

@@ -12,12 +12,14 @@ public class BigBullet : MonoBehaviour
 
             if (col.gameObject.tag.Equals("chocolateFrog"))
             {
-                StartCoroutine(GameManager2._instance.ChangeAllDropSpeed());//巧克力蛙buff       
-                GameManager2._instance.SpawnSpecialEffects("frogFrost", transform.position,0.5f);
+                StartCoroutine(MonsterManager._instance.ChangeAllDropSpeed());//巧克力蛙buff       
+                GameObject effect = Instantiate(Resources.Load<GameObject>("Prefabs/frogFrost"), transform.position, Quaternion.identity);
+                Destroy(effect, 2f);
             }
             else
             {
-                GameManager2._instance.SpawnSpecialEffects("fireworkBlue", transform.position, 0.5f);
+                GameObject effect = Instantiate(Resources.Load<GameObject>("Prefabs/fireworkBlue"), transform.position, Quaternion.identity);
+                Destroy(effect, 2f);
             }
             //同归于尽
             Destroy(col.gameObject);

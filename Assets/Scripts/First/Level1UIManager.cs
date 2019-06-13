@@ -19,6 +19,7 @@ public class Level1UIManager : MonoBehaviour
     //tip panel
     public  GameObject reflectPanel;
     public GameObject refractPanel;
+    public GameObject fixedReflectPanel;
     //进场
     Image fadeImage;
     public CircleWipe circleWipe;
@@ -48,6 +49,7 @@ public class Level1UIManager : MonoBehaviour
         coinText.text = Utility.getThreeNum(0);
         reflectPanel.SetActive(false);
         refractPanel.SetActive(false);
+        fixedReflectPanel.SetActive(false);
         print("coinFariy的总数："+(coins.childCount).ToString());
     
     }
@@ -158,9 +160,12 @@ public class Level1UIManager : MonoBehaviour
         {
             reflectPanel.SetActive(true);
         }
-        else
+        else if(fairySorts==FairySorts.Refract)
         {
             refractPanel.SetActive(true);
+        }else if (fairySorts == FairySorts.FixedReflect)
+        {
+            fixedReflectPanel.SetActive(true);
         }
         
     }
@@ -171,10 +176,14 @@ public class Level1UIManager : MonoBehaviour
         {
             reflectPanel.SetActive(false);
         }
-        else
+        else if (fairySorts == FairySorts.Refract)
         {
             refractPanel.SetActive(false);
-        }              
+        }
+        else if (fairySorts == FairySorts.FixedReflect)
+        {
+            fixedReflectPanel.SetActive(false);
+        }
     }
 
     public void SetCoinText(int coinCount)

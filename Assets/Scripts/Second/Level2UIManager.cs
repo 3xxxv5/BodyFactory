@@ -12,8 +12,8 @@ public class Level2UIManager : MonoBehaviour
     public static Level2UIManager _instance { get; private set; }
     //data panel
     [HideInInspector] public CanvasGroup dataCanvas;
-    [HideInInspector] public Slider waveSlider;
-    [HideInInspector] public Slider lifeSlider;
+    public Slider waveSlider;
+    public Slider lifeSlider;
     public Image[] circleProgress;
     public Text coinText;
     //cross panel
@@ -23,8 +23,9 @@ public class Level2UIManager : MonoBehaviour
     //over panel
     [HideInInspector] public CanvasGroup overCanvas;
     [HideInInspector]public Image fadeImage;
-    public float toBlackTime = 1f;
-    public float toClearTime = 1f;
+    public Image whiteImage;
+    [HideInInspector]public float toBlackTime = 1f;
+    [HideInInspector] public float toClearTime = 1f;
     //pause panel
     [HideInInspector] public CanvasGroup pauseCanvas;
     public Text coin_fairyAmountText;
@@ -34,8 +35,8 @@ public class Level2UIManager : MonoBehaviour
     //转场动画
     public CircleWipe circleWipe;
     CanvasGroup mainCanvas;
-    bool canWipeIn = false;
-    bool canWipeOut = false;//当赢了要进入下一关时，设置为true
+    [HideInInspector]public  bool canWipeIn = false;
+    [HideInInspector]public bool canWipeOut = false;//当赢了要进入下一关时，设置为true
     float endValue = 0.55f;
     private float wipeOutSpeed = 0.5f;
     private float wipeInSpeed = 0.5f;
@@ -56,7 +57,7 @@ public class Level2UIManager : MonoBehaviour
         //fadeimage.dofade(0f, 1f);
         print("coinIka的总数：" + (coins.childCount).ToString());
     }
-    void wipeIn()
+    void WipeIn()
     {
         if (canWipeIn)
         {
@@ -69,7 +70,7 @@ public class Level2UIManager : MonoBehaviour
             }
         }
     }
-    void wipeOut()
+    void WipeOut()
     {
         if (canWipeOut)
         {
@@ -91,11 +92,7 @@ public class Level2UIManager : MonoBehaviour
         Utility.DisableCanvas(pauseCanvas,0f);
 
         //data panel
-        dataCanvas = transform.Find("DataPanel").GetComponent<CanvasGroup>();
-        waveSlider = dataCanvas.transform.Find("WaveSlider").GetComponent<Slider>();
-        lifeSlider = dataCanvas.transform.Find("LifeSlider").GetComponent<Slider>();
-     
-
+        dataCanvas = transform.Find("DataPanel").GetComponent<CanvasGroup>();         
       
         //over panel
         overCanvas = transform.Find("GameOverPanel").GetComponent<CanvasGroup>();
@@ -145,10 +142,10 @@ public class Level2UIManager : MonoBehaviour
     {
         showTime();
         showCoins();
-        wipeIn();
-        wipeOut();
+        WipeIn();
+        WipeOut();
         Utility.ChangeVolume();
-        if (!GameManager2._instance.hasOver)
+        if ((!GameManager2._instance.hasOver1) && (!GameManager2._instance.hasOver2)&& (!TimelineManager2._instance.animPaused))
         {
             if (mainCanvas.alpha == 1 && Input.GetKeyUp(KeyCode.Escape))
             {
@@ -194,6 +191,9 @@ public class Level2UIManager : MonoBehaviour
                 SceneManager.LoadScene("0_start_select");
                 Save._instance.SaveIkaCoinsAndTime(ikaCoinsNum, gameTime);
                 break;
+            case "Level1Restart":
+                GameManager2._instance.LevelRestart();
+                break;
         }
     }
 
@@ -202,5 +202,10 @@ public class Level2UIManager : MonoBehaviour
         ikaCoinsNum = coinCount;
         //data panel
         coinText.text = Utility.getThreeNum(coinCount);        
+    }
+    public void ResetSlider()
+    {
+        waveSlider.value = 0;
+        lifeSlider.value = 1;
     }
 }

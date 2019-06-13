@@ -155,6 +155,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 4.4
         value: {x: 0.05050793, y: 0.05050789, z: 0.05050793}
+        inSlope: {x: -0.0721542, y: -0.072154135, z: -0.0721542}
+        outSlope: {x: -0.0721542, y: -0.072154135, z: -0.0721542}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 4.5333333
+        value: {x: 0, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -199,7 +208,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -288,6 +297,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 4.4
         value: 0.05050793
+        inSlope: -0.0721542
+        outSlope: -0.0721542
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4.5333333
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -379,6 +397,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 4.4
         value: 0.05050789
+        inSlope: -0.072154135
+        outSlope: -0.072154135
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4.5333333
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -470,6 +497,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 4.4
         value: 0.05050793
+        inSlope: -0.0721542
+        outSlope: -0.0721542
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4.5333333
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136

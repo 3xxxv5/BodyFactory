@@ -31,7 +31,8 @@ public class Bullet : MonoBehaviour
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("wall"))
         {
-            GameManager2._instance.SpawnSpecialEffects("fire", transform.position, 5f);
+            GameObject effect = Instantiate(Resources.Load<GameObject>("Prefabs/fire"), transform.position, Quaternion.identity);            
+            Destroy(effect, 2f);
             StartCoroutine(waitToVanish(1f));
         }
     }

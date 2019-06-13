@@ -39,7 +39,14 @@ public class ReflectRayEmitter : RayEmitter {
         }
         else
         {
-            endPoints[index] = hit.point;
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("sphereBoard"))
+            {
+                endPoints[index] = hit.point;
+            }
+            else
+            {
+                endPoints[index] = hit.transform.position;
+            }
             lineRenderer.SetPosition(1, endPoints[index]);
             UpdateLastHit(hit);
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("sphereBoard"))

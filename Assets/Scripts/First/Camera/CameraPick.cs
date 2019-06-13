@@ -53,7 +53,7 @@ public class CameraPick : MonoBehaviour
 
     void Update()
     {
-        if (player.GetComponent<Hair_PlayerMove>().animPaused) return;//动画静止
+        if (TimelineManager.animPaused) return;//动画静止
 
         TargetingRayCast();
         ShowTipAndControlPlayer();

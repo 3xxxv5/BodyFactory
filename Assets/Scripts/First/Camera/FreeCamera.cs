@@ -37,8 +37,7 @@ public class FreeCamera : MonoBehaviour {
 	void Update () {
 
         if (Target == null || LookAt == null) return;
-        if (Target.GetComponent<Hair_PlayerMove>().animPaused) return;//动画静止
-
+        if (TimelineManager.animPaused) return;//动画静止
         AvoidViewBlock();
         ControlCamera();
     }

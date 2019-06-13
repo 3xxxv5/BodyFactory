@@ -18,10 +18,7 @@ TagManager:
   - fragment
   - wuzei
   - chocolateFrog
-  - sea
   - electric
-  - level1Sea
-  - level2Sea
   - Sea
   - rotateBtn
   - turnBtn
@@ -29,6 +26,8 @@ TagManager:
   - refractRotateBtn
   - dragonBlood
   - dragon
+  - fixedTurnBtn
+  - fixedRotateBtn
   layers:
   - Default
   - TransparentFX
@@ -46,8 +45,8 @@ TagManager:
   - checkPoint
   - dragon
   - coin
-  - 
-  - 
+  - doorChips
+  - sea
   - monster
   - wall
   - ImageEffect
@@ -59,7 +58,7 @@ TagManager:
   - bullet
   - bigBullet
   - wuzei
-  - video
+  - door
   - grass
   - sphereBoard
   m_SortingLayers:

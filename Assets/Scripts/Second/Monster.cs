@@ -34,19 +34,19 @@ public class Monster : MonoBehaviour {
         switch (life)
         {
             case 3:
-                ho.ConstantOn(GameManager2._instance.thirdTimes);
+                ho.ConstantOn(MonsterManager._instance.thirdTimes);
                 break;
             case 2:
-                ho.ConstantOn(GameManager2._instance.twice);
+                ho.ConstantOn(MonsterManager._instance.twice);
                 break;
             case 1:
-                ho.ConstantOn(GameManager2._instance.once);
+                ho.ConstantOn(MonsterManager._instance.once);
                 break;
         }
     }
     protected void Move()
     {
-            trueSpeed = dropSpeed + GameManager2._instance.buffDropSpeed;
+            trueSpeed = dropSpeed + MonsterManager._instance.buffDropSpeed;
             Mathf.Clamp(trueSpeed, 1f, 10);
             transform.position = Vector3.Lerp(transform.position, transform.position + new Vector3(0, -1, 0), Time.deltaTime * trueSpeed);
             transform.Rotate(Vector3.up,Time.deltaTime*rotateSpeed);
@@ -69,7 +69,6 @@ public class Monster : MonoBehaviour {
         if (!canCollide) return;
         if (col.gameObject.layer == LayerMask.NameToLayer("wuzei"))
         {
-            print("碰到了");
             if (!FirstPersonAIO._instance.canTransfer) return;
             SpawnEffects();//不管是第几次攻击都要生成爆炸特效，不同monster特效可能不同
             switch (life)
@@ -90,6 +89,15 @@ public class Monster : MonoBehaviour {
                     break;
                 case 1:
                     SpawnChips(chips);
+                    switch (GameManager2._instance.levelNow)
+                    {
+                        case GameManager2.LevelNow.isLevel1:
+                            GameManager2._instance.level1foodNum--;
+                            break;
+                        case GameManager2.LevelNow.isLevel2:
+                            GameManager2._instance.level2foodNum--;
+                            break;
+                    }
                     Destroy(gameObject);
                     break;
             }
@@ -103,12 +111,16 @@ public class Monster : MonoBehaviour {
         AudioManager._instance.PlayEffect("gun");
         if (gameObject.tag.Equals("chocolateFrog"))
         {
-            StartCoroutine(GameManager2._instance.ChangeAllDropSpeed());//巧克力蛙buff       
-            GameManager2._instance.SpawnSpecialEffects("frogFrost", transform.position, 3f);
+            StartCoroutine(MonsterManager._instance.ChangeAllDropSpeed());//巧克力蛙buff       
+            GameObject effect = Instantiate(Resources.Load<GameObject>("Prefabs/frogFrost"), transform.position, Quaternion.identity);
+            effect.transform.SetParent(WuZei._instance.transform);
+            Destroy(effect, 1f);            
         }
         else
         {
-            GameManager2._instance.SpawnSpecialEffects("fire", transform.position, 3f);
+            GameObject effect = Instantiate(Resources.Load<GameObject>("Prefabs/fire"), transform.position, Quaternion.identity);
+            effect.transform.SetParent(WuZei._instance.transform);
+            Destroy(effect, 1f);
         }
     }
     void SpawnChips(GameObject m_chips)

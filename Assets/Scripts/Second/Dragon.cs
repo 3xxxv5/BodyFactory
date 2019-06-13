@@ -20,9 +20,10 @@ public class Dragon : MonoBehaviour
         dargonLightning,
         dargonDead
     }
+    [HideInInspector]public  bool hasDead = false;
     DargonState dragonState;
     Animator animator;
-
+    public GameObject dragonExplodeEffect;
     void Start()
     {
         //life
@@ -34,6 +35,7 @@ public class Dragon : MonoBehaviour
         dragonState = DargonState.dargonIdle;
         animator = transform.GetComponent<Animator>();
         animator.SetInteger("dragonState", (int)dragonState);
+        dragonExplodeEffect.SetActive(false);
     }
     void SetAllMatParams(float val)
     {
@@ -63,7 +65,7 @@ public class Dragon : MonoBehaviour
             transform.GetComponent<Renderer>().material.SetFloat("_dissolveAmount", index);
         }
     }
-    public void CollideBlood(int reduceLife, DargonBloodState dargonBloodState)
+    public void CollideBlood(int reduceLife, DargonBloodState dargonBloodState,Vector3 pos)
     {
         //生命值计数
         life -= reduceLife;
@@ -76,7 +78,7 @@ public class Dragon : MonoBehaviour
             //播放音效
             AudioManager._instance.PlayEffect("blood");
             //生成爆炸特效
-            GameObject effect = Instantiate(attackEffect, transform.position, Quaternion.identity);
+            GameObject effect = Instantiate(attackEffect, pos, Quaternion.identity);
             effect.transform.SetParent(WuZei._instance.transform);
             Destroy(effect, 2f);
             //调整材质参数
@@ -92,24 +94,33 @@ public class Dragon : MonoBehaviour
                     SetMatParam(MainContainer.bloodTail, 0);
                     break;
             }
+            //第一关，被打一下后，逃走
+            if (life == (lifeBase - 1) && GameManager2._instance.levelNow == GameManager2.LevelNow.isLevel1)
+            {
+                StartCoroutine(DragonManager._instance.Level1Run(1f,1f,0f));
+            }
         }
         //死了
         else
         {
-            //切换动画
-            dragonState = DargonState.dargonDead;
-            animator.SetInteger("dragonState", (int)dragonState);
-            //播放音效
-            AudioManager._instance.PlayEffect("blood");
-            //生成爆炸特效
-            GameObject effect = Instantiate(attackEffect, transform.position, Quaternion.identity);
-            effect.transform.SetParent(WuZei._instance.transform);
-            Destroy(effect, 2f);
-            //调整材质参数
-            SetAllMatParams(0);
+            hasDead = true;            
         }        
     }
-    public void CollideElectric()
+    public void Dead()
+    {
+        print("执行了死亡切换");
+        //调整材质参数
+        SetAllMatParams(0);
+        //切换动画
+        dragonState = DargonState.dargonDead;
+        animator.SetInteger("dragonState", (int)dragonState);
+        //播放音效
+        AudioManager._instance.PlayEffect("blood");
+        //生成爆炸特效
+        dragonExplodeEffect.SetActive(true);
+        Destroy(dragonExplodeEffect, 2f);
+    }
+    public void CollideElectric(Vector3 pos)
     {
         //切换动画
         dragonState = DargonState.dargonLightning;
@@ -117,7 +128,7 @@ public class Dragon : MonoBehaviour
         //播放音效
         AudioManager._instance.PlayEffect("dianliu");
         //生成闪电特效
-        GameObject effect = Instantiate(lightningEffect, transform.position, Quaternion.identity);
+        GameObject effect = Instantiate(lightningEffect, pos, Quaternion.identity);
         effect.transform.SetParent(WuZei._instance.transform);
         Destroy(effect, 2f);
         //死掉：需要判断当前是第几关，再决定在哪里复活
@@ -132,5 +143,7 @@ public class Dragon : MonoBehaviour
                 break;
         }       
     }
+
+
 
 }

@@ -16,7 +16,6 @@ public class Hair_PlayerMove : MonoBehaviour
     public bool canClimb = false;
     public bool isClimbing = false;
     public bool isGrounded = true;
-    public bool animPaused = false;
     [HideInInspector] public int fairyCoinCount = 0;
 
     void Start()
@@ -37,7 +36,7 @@ public class Hair_PlayerMove : MonoBehaviour
 
     void AnimPauseManager()
     {
-        if (animPaused)
+        if (TimelineManager.animPaused)
         {
             transform.GetComponent<Rigidbody>().isKinematic = true;
             transform.GetComponent<Rigidbody>().useGravity = false;
@@ -50,7 +49,7 @@ public class Hair_PlayerMove : MonoBehaviour
     }
     void MoveManager()
 {
-        if (!canMove || anim.GetBool("Climb") || animPaused) return;
+        if (!canMove || anim.GetBool("Climb") || TimelineManager.animPaused) return;
         if (isGrounded&& Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpSpeed, rb.velocity.z);      
