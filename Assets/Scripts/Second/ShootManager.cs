@@ -8,7 +8,9 @@ public class ShootManager : MonoBehaviour
     public Transform wuzei;
     public BatteryAIO battery;
     public bool canChange2Battery = true;
+
     public Transform batteryRevive;
+
     private void Awake()
     {
         _instance = this;
@@ -16,7 +18,7 @@ public class ShootManager : MonoBehaviour
 
     void Start()
     {
-        Change2PlayerView();
+        InitCamera();
     }
 
     public void Change2BatteryView()
@@ -34,9 +36,18 @@ public class ShootManager : MonoBehaviour
         AudioManager._instance.PlayEffect("toBattery");//音效
         Level2UIManager._instance.simpleCross.gameObject.SetActive(true);
         Level2UIManager._instance.batteryCross.gameObject.SetActive(false);
-        wuzei.gameObject.SetActive(true);
         wuzei.transform.position = batteryRevive.position;
         wuzei.transform.rotation = batteryRevive.rotation;
+        wuzei.gameObject.SetActive(true);
+        battery.ResetBatteryPos();
+        battery.canShoot = false;
+        battery.enableCameraMovement = false;
+    }
+   public  void InitCamera()
+    {
+        Level2UIManager._instance.simpleCross.gameObject.SetActive(true);
+        Level2UIManager._instance.batteryCross.gameObject.SetActive(false);
+        wuzei.gameObject.SetActive(true);
         battery.ResetBatteryPos();
         battery.canShoot = false;
         battery.enableCameraMovement = false;

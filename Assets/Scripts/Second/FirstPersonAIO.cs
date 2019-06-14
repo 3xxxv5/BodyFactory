@@ -210,7 +210,6 @@ public class FirstPersonAIO : MonoBehaviour {
                 //battery
                 case 25: hitBattery = true; ShootTransfer(monsterHits[0]); break;      
             }
-            print("飞到了：" + monsterHits[0].transform.gameObject.name);
         }
         else if (monsterHits.Length > 1)//射中1个以上的物体，标记是否射中指定物体
         {

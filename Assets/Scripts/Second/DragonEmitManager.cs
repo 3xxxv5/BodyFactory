@@ -40,9 +40,10 @@ public class DragonEmitManager : MonoBehaviour
     {
         for (int v = 0; v < ballAmount; v++)
         {
+            int index = Random.Range(1, 5);//1-4
+            AudioManager._instance.PlayEffect("dragonBall" + index.ToString());//发出电球的声音-自机狙
             for (int i = 0; i < ballPerCount; i++)
             {
-                AudioManager._instance.PlayEffect("");
                 Instantiate(ballPrefab, transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(ballPerRate);  //放完1个等2s
             }
@@ -54,6 +55,8 @@ public class DragonEmitManager : MonoBehaviour
     {
         for (int v = 0; v < circleAmount; v++)//放5次
         {
+            int index = Random.Range(1,5);//1-4
+            AudioManager._instance.PlayEffect("dragonBall"+index.ToString());//发出电球的声音-圆形轨迹
             for (int i = 0; i < dirs.Length; i++)//每次放12个
             {
                 DragonCircleBall ball = Instantiate(circlePrefab, transform.position, Quaternion.identity).GetComponent<DragonCircleBall>();

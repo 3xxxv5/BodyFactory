@@ -17,8 +17,7 @@ public class Monster : MonoBehaviour {
     float explodeDistance = 5f;
     bool canCollide = true;
 
-    void Awake () {
-        if (chips == null) chips = Resources.Load<GameObject>("Prefabs/m_donutChips");
+    void Awake () {      
         life = lifeBase;
         ho = gameObject.AddComponent<HighlightableObject>();
     }
@@ -128,17 +127,21 @@ public class Monster : MonoBehaviour {
     {
         ReduceLife(1);
         //生成食物碎块       
-        GameObject myChips = Instantiate(m_chips, transform.position, Quaternion.identity);
-        myChips.transform.SetParent(WuZei._instance.transform);
-        Destroy(myChips, 1f);
-        //向碎块添加爆炸力
-        Vector3 explosionPos = myChips.transform.position - WuZei._instance.transform.forward * explodeDistance;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);//对爆炸点半径内的collider造成影响
-        foreach (Collider hit in colliders)
+        if (m_chips != null)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb != null) rb.GetComponent<Rigidbody>().AddExplosionForce(power, explosionPos, radius, -3f);
+            GameObject myChips = Instantiate(m_chips, transform.position, Quaternion.identity);
+            myChips.transform.SetParent(WuZei._instance.transform);
+            Destroy(myChips, 1f);
+            //向碎块添加爆炸力
+            Vector3 explosionPos = myChips.transform.position - WuZei._instance.transform.forward * explodeDistance;
+            Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);//对爆炸点半径内的collider造成影响
+            foreach (Collider hit in colliders)
+            {
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+                if (rb != null) rb.GetComponent<Rigidbody>().AddExplosionForce(power, explosionPos, radius, -3f);
+            }
         }
+
     }
     IEnumerator waitToCollide(float time)
     {

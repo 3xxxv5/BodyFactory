@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropSpeed: 1
-  chips: {fileID: 1629271418919193744, guid: 22f42f9e614702b428caa252dfef6e32, type: 3}
+  chips: {fileID: 0}
   chocoChips: {fileID: 0}
   icingChips: {fileID: 0}
   lifeBase: 1

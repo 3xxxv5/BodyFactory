@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorMeshCollider : MonoBehaviour
 {
     public Rigidbody[] doorChips;
+    bool hasPlay = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +25,12 @@ public class DoorMeshCollider : MonoBehaviour
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("dragon"))
         {
-            print("解禁刚体："+col.gameObject.name);
-              for (int i = 0; i < doorChips.Length; i++)
+            if (!hasPlay)
+            {
+                AudioManager._instance.PlayEffect("rockDestroy");
+                hasPlay = true;
+            }
+            for (int i = 0; i < doorChips.Length; i++)
             {
                 doorChips[i].isKinematic = false;
             }

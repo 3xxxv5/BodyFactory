@@ -20,10 +20,11 @@ public class GameManager2 : MonoBehaviour
     [Header("Level 2")]
     [Space(8)]
     public Transform level2Sea;
-    public GameObject level2SeaCollider1;
-    public GameObject level2SeaCollider2;
+    public GameObject level2SeaCollider;
     public GameObject level2WallCollider;
     public GameObject level2DoorCollider;
+    public GameObject level3SeaCollider;
+    public GameObject level3IslandCollider;
     public int level2HpBase = 8;
     [HideInInspector]    public int level2Hp=0;
     public int level2foodNum=0;
@@ -58,19 +59,20 @@ public class GameManager2 : MonoBehaviour
         level1foodNum = 0;
         hasWin1 = false;
         //水面碰撞盒，只能禁用collider，不能禁用该物体，水面是透明的，需要物体在下面衬着
-        level2SeaCollider1.GetComponent<Collider>().enabled = false;
-        level2SeaCollider2.GetComponent<Collider>().enabled = false;
+        level2SeaCollider.GetComponent<Collider>().enabled = false;
+        level3SeaCollider.GetComponent<Collider>().enabled = false;
         //墙的碰撞盒
         level1WallCollider.SetActive(true);
         level2WallCollider.SetActive(false);
         level2DoorCollider.SetActive(false);
         level3WallCollider.SetActive(false);
+        level3IslandCollider.SetActive(false);
     }
     public  void Level2_Init()
     {
         level2Hp = level2HpBase;
         EmitManager._instance.CountAmount(EmitManager._instance.SecondLevelWave, ref level2foodBase);//计算总数
-        level2SeaCollider1.GetComponent<Collider>().enabled = true;    
+        level2SeaCollider.GetComponent<Collider>().enabled = true;    
         levelNow = LevelNow.isLevel2;
         //墙的碰撞盒
         level2WallCollider.SetActive(true);
@@ -82,9 +84,10 @@ public class GameManager2 : MonoBehaviour
     public void Level3_Init()
     {
         levelNow = LevelNow.isLevel3;
-        level2SeaCollider2.GetComponent<Collider>().enabled = true;
+        level3SeaCollider.GetComponent<Collider>().enabled = true;
         //墙的碰撞盒
         level3WallCollider.SetActive(true);
+        level3IslandCollider.SetActive(true);
 
         StartCoroutine(DragonEmitManager._instance.SpawnLightningBall());
         AudioManager._instance.PlayeBGM("battle");//播放boss关bgm
@@ -131,7 +134,7 @@ public class GameManager2 : MonoBehaviour
             if (EmitManager._instance.hasAllSpawned && level1Hp >= 0 && level1foodNum <= 0)
             {
                 AudioManager._instance.PlayEffect("gameWin");
-                StartCoroutine(TimelineManager2._instance.Level1WinAnim(TimelineManager2._instance.level1Clip));                //过场动画
+                StartCoroutine(TimelineManager2._instance.Level1WinAnim(TimelineManager2._instance.level1Clip));   //过场动画
                 hasWin1 = true;
             }
         }
@@ -146,7 +149,7 @@ public class GameManager2 : MonoBehaviour
             {
                 AudioManager._instance.PlayEffect("gameOver2");
                 FirstPersonAIO._instance.GameOver();  
-                Utility.EnableCanvas(Level2UIManager._instance.overCanvas, 1f);              //出现UI 
+                Utility.EnableCanvas(Level2UIManager._instance.overCanvas, 1f);  //出现UI 
                 hasOver2 = true;
             }
         }

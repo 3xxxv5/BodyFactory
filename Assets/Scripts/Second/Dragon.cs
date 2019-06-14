@@ -77,7 +77,8 @@ public class Dragon : MonoBehaviour
             dragonState = DargonState.dargonAttacked;
             animator.SetInteger("dragonState", (int)dragonState);
             //播放音效
-            AudioManager._instance.PlayEffect("blood");
+            AudioManager._instance.PlayEffect("blood");//电鳗受伤声音
+            AudioManager._instance.PlayEffect("dragonHurt");//电鳗受伤哀鸣
             //生成爆炸特效
             GameObject effect = Instantiate(attackEffect, pos, Quaternion.identity);
             effect.transform.SetParent(WuZei._instance.transform);
@@ -113,7 +114,8 @@ public class Dragon : MonoBehaviour
         //死了
         else
         {   //播放音效
-            AudioManager._instance.PlayEffect("blood");
+            AudioManager._instance.PlayEffect("dragonDead");//电鳗死亡哀鸣
+            AudioManager._instance.PlayEffect("blood");//电鳗受伤声音
             hasDead = true;
             print("电鳗死了");
         }        

@@ -47,6 +47,7 @@ public class BatteryAIO : MonoBehaviour
     Quaternion cameraInitRotation;
 
     public  Pearl pearl;
+
     #endregion
 
     private void Awake()
@@ -132,8 +133,7 @@ public class BatteryAIO : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            ShootManager._instance.Change2PlayerView();
-
+            ShootManager._instance.Change2PlayerView();         
         }
     }   
     void SetShotCount()
