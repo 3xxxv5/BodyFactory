@@ -16,8 +16,10 @@ public class DragonCircleBall : MonoBehaviour
     {
         if (col.gameObject.tag == "ballVanishTrigger")
         {
+            print("电球消失了");
             Destroy(gameObject);
         }
+        if (DragonManager._instance.dragon.hasDead || FirstPersonAIO._instance.seaDead) return;
         if (col.gameObject.layer == LayerMask.NameToLayer("wuzei"))
         {
             StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 0f, WuZei._instance.level1ReviveTrans));

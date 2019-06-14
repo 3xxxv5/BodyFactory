@@ -51,9 +51,11 @@ public class EmitManager : MonoBehaviour
                 {
                     case GameManager2.LevelNow.isLevel1:
                         GameManager2._instance.level1foodNum++;
+                        GameManager2._instance.level1foodShow++;
                         break;
                     case GameManager2.LevelNow.isLevel2:
                         GameManager2._instance.level2foodNum++;
+                        GameManager2._instance.level2foodShow++;
                         break;
                 }
                 yield return new WaitForSeconds(levelWave[v].rate);//等10s     

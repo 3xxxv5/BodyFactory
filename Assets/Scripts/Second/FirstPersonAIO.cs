@@ -70,6 +70,7 @@ public class FirstPersonAIO : MonoBehaviour {
     public float rotateSpeed;
     public float distance = 20f;
     public  bool attackDragon = false;
+    public bool seaDead = false;
     #endregion
 
     private void Awake()

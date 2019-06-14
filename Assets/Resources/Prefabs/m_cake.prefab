@@ -51,13 +51,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropSpeed: 2
-  chips: {fileID: 0}
+  chips: {fileID: 4863897186637400546, guid: d3340e66788a43e4f86c731bcbfc90e2, type: 3}
+  chocoChips: {fileID: 0}
+  icingChips: {fileID: 0}
   lifeBase: 1
   life: 0
-  radius: 5
-  power: 1000
-  childrenAmount: 5
-  waitTime: 8
   maxDistance: 8
 --- !u!54 &1623059714878209454
 Rigidbody:

@@ -55,14 +55,7 @@ public class Monster : MonoBehaviour {
     {
         life -= num;        
     }
-    protected void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.layer == LayerMask.NameToLayer("bigBullet"))
-        {          
-            Destroy(gameObject);
-        }
-
-    }
+ 
     private void OnCollisionEnter(Collision col)
     {
         if (!canCollide) return;

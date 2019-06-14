@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6ca71603ac169449823be44657c490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropSpeed: 1
+  dropSpeed: 3
   chips: {fileID: 0}
   chocoChips: {fileID: 0}
   icingChips: {fileID: 0}

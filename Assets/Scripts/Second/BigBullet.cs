@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class BigBullet : MonoBehaviour
 {
+    bool hasPlay = false;
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
-            AudioManager._instance.PlayEffect("gun");
+            if (!hasPlay)
+            {
+                AudioManager._instance.PlayEffect("gun");//炮台的炸弹攻击音效
+                hasPlay = true;
+            }          
 
             if (col.gameObject.tag.Equals("chocolateFrog"))
             {
@@ -20,6 +25,10 @@ public class BigBullet : MonoBehaviour
             {
                 GameObject effect = Instantiate(Resources.Load<GameObject>("Prefabs/fireworkBlue"), transform.position, Quaternion.identity);
                 Destroy(effect, 2f);
+            }
+            if (GameManager2._instance.levelNow == GameManager2.LevelNow.isLevel2)
+            {
+                GameManager2._instance.level2foodNum--;
             }
             //同归于尽
             Destroy(col.gameObject);

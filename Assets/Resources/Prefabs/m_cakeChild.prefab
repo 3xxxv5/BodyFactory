@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropSpeed: 1
-  chips: {fileID: 3743932680920338005, guid: bc810d359e108b347b69e6fd1c9d3f62, type: 3}
+  chips: {fileID: 0}
   chocoChips: {fileID: 0}
   icingChips: {fileID: 0}
   lifeBase: 1

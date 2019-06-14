@@ -21,7 +21,7 @@ public class Dragon : MonoBehaviour
         dargonLightning,
         dargonDead
     }
-    [HideInInspector]public  bool hasDead = false;
+    [HideInInspector]public bool hasDead = false;
     DargonState dragonState;
     Animator animator;
     public GameObject dragonExplodeEffect;
@@ -131,7 +131,8 @@ public class Dragon : MonoBehaviour
         //生成爆炸特效
         StartCoroutine(WaitToSpawnEffect());
         //死了之后不再发射
-        transform.parent.GetComponent<DragonEmitManager>().enabled = false;
+        StopCoroutine(DragonEmitManager._instance.SpawnLightningBall());
+        StopCoroutine(DragonEmitManager._instance.SpawnCircleBall());     
     }
     IEnumerator WaitToSpawnEffect()
     {

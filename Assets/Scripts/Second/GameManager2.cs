@@ -16,6 +16,7 @@ public class GameManager2 : MonoBehaviour
     public int level1HpBase = 5;
     [HideInInspector]    public int level1Hp=0;
     public int level1foodNum=0;
+    public int level1foodShow = 0;
     public int level1foodBase=0;
     [Header("Level 2")]
     [Space(8)]
@@ -28,6 +29,7 @@ public class GameManager2 : MonoBehaviour
     public int level2HpBase = 8;
     [HideInInspector]    public int level2Hp=0;
     public int level2foodNum=0;
+    public int level2foodShow = 0;
     public int level2foodBase=0;
     [Header("Level 3")]
     [Space(8)]
@@ -57,6 +59,7 @@ public class GameManager2 : MonoBehaviour
         level1Hp = level1HpBase;
         levelNow = LevelNow.isLevel1;
         level1foodNum = 0;
+        level1foodShow = 0;
         hasWin1 = false;
         //水面碰撞盒，只能禁用collider，不能禁用该物体，水面是透明的，需要物体在下面衬着
         level2SeaCollider.GetComponent<Collider>().enabled = false;
@@ -80,6 +83,9 @@ public class GameManager2 : MonoBehaviour
         level3WallCollider.SetActive(false);
 
         StartCoroutine(EmitManager._instance.SpawnWave(EmitManager._instance.SecondLevelWave));
+
+        Level2UIManager._instance.lifeSlider.value = 1;
+        Level2UIManager._instance.waveSlider.value = 0;
     }
     public void Level3_Init()
     {
@@ -114,7 +120,7 @@ public class GameManager2 : MonoBehaviour
     void CheckLevel1Over()
     {
         Level2UIManager._instance.lifeSlider.value =(float)level1Hp / (float)level1HpBase;
-        Level2UIManager._instance.waveSlider.value = (float)level1foodNum / (float)level1foodBase;
+        Level2UIManager._instance.waveSlider.value = (float)level1foodShow / (float)level1foodBase;
         if (level1Hp <= 0)
         {
             if (!hasOver1)
@@ -142,7 +148,7 @@ public class GameManager2 : MonoBehaviour
     void CheckLevel2Over()
     {
         Level2UIManager._instance.lifeSlider.value = (float)level2Hp / (float )level2HpBase;
-        Level2UIManager._instance.waveSlider.value = (float)level2foodNum / (float)level2foodBase;
+        Level2UIManager._instance.waveSlider.value = (float)level2foodShow / (float)level2foodBase;
         if (level2Hp <= 0)
         {
             if (!hasOver2)
@@ -186,6 +192,7 @@ public class GameManager2 : MonoBehaviour
     public  IEnumerator SeaDead(float toBlack,float toClear,float waitTime,Transform reviveTrans)
     {
         //并不是直接死，需要重新来过。而是短暂黑屏，首先玩家行动肯定受到了限制，然后其他物体先停止降落
+        FirstPersonAIO._instance.seaDead = true;
         AudioManager._instance.PlayEffect("oops");
         FirstPersonAIO._instance.enableCameraMovement = false;
         Level2UIManager._instance.fadeImage.DOFade(1f,toBlack);
@@ -209,6 +216,7 @@ public class GameManager2 : MonoBehaviour
         //    wuzeiColliders[i].enabled = true;
         //}
         FirstPersonAIO._instance.enableCameraMovement = true;
+        FirstPersonAIO._instance.seaDead = false;
     }
 
     public void ToNextLevel()

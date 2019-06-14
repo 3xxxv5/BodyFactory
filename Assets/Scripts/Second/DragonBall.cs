@@ -20,13 +20,15 @@ public class DragonBall : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
+        if (DragonManager._instance.dragon.hasDead||FirstPersonAIO._instance.seaDead) return;
         if (col.gameObject.layer == LayerMask.NameToLayer("wuzei"))
         {
             StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 0f, WuZei._instance.level1ReviveTrans));
             Destroy(gameObject,2.3f);
         }
         if (col.gameObject.tag =="ballVanishTrigger")
-        {      
+        {
+            print("电球消失了");
             Destroy(gameObject);
         }
     }

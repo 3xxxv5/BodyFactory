@@ -27,15 +27,7 @@ public class DragonEmitManager : MonoBehaviour
     {
         _instance = this;
     }
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
     public IEnumerator SpawnLightningBall()
     {
         for (int v = 0; v < ballAmount; v++)

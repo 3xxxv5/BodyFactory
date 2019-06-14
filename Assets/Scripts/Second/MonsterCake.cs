@@ -18,17 +18,6 @@ public class MonsterCake : Monster {
 
         while (true)
         {
-            switch (GameManager2._instance.levelNow)
-            {
-                case GameManager2.LevelNow.isLevel1:
-                    GameManager2._instance.level1foodBase+= childrenAmount;
-                    GameManager2._instance.level1foodNum+= childrenAmount;
-                    break;
-                case GameManager2.LevelNow.isLevel2:
-                    GameManager2._instance.level2foodBase+= childrenAmount;
-                    GameManager2._instance.level2foodNum+= childrenAmount;
-                    break;
-            }
             if (index== 0)
             {
                 yield return new WaitForSeconds(2f);
@@ -42,7 +31,20 @@ public class MonsterCake : Monster {
                 float randomX = Random.Range(-maxDistance, maxDistance);
                 float randomY = Random.Range(-maxDistance, maxDistance);
                 float randomZ= Random.Range(-maxDistance, maxDistance);
-                Instantiate(cakeChild,transform.localPosition+new Vector3(randomX,randomY,randomZ),Quaternion.identity);                        
+                Instantiate(cakeChild,transform.localPosition+new Vector3(randomX,randomY,randomZ),Quaternion.identity);
+                switch (GameManager2._instance.levelNow)
+                {
+                    case GameManager2.LevelNow.isLevel1:
+                        GameManager2._instance.level1foodBase++;
+                        GameManager2._instance.level1foodNum++;
+                        GameManager2._instance.level1foodShow++;
+                        break;
+                    case GameManager2.LevelNow.isLevel2:
+                        GameManager2._instance.level2foodBase++;
+                        GameManager2._instance.level2foodNum++;
+                        GameManager2._instance.level2foodShow++;
+                        break;
+                }
             }
             index++;
         }
