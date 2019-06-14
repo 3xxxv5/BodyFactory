@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4192443396017873576}
   - component: {fileID: 4192443396037233778}
   - component: {fileID: 4192443396037217494}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: dizzySpark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4683,7 +4683,7 @@ GameObject:
   - component: {fileID: 4192443396017775496}
   - component: {fileID: 4192443396037179354}
   - component: {fileID: 4192443396035720390}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Tinysparkles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

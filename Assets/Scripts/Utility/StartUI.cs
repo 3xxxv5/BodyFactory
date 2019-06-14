@@ -18,7 +18,6 @@ public class StartUI : MonoBehaviour
     }
     private void Update()
     {
-        Utility.ChangeVolume();
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Space)&&Input.GetKey(KeyCode.Escape))
         {
             PlayerPrefs.DeleteAll();

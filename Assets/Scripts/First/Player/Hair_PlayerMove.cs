@@ -52,7 +52,8 @@ public class Hair_PlayerMove : MonoBehaviour
         if (!canMove || anim.GetBool("Climb") || TimelineManager.animPaused) return;
         if (isGrounded&& Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector3(rb.velocity.x, jumpSpeed, rb.velocity.z);      
+            rb.velocity = new Vector3(rb.velocity.x, jumpSpeed, rb.velocity.z);
+            AudioManager._instance.PlayEffect("Jump");//人物跳起音效
         }
         anim.SetFloat("vy", rb.velocity.y);
         float v;
@@ -144,5 +145,5 @@ public class Hair_PlayerMove : MonoBehaviour
             Destroy(Instantiate(Resources.Load<GameObject>("Prefabs/" + "coinEffect"), col.transform.position, Quaternion.identity), 3f);
             Destroy(col.gameObject);
         }
-    }
+    } 
 }

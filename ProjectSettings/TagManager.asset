@@ -43,11 +43,11 @@ TagManager:
   - reflectObj
   - refractObj
   - bud
-  - checkPoint
+  - ball
   - dragon
   - coin
   - doorChips
-  - sea
+  - 
   - monster
   - wall
   - ImageEffect
@@ -59,7 +59,7 @@ TagManager:
   - bullet
   - bigBullet
   - wuzei
-  - door
+  - 
   - grass
   - sphereBoard
   m_SortingLayers:

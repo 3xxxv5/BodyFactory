@@ -21,7 +21,7 @@ public class BatteryAIO : MonoBehaviour
     private Vector3 followAngles;
     private Vector3 followVelocity;
     private Vector3 originalRotation;
-
+    private Quaternion InitRotation;
     //Shoot Settings
     [Header("Shoot Settings")]
     [Space(8)]
@@ -40,7 +40,7 @@ public class BatteryAIO : MonoBehaviour
     public int shotMaxAmount = 3;
     public int shotIndex=0;
 
-    Transform puffer;
+    public  Transform puffer;
     Vector3 pufferInitPosition;
     Quaternion pufferInitRotation;
     Vector3 cameraInitPosition;
@@ -54,12 +54,13 @@ public class BatteryAIO : MonoBehaviour
         _instance = this;
         //Look Settings - Awake
         originalRotation = transform.localRotation.eulerAngles;
-        puffer = transform.Find("BatteryCamera/puffer");
-        pufferInitPosition = puffer.transform.localPosition;
-        pufferInitRotation = puffer.transform.localRotation;
+
+        InitRotation = transform.localRotation;
+        pufferInitPosition = puffer.localPosition;
+        pufferInitRotation = puffer.localRotation;
         cameraInitPosition = playerCamera.localPosition;
         cameraInitRotation = playerCamera.localRotation;
-
+       
         //shell settings-Awake
         //shoot settings- Awake
         enableCameraMovement = false; canShoot = false;
@@ -67,10 +68,13 @@ public class BatteryAIO : MonoBehaviour
     }
     public  void ResetBatteryPos()
     {
+        print("恢复了");
+        transform.localRotation = InitRotation;
         playerCamera.localPosition = cameraInitPosition;
         playerCamera.localRotation = cameraInitRotation;
         if (puffer != null)
         {
+            print("puffer");
             puffer.localPosition = pufferInitPosition;
             puffer.localRotation = pufferInitRotation;
         }

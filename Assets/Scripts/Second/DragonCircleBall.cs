@@ -21,7 +21,7 @@ public class DragonCircleBall : MonoBehaviour
         if (col.gameObject.layer == LayerMask.NameToLayer("wuzei"))
         {
             StartCoroutine(GameManager2._instance.SeaDead(1f, 1f, 0f, WuZei._instance.level1ReviveTrans));
-            Destroy(gameObject);
+            Destroy(gameObject,3f);
         }
     }
     void MoveToTarget()

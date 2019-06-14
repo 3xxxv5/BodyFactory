@@ -7,6 +7,9 @@ public enum DargonBloodState
     bloodHead,
     bloodTail,
     bloodChest,
+    bloodBack,
+    bloodFace,
+    bloodRear,
 }
 public class DragonBlood : MonoBehaviour
 {

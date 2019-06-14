@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dragon : MonoBehaviour
 {
-    public int lifeBase = 3;
+    int lifeBase = 6;
     [HideInInspector] public int life = 0;
     bool startDisslove = false;
     float index = 1;
@@ -45,9 +45,9 @@ public class Dragon : MonoBehaviour
             mats[i].SetFloat(MainContainer.bloodTail, val);
             mats[i].SetFloat(MainContainer.bloodHead, val);
             mats[i].SetFloat(MainContainer.bloodChest, val);
-            mats[i].SetFloat(MainContainer.head, val);
-            mats[i].SetFloat(MainContainer.tail, val);
-            mats[i].SetFloat(MainContainer.back, val);
+            mats[i].SetFloat(MainContainer.bloodFace, val);
+            mats[i].SetFloat(MainContainer.bloodRear, val);
+            mats[i].SetFloat(MainContainer.bloodBack, val);
         }
     }
     void SetMatParam(string param,float val)
@@ -94,6 +94,15 @@ public class Dragon : MonoBehaviour
                 case DargonBloodState.bloodTail:
                     SetMatParam(MainContainer.bloodTail, 0);
                     break;
+                case DargonBloodState.bloodFace:
+                    SetMatParam(MainContainer.bloodFace, 0);
+                    break;
+                case DargonBloodState.bloodBack:
+                    SetMatParam(MainContainer.bloodBack, 0);
+                    break;
+                case DargonBloodState.bloodRear:
+                    SetMatParam(MainContainer.bloodRear, 0);
+                    break;
             }
             //第一关，被打一下后，逃走
             if (life == (lifeBase - 1) && GameManager2._instance.levelNow == GameManager2.LevelNow.isLevel1)
@@ -105,7 +114,8 @@ public class Dragon : MonoBehaviour
         else
         {   //播放音效
             AudioManager._instance.PlayEffect("blood");
-            hasDead = true;            
+            hasDead = true;
+            print("电鳗死了");
         }        
     }
     public void Dead()
@@ -118,6 +128,8 @@ public class Dragon : MonoBehaviour
         animator.SetInteger("dragonState", (int)dragonState);      
         //生成爆炸特效
         StartCoroutine(WaitToSpawnEffect());
+        //死了之后不再发射
+        transform.parent.GetComponent<DragonEmitManager>().enabled = false;
     }
     IEnumerator WaitToSpawnEffect()
     {

@@ -29,7 +29,7 @@ public class FirstEnd : MonoBehaviour
         Save._instance.SaveFairyCoinsAndTime(Level1UIManager._instance.fairyCoinsNum,Level1UIManager._instance.gameTime);
         Level1UIManager._instance.canWipeOut = true;
         yield return new WaitForSeconds(2.5f);
-        SceneManager.LoadScene("4_end");
+        SceneManager.LoadScene("2_before_anim");
     }
     private void OnTriggerEnter(Collider col)
     {

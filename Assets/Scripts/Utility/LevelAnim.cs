@@ -67,7 +67,6 @@ public class LevelAnim : MonoBehaviour
     {
         wipeIn();
         wipeOut();
-        Utility.ChangeVolume();
         videoPlayer.SetDirectAudioVolume(0, AudioManager._instance.bgmPlayer.volume);
         if (canSkip)
         {

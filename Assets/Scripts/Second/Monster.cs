@@ -111,7 +111,8 @@ public class Monster : MonoBehaviour {
         AudioManager._instance.PlayEffect("gun");
         if (gameObject.tag.Equals("chocolateFrog"))
         {
-            StartCoroutine(MonsterManager._instance.ChangeAllDropSpeed());//巧克力蛙buff       
+            print("巧克力蛙特效");
+            //StartCoroutine(MonsterManager._instance.ChangeAllDropSpeed());//巧克力蛙buff       
             GameObject effect = Instantiate(Resources.Load<GameObject>("Prefabs/frogFrost"), transform.position, Quaternion.identity);
             effect.transform.SetParent(WuZei._instance.transform);
             Destroy(effect, 1f);            

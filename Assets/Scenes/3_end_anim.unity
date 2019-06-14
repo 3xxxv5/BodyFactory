@@ -420,7 +420,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd0d5c1b22ddea49a06c546165ce12d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: 0f0075a2ce2d35b42972b67896700991, type: 3}
+  shader: {fileID: 4800000, guid: 6dc1811eb34dd274bbe9c90d86731acc, type: 3}
   Value: 1.42
 --- !u!1 &797637535
 GameObject:

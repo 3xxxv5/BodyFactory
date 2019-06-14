@@ -86,6 +86,7 @@ public class Level2UIManager : MonoBehaviour
 
     void Init()
     {
+        AudioManager._instance.PlayeBGM("second");
         Save._instance.DeleteIkaCoinsAndTime();
         for (int i = 0; i < circleProgress.Length; i++) circleProgress[i].fillAmount = 0;
         //pause panel
@@ -118,14 +119,14 @@ public class Level2UIManager : MonoBehaviour
     // Update is called once per frame
     void showCoins()
     {
-        coin_ikaAmountText.text = ikaCoinsNum.ToString() + "/28";
+        coin_ikaAmountText.text = ikaCoinsNum.ToString() + MainContainer.ikaAll;
         if (PlayerPrefs.HasKey(MainContainer.fairyCoins))
         {
-            coin_fairyAmountText.text = PlayerPrefs.GetInt(MainContainer.fairyCoins) + "/18";
+            coin_fairyAmountText.text = PlayerPrefs.GetInt(MainContainer.fairyCoins) + MainContainer.fairyAll;
         }
         else
         {
-            coin_fairyAmountText.text = "0/18";
+            coin_fairyAmountText.text = "0" + MainContainer.fairyAll;
         }
     }
     void showTime()
@@ -145,8 +146,7 @@ public class Level2UIManager : MonoBehaviour
         showTime();
         showCoins();
         WipeIn();
-        WipeOut();
-        Utility.ChangeVolume();
+        WipeOut();  
         if ((!GameManager2._instance.hasOver1) && (!GameManager2._instance.hasOver2)&& (!TimelineManager2._instance.animPaused))
         {
             if (mainCanvas.alpha == 1 && Input.GetKeyUp(KeyCode.Escape))

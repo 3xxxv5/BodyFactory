@@ -44,26 +44,7 @@ public class Utility : MonoBehaviour
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene(name);
     }
-    public static void ChangeVolume()
-    {
-        if (AudioManager._instance.reduceVol)
-        {
-            AudioManager._instance.bgmPlayer.volume = Mathf.Lerp(AudioManager._instance.bgmPlayer.volume, 0f, Time.deltaTime * 2);
-            print(AudioManager._instance.bgmPlayer.volume);
-            if (AudioManager._instance.bgmPlayer.volume < 0.05f)
-            {
-                AudioManager._instance.reduceVol = false;
-            }
-        }
-        if (AudioManager._instance.increaseVol)
-        {
-            AudioManager._instance.bgmPlayer.volume = Mathf.Lerp(AudioManager._instance.bgmPlayer.volume, AudioManager._instance.saveVolume, Time.deltaTime * 2);
-            if ((AudioManager._instance.saveVolume-AudioManager._instance.bgmPlayer.volume) < 0.05f)
-            {
-                AudioManager._instance.increaseVol = false;
-            }
-        }
-    }         
+   
     public static string getThreeNum(int num)
     {
         if (num< 10) {

@@ -89,7 +89,7 @@ public class TimelineManager2 : MonoBehaviour
         DragonManager._instance.Level2Show();//电鳗出现
         yield return new WaitForSeconds(2f);
         TurnClear();
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4f);
         TurnBlack();
         yield return new WaitForSeconds(1f);
         OpenPlayerCamera(level2Camera);

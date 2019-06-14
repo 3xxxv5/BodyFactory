@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 666869169689085441}
   - component: {fileID: 666869169689085443}
   - component: {fileID: 8699531464732674759}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: dragonCircleBall
   m_TagString: electric
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 666869169689085442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -239.81, y: 20.024292, z: -30.903378}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 6129625691580230431}
   m_Father: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 6952817424167682626}
   - component: {fileID: 2896431081184585869}
   - component: {fileID: 7758012057566696441}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4760,7 +4760,7 @@ GameObject:
   - component: {fileID: 2132309955545243265}
   - component: {fileID: 6392628486880335041}
   - component: {fileID: 1485335693094554677}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9431,7 +9431,7 @@ GameObject:
   - component: {fileID: 6129625691580230431}
   - component: {fileID: 2846348629335138859}
   - component: {fileID: 3603237294649372342}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: LightningOrbSharp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14060,7 +14060,7 @@ GameObject:
   - component: {fileID: 161886899971230626}
   - component: {fileID: 4095778898768863991}
   - component: {fileID: 3977848765087363711}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}

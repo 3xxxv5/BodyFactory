@@ -90,14 +90,14 @@ public class Level1UIManager : MonoBehaviour
     // Update is called once per frame
     void showCoins()
     {
-        coin_fairyAmountText.text = fairyCoinsNum.ToString() + "/18";
+        coin_fairyAmountText.text = fairyCoinsNum.ToString() + MainContainer.fairyAll;
         if (PlayerPrefs.HasKey(MainContainer.ikaCoins))
         {
-            coin_ikaAmountText.text = PlayerPrefs.GetInt(MainContainer.ikaCoins) + "/28";
+            coin_ikaAmountText.text = PlayerPrefs.GetInt(MainContainer.ikaCoins) + MainContainer.ikaAll;
         }
         else
         {
-            coin_ikaAmountText.text = "0/28";
+            coin_ikaAmountText.text = "0"+ MainContainer.ikaAll;
         }
     }
     void showTime()
@@ -118,7 +118,6 @@ public class Level1UIManager : MonoBehaviour
         showTime();      
         wipeIn();
         wipeOut();
-        Utility.ChangeVolume();
         if (mainCanvas.alpha==1&&Input.GetKeyUp(KeyCode.Escape))
         {
             Pause();

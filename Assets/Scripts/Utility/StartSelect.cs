@@ -10,7 +10,7 @@ public class StartSelect : MonoBehaviour
     public  CanvasGroup volumeCanvas;
     Image volumeSlider;
     public Sprite[] volumeSprites;
-    int volumeIndex = 2;//0~5，一共6档，初始为2档
+    int volumeIndex = 1;//0~5，一共6档，初始为2档
     Dictionary<int, float> volumeDic = new Dictionary<int, float>(6);
     bool isOpen = true;
     public  Button rightEarBtn;
@@ -26,7 +26,7 @@ public class StartSelect : MonoBehaviour
     }
     private void Update()
     {
-        Utility.ChangeVolume();
+
     }
 
     void InitMusicSettings()
@@ -35,9 +35,8 @@ public class StartSelect : MonoBehaviour
         //设置音量界面       
         volumeSlider = volumeCanvas.transform.Find("volumeSlider").GetComponent<Image>();
         SetVolumeDic();
-        volumeIndex = 2;
+        volumeIndex = 1;
         volumeSlider.sprite = volumeSprites[volumeIndex];//设置初始档位的图片
-        AudioManager._instance.SetPlayerVolume(volumeDic[volumeIndex]);//根据档位设置音量      
         Utility.DisableCanvas(volumeCanvas, 0f);
     }
     void SetVolumeDic()

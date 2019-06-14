@@ -42,20 +42,20 @@ public class EndUIManager : MonoBehaviour
         //ika coin
         if (PlayerPrefs.HasKey(MainContainer.ikaCoins))
         {
-            ikaCoinText.text = PlayerPrefs.GetInt(MainContainer.ikaCoins).ToString() + "/28";
+            ikaCoinText.text = PlayerPrefs.GetInt(MainContainer.ikaCoins).ToString() +MainContainer.ikaAll;
         }
         else
         {
-            ikaCoinText.text = "0/28";
+            ikaCoinText.text = "0"+ MainContainer.ikaAll;
         }
         //fairy coin
         if (PlayerPrefs.HasKey(MainContainer.fairyCoins))
         {
-            fairyCoinText.text = PlayerPrefs.GetInt(MainContainer.fairyCoins).ToString() + "/18";
+            fairyCoinText.text = PlayerPrefs.GetInt(MainContainer.fairyCoins).ToString() + MainContainer.fairyAll;
         }
         else
         {
-            fairyCoinText.text = "0/18";
+            fairyCoinText.text = "0" + MainContainer.fairyAll;
         }
     }
     void ShowTime()

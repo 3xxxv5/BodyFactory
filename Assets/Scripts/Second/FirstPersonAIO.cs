@@ -56,8 +56,6 @@ public class FirstPersonAIO : MonoBehaviour {
     bool hitBattery = false;
     bool hitCenterBall = false;
     bool hitDragonBlood = false;
-    bool hitDoor = false;
-    bool hitSea = false;
     [HideInInspector] public bool hasQte = false;
     [HideInInspector] public bool qteWin = false;
     int endIndex = -1;
@@ -129,8 +127,6 @@ public class FirstPersonAIO : MonoBehaviour {
                 | 1 << LayerMask.NameToLayer("wall")
                 | 1 << LayerMask.NameToLayer("centerBall")
                 | 1 << LayerMask.NameToLayer("dragon")
-                | 1 << LayerMask.NameToLayer("sea")
-                | 1 << LayerMask.NameToLayer("door")
                 | 1 << LayerMask.NameToLayer("battery");
 
             tictock += Time.deltaTime;
@@ -199,8 +195,6 @@ public class FirstPersonAIO : MonoBehaviour {
         hitCenterBall = false;
         hitBattery = false;
         qteWin = false;
-        hitSea = false;
-        hitDoor = false;
     }
     void Shoot(Ray monsterRay)
     {     
@@ -214,12 +208,9 @@ public class FirstPersonAIO : MonoBehaviour {
                // wall
                 case 19: ShootTransfer(monsterHits[0]); ShootManager._instance.canChange2Battery = true; break;
                 //battery
-                case 25: hitBattery = true; ShootTransfer(monsterHits[0]); break;
-                //door
-                case 29: ShootTransfer(monsterHits[0]); break;
-                //sea
-                case 17: ShootTransfer(monsterHits[0]); break;              
+                case 25: hitBattery = true; ShootTransfer(monsterHits[0]); break;      
             }
+            print("飞到了：" + monsterHits[0].transform.gameObject.name);
         }
         else if (monsterHits.Length > 1)//射中1个以上的物体，标记是否射中指定物体
         {
@@ -228,10 +219,8 @@ public class FirstPersonAIO : MonoBehaviour {
             {
                 switch (monsterHits[i].collider.gameObject.layer)
                 {
-                    case 19: hitWall = true; endIndex = i; break;
                     case 25: hitBattery = true; endIndex = i; break;
-                    case 29: hitDoor = true;endIndex = i;print("射中门了"); break;
-                    case 17: hitSea = true; endIndex = i;break;             
+                    case 19: hitWall = true; endIndex = i; break;
                     case 18: hitMonster = true; break;
                     case 23: hitCenterBall = true; break;
                     case 14: hitDragonBlood = true;break;
@@ -242,16 +231,19 @@ public class FirstPersonAIO : MonoBehaviour {
                 if (hitCenterBall)
                 {
                     hasQte = true;//用于设置Qte 状态下的移动速度
+                    print("打中了centerBall：");
                     StartCoroutine(WuZei._instance.Qte(WuZei._instance.qteTime));
                 }               
             }
             if (hitWall && hitDragonBlood)
             {
                 hasQte = true;//用于设置Qte 状态下的移动速度
+                print("打中了龙：");
                 StartCoroutine(WuZei._instance.Qte(WuZei._instance.qteTime));
             }
-            if (hitSea || hitDoor||hitWall || hitBattery)
+            if (hitWall|| hitBattery)
             {
+                print("飞到了："+monsterHits[endIndex].transform.gameObject.name);
                 ShootTransfer(monsterHits[endIndex]);//不管有没有射中，tranfer总是要进行的。player只管移动。移动中发生的事情由乌贼的控制
             }
         }
