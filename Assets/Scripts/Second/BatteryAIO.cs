@@ -69,13 +69,11 @@ public class BatteryAIO : MonoBehaviour
     }
     public  void ResetBatteryPos()
     {
-        print("恢复了");
         transform.localRotation = InitRotation;
         playerCamera.localPosition = cameraInitPosition;
         playerCamera.localRotation = cameraInitRotation;
         if (puffer != null)
         {
-            print("puffer");
             puffer.localPosition = pufferInitPosition;
             puffer.localRotation = pufferInitRotation;
         }
