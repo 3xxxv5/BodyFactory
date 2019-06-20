@@ -16,6 +16,7 @@ public class Monster : MonoBehaviour {
     float rotateSpeed = 30f;
     float explodeDistance = 5f;
     bool canCollide = true;
+    bool hasDestroy = false;
 
     void Awake () {      
         life = lifeBase;
@@ -26,6 +27,7 @@ public class Monster : MonoBehaviour {
 	void Update () {
           Move();
           ChangeColor();
+          YTest();
     }
     void ChangeColor()
     {
@@ -56,6 +58,29 @@ public class Monster : MonoBehaviour {
         life -= num;        
     }
  
+
+    public void YTest()
+    {
+        if (!hasDestroy)
+        {
+            print("y清除");
+            if (transform.position.y <= 4.4)
+            {
+                switch (GameManager2._instance.levelNow)
+                {
+                    case GameManager2.LevelNow.isLevel1:
+                        GameManager2._instance.level1foodNum--;
+                        break;
+                    case GameManager2.LevelNow.isLevel2:
+                        GameManager2._instance.level2foodNum--;
+                        break;
+                }
+                Destroy(gameObject);
+                hasDestroy = true;
+            }
+        }
+
+    }
     private void OnCollisionEnter(Collision col)
     {
         if (!canCollide) return;

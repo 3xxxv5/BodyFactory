@@ -56,7 +56,7 @@ MonoBehaviour:
   icingChips: {fileID: 0}
   lifeBase: 1
   life: 0
-  maxDistance: 8
+  maxDistance: 3
 --- !u!54 &1623059714878209454
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -78,10 +78,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropSpeed: 2
   chips: {fileID: 1629271418919193744, guid: 22f42f9e614702b428caa252dfef6e32, type: 3}
+  chocoChips: {fileID: 0}
+  icingChips: {fileID: 0}
   lifeBase: 1
   life: 0
-  radius: 5
-  power: 1000
 --- !u!1 &6776727413057109196
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3397704759070017166}
   - component: {fileID: 5390684948997418985}
   - component: {fileID: 9127200436186897565}
-  m_Layer: 18
+  m_Layer: 23
   m_Name: centerBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,6 +14,8 @@ public class TimelineManager2 : MonoBehaviour
     public Camera level3Camera;
     public GameObject DoorChips;
     [HideInInspector]public bool animPaused = false;
+    bool hasShowCursor = false;
+
     private void Awake()
     {
         _instance = this;
@@ -29,7 +31,15 @@ public class TimelineManager2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!hasShowCursor)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                hasShowCursor = true;
+            }
+        }
     }
     void TurnBlack()
     {
@@ -78,6 +88,7 @@ public class TimelineManager2 : MonoBehaviour
         TurnClear();
         yield return new WaitForSeconds(1);
         GameManager2._instance.Level2_Init();
+        FirstPersonAIO._instance.enableCameraMovement = true;
         animPaused = false;
     }
     public IEnumerator Level2WinAnim()

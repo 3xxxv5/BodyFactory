@@ -7,16 +7,22 @@ public class RefractFairy : Fairy
 {
     protected Hair_PlayerMove playerMove;
     RefractRayEmitter[] refractRays;
-    protected Button rotateButton;
+    public  Button rotateButton;
 
     public void Awake() {
         fairySorts = FairySorts.Refract;
         base.Init(); 
         playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<Hair_PlayerMove>();
         InitRefractRays();
-
-        rotateButton = GameObject.FindWithTag("refractRotateBtn").GetComponent<Button>();
-        rotateButton.onClick.AddListener(RotateFairy);
+       
+    }
+    public void Start()
+    {
+        if (rotateButton != null)
+        {
+            rotateButton.onClick.AddListener(RotateFairy);
+        }
+        //rotateButton = GameObject.FindWithTag("refractRotateBtn").GetComponent<Button>();       
     }
     public void InitRefractRays()
     {

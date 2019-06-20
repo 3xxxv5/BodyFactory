@@ -5,13 +5,34 @@ using UnityEngine.UI;
 
 public class FixedReflectFairy : ReflectFairy
 {
+    public override void InitReflectRay()
+    {
+        reflectRay = GetComponentInChildren<ReflectRayEmitter>();
+        reflectRay.startPoint = transform.position;
+        reflectRay.dirNum = dirNum;
+        reflectRay.dirs = new Vector3[dirNum] //16个方向，记住序号，下次继续往下轮
+        {
+            new Vector3(-1,1,0),new Vector3(-1,1,1),
+            new Vector3(0,1,1), new Vector3(1,1,1),
+            new Vector3(1,1,-1), new Vector3(0,1,-1),
+            new Vector3(-1,1,-1), new Vector3(1,1,0)            
+        };
+    }
+
     public override void InitButtons()
     {
         fairySorts = FairySorts.FixedReflect;
-        rotateButton = GameObject.FindWithTag("fixedRotateBtn").GetComponent<Button>();
-        rotateButton.onClick.AddListener(RotateFairy);
-        overTurnButton = GameObject.FindWithTag("fixedTurnBtn").GetComponent<Button>();
-        overTurnButton.onClick.AddListener(OverTurnFairy);
+        if (rotateButton != null)
+        {
+            rotateButton.onClick.AddListener(RotateFairy);
+        }
+        if (overTurnButton != null)
+        {
+            overTurnButton.onClick.AddListener(OverTurnFairy);
+        }
+        //rotateButton = GameObject.FindWithTag("fixedRotateBtn").GetComponent<Button>();
+
+        //overTurnButton = GameObject.FindWithTag("fixedTurnBtn").GetComponent<Button>();
     }
 
     public override void MoveFairy()

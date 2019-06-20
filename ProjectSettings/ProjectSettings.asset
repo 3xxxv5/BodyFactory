@@ -622,6 +622,8 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 1
+    Collab: 1
     UNet: 1
   luminIcon:
     m_Name: 
@@ -642,10 +644,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 2
-  cloudProjectId: 0747da6a-b033-44a1-8e7f-8554e164ebf1
+  cloudProjectId: 1053c04d-6902-4c9d-a16c-4a9ee7d25645
   framebufferDepthMemorylessMode: 0
   projectName: BodyFac
-  organizationId: spatulag
+  organizationId: supervivian
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

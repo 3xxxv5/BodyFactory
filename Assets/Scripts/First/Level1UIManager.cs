@@ -20,6 +20,7 @@ public class Level1UIManager : MonoBehaviour
     public  GameObject reflectPanel;
     public GameObject refractPanel;
     public GameObject fixedReflectPanel;
+    public GameObject tipPanel;
     //进场
     Image fadeImage;
     public CircleWipe circleWipe;
@@ -51,6 +52,7 @@ public class Level1UIManager : MonoBehaviour
         refractPanel.SetActive(false);
         fixedReflectPanel.SetActive(false);
         print("coinFariy的总数："+(coins.childCount).ToString());
+        tipPanel.SetActive(true);
     
     }
     void Start()
@@ -153,18 +155,43 @@ public class Level1UIManager : MonoBehaviour
         }
     }
 
-    public void ShowTip(FairySorts fairySorts)
+    public void ShowTip(FairySorts fairySorts, bool rayHited)
     {
         if (fairySorts == FairySorts.Reflect)
         {
             reflectPanel.SetActive(true);
+            if (rayHited)
+            {
+                reflectPanel.transform.Find("hitPanel").gameObject.SetActive(true);
+            }
+            else
+            {
+                reflectPanel.transform.Find("hitPanel").gameObject.SetActive(false);
+            }
         }
-        else if(fairySorts==FairySorts.Refract)
+        else if (fairySorts == FairySorts.Refract)
         {
             refractPanel.SetActive(true);
-        }else if (fairySorts == FairySorts.FixedReflect)
+            if (rayHited)
+            {
+                refractPanel.transform.Find("hitPanel").gameObject.SetActive(true);
+            }
+            else
+            {
+                refractPanel.transform.Find("hitPanel").gameObject.SetActive(false);
+            }
+        }
+        else if (fairySorts == FairySorts.FixedReflect)
         {
             fixedReflectPanel.SetActive(true);
+            if (rayHited)
+            {
+                fixedReflectPanel.transform.Find("hitPanel").gameObject.SetActive(true);
+            }
+            else
+            {
+                fixedReflectPanel.transform.Find("hitPanel").gameObject.SetActive(false);
+            }
         }
         
     }
@@ -173,14 +200,17 @@ public class Level1UIManager : MonoBehaviour
     {
         if (fairySorts == FairySorts.Reflect)
         {
-            reflectPanel.SetActive(false);
+            reflectPanel.transform.Find("hitPanel").gameObject.SetActive(false);
+            reflectPanel.SetActive(false);          
         }
         else if (fairySorts == FairySorts.Refract)
         {
-            refractPanel.SetActive(false);
+            refractPanel.transform.Find("hitPanel").gameObject.SetActive(false);
+            refractPanel.SetActive(false);        
         }
         else if (fairySorts == FairySorts.FixedReflect)
         {
+            fixedReflectPanel.transform.Find("hitPanel").gameObject.SetActive(false);
             fixedReflectPanel.SetActive(false);
         }
     }

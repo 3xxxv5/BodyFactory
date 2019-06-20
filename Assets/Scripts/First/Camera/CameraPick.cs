@@ -281,12 +281,10 @@ public class CameraPick : MonoBehaviour
         if (playerState==PlayerState.Frozen)
         {
             exitPickText.SetActive(true);
-            tween.DOPlay();
             PlayerMoveControl(false);
         }
         else
         {
-            tween.DOPause();
             exitPickText.SetActive(false);
             PlayerMoveControl(true);
         }
@@ -295,6 +293,14 @@ public class CameraPick : MonoBehaviour
     void PlayerMoveControl(bool myBool)
     {
         player.GetComponent<Hair_PlayerMove>().canMove = myBool;
+        if (myBool)
+        {
+            Level1UIManager._instance.tipPanel.SetActive(true);
+        }
+        else
+        {
+            Level1UIManager._instance.tipPanel.SetActive(false);
+        }
     }
     #endregion
 

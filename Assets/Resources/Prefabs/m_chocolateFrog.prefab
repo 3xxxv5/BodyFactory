@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3397704759070017166}
   - component: {fileID: 5390684948997418985}
   - component: {fileID: 9127200436186897565}
-  m_Layer: 18
+  m_Layer: 23
   m_Name: centerBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

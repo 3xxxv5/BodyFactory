@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class ReflectFairy : Fairy
 {
     protected Hair_PlayerMove playerMove;
-    ReflectRayEmitter reflectRay;
-    const int dirNum = 8;
+    protected ReflectRayEmitter reflectRay;
+    protected const int dirNum = 8;
     Vector3 disToTarget;
     public  Button rotateButton;
     public Button overTurnButton;
@@ -22,10 +22,17 @@ public class ReflectFairy : Fairy
     public virtual  void InitButtons()
     {
         fairySorts = FairySorts.Reflect;
-        rotateButton = GameObject.FindWithTag("rotateBtn").GetComponent<Button>();
-        rotateButton.onClick.AddListener(RotateFairy);
-        overTurnButton = GameObject.FindWithTag("turnBtn").GetComponent<Button>();
-        overTurnButton.onClick.AddListener(OverTurnFairy);
+        if (rotateButton != null)
+        {
+            rotateButton.onClick.AddListener(RotateFairy);
+        }
+        //rotateButton = GameObject.FindWithTag("rotateBtn").GetComponent<Button>();
+        if (overTurnButton != null)
+        {
+            overTurnButton.onClick.AddListener(OverTurnFairy);
+        }
+        //overTurnButton = GameObject.FindWithTag("turnBtn").GetComponent<Button>();
+
     }
     
     public  virtual  void InitReflectRay()

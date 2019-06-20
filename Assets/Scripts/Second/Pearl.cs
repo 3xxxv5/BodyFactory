@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Pearl : MonoBehaviour
 {
-    float produceTimer1=5;
+    float produceTimer1=20;
     float ticktock1 = 0;
-    float produceTimer2=10;
+    float produceTimer2=20;
     float ticktock2 = 0;
-    float produceTimer3=15;
+    float produceTimer3=20;
     float ticktock3 = 0;
     [HideInInspector]public bool firstOk = true;
     [HideInInspector]public bool secondOk = true;

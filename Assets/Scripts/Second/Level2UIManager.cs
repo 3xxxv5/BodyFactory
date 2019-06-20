@@ -44,6 +44,7 @@ public class Level2UIManager : MonoBehaviour
 
     [HideInInspector] public int ikaCoinsNum;
     [HideInInspector] public float gameTime;
+    public GameObject tipText;
 
     private void Awake()
     {
@@ -57,6 +58,7 @@ public class Level2UIManager : MonoBehaviour
         //fadeimage.color = color.black;
         //fadeimage.dofade(0f, 1f);
         print("coinIka的总数：" + (coins.childCount).ToString());
+        tipText.SetActive(true);
     }
     void WipeIn()
     {

@@ -116,6 +116,9 @@ public class Dragon : MonoBehaviour
         {   //播放音效
             AudioManager._instance.PlayEffect("dragonDead");//电鳗死亡哀鸣
             AudioManager._instance.PlayEffect("blood");//电鳗受伤声音
+            //生成爆炸特效
+            GameObject effect = Instantiate(attackEffect, pos, Quaternion.identity);
+            effect.transform.SetParent(WuZei._instance.transform);
             hasDead = true;
             print("电鳗死了");
         }        
@@ -138,7 +141,12 @@ public class Dragon : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         dragonExplodeEffect.SetActive(true);
-        Destroy(dragonExplodeEffect, 2f);
+        yield return new WaitForSeconds(2f);
+        dragonExplodeEffect.SetActive(false);
+        dragonExplodeEffect.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        dragonExplodeEffect.SetActive(false);
+        dragonExplodeEffect.SetActive(true);
     }
     public void CollideElectric(Vector3 pos)
     {

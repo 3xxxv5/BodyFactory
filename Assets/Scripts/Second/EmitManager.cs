@@ -99,6 +99,7 @@ public class EmitManager : MonoBehaviour
     {
         lightCircleAnim.transform.position = spawnPos + Vector3.up;
         lightCircleAnim.SetTrigger("showCircle");
+        print("应该是执行了这里");
         StartCoroutine(WaitSpawn(prefab, spawnPos, 0.5f));
     }
 

@@ -69,15 +69,7 @@ public class Fairy : MonoBehaviour {
                 moveTip.gameObject.SetActive(true);
                 moveTip.forward = -Vector3.forward;
             }
-        
-            if (rayHited)
-            {
-                 Level1UIManager._instance.ShowTip(fairySorts);
-            }
-            else
-            {              
-                 Level1UIManager._instance.DisableTip(fairySorts);
-            }
+            Level1UIManager._instance.ShowTip(fairySorts,rayHited);
         }
         else
         {
